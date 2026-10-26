@@ -1,0 +1,39 @@
+# Pharoam design system: licence
+
+Copyright © 2026 The Pharoam authors (the owner of the GitHub account that publishes this repository). All rights reserved.
+
+This repository is public so that people can see it. It is **not open source**, and no licence to use it is granted.
+
+## What this covers
+
+Everything in this repository is covered except the third-party files listed under "Exceptions" below. That includes:
+- the Pharoam name and brand
+- the colour, type and layout tokens
+- the stylesheets, scripts and components
+- the design-system document and sample views
+- the written guidance
+- the sample content
+
+## What you may do
+
+- View this repository on GitHub.
+- Fork it on GitHub, as GitHub's terms allow. A fork is a copy for viewing only. It gives you no other rights.
+- Refer to the Pharoam design system by name, and link to it.
+
+## What you may not do without our written permission
+
+- Use any part of it for any commercial purpose.
+- Use any part of it in any product, service, website, app or other project, commercial or not.
+- Copy it outside GitHub, redistribute it, publish it, or sell it, in whole or in part.
+- Modify it, or build anything from it, including another design system, theme, product, or something confusingly similar.
+- Use the Pharoam name, seal, wordmark or other brand assets. See `brand/LICENSE`.
+
+## Asking for permission
+
+Ask in this repository's GitHub Discussions. If we give permission, it will be in writing, on terms we set at the time.
+
+## Exceptions: third-party files
+
+Fonts and icons made by others are not ours. They stay under their own licences, which this notice does not change. They are listed in `THIRD_PARTY_LICENSES.md`, and each licence file sits next to its files.
+
+This repository is provided as is, without warranty of any kind.

@@ -1,0 +1,60 @@
+version = 1
+
+# Ours, by default: everything not matched below.
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 The Pharoam authors"
+SPDX-License-Identifier = "LicenseRef-Pharoam-Proprietary"
+
+# Brand assets: ours (see brand/LICENSE).
+[[annotations]]
+path = "brand/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 The Pharoam authors"
+SPDX-License-Identifier = "LicenseRef-Pharoam-Proprietary"
+
+# Third-party fonts.
+[[annotations]]
+path = "assets/fonts/figtree/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)"
+SPDX-License-Identifier = "OFL-1.1"
+
+[[annotations]]
+path = "assets/fonts/literata/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2017 The Literata Project Authors (https://github.com/googlefonts/literata)"
+SPDX-License-Identifier = "OFL-1.1"
+
+[[annotations]]
+path = "assets/fonts/jetbrains-mono/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)"
+SPDX-License-Identifier = "OFL-1.1"
+
+[[annotations]]
+path = ["assets/fonts/noto-sans-arabic/**", "assets/fonts/noto-naskh-arabic/**"]
+precedence = "override"
+SPDX-FileCopyrightText = "2022 The Noto Project Authors (https://github.com/notofonts/arabic)"
+SPDX-License-Identifier = "OFL-1.1"
+
+[[annotations]]
+path = "assets/fonts/noto-sans-hebrew/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2022 The Noto Project Authors (https://github.com/notofonts/hebrew)"
+SPDX-License-Identifier = "OFL-1.1"
+
+# Third-party icons.
+[[annotations]]
+path = "assets/icons/lucide/**"
+precedence = "override"
+SPDX-FileCopyrightText = ["Lucide Contributors", "2013-present Cole Bemis"]
+SPDX-License-Identifier = "ISC AND MIT"
+
+# Our provenance notes next to third-party files are ours (last match wins).
+[[annotations]]
+path = ["assets/fonts/*/SOURCE.md", "assets/icons/lucide/SOURCE.md"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 The Pharoam authors"
+SPDX-License-Identifier = "LicenseRef-Pharoam-Proprietary"

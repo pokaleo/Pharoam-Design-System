@@ -1,0 +1,10 @@
+.vscode/*
+# design QA output
+/.taste-skill
+/.playwright-mcp
+
+# OS, editor and tool files
+.DS_Store
+.idea/
+/.omc
+/assets/fonts/.cache

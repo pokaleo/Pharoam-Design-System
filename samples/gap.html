@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gap to a pathway · Pharoam sample</title>
+<meta name="description" content="Pharoam design system: the gap to a pathway, an illustration of the system.">
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/pharoam.css">
+<link rel="stylesheet" href="../assets/css/doc.css">
+<style>
+  /* Desktop 1440: canvas 1120. Groups run the full width (seven columns of
+     data need it). The lower row is 1fr + 1fr with one 16px gutter: 552 + 16 + 552. */
+  .provenance { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 10px var(--pad); background: var(--panel); border-radius: var(--radius-panel); margin-block-end: var(--gap); }
+  .provenance .t-meta { color: var(--ink-2); }
+  .key { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-block: 0 var(--space-3); font-size: var(--fs-meta); color: var(--ink-2); }
+  .key .k { display: inline-flex; align-items: center; gap: 6px; }
+  .group { padding: var(--pad) var(--pad) var(--space-2); }
+  .group + .group { margin-block-start: var(--gap); }
+  .group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-block-end: var(--space-2); }
+  .group-head .tag { align-self: center; }
+  .group-head p { margin: 0; color: var(--ink-2); }
+  .gap-table { min-width: 860px; }
+  .gap-table td.asked { white-space: nowrap; }
+  .gap-table td.next { text-align: end; white-space: nowrap; }
+  .gap-wrap { overflow-x: auto; }
+  .lower { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin-block-start: var(--gap); align-items: stretch; }
+  .lower > * { min-width: 0; }
+  .web-excerpt { margin: 0; }
+  @media (max-width: 1023px) { .lower { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<script src="../assets/icons/lucide/sprite.js"></script>
+<script src="../assets/js/glyphs.js"></script>
+<script src="../brand/marks.js"></script>
+
+<div class="ds-bar no-print" role="region" aria-label="Sample view settings">
+  <a href="../index.html">Pharoam design system</a>
+  <span class="ds-name">Sample view: Gap to a pathway · <a href="skills.html">Skills overview</a></span>
+  <span class="ds-spacer"></span>
+  <span class="ds-group" role="group" aria-label="Theme"><button data-set="theme=light">Light</button><button data-set="theme=dark">Dark</button></span>
+  <span class="ds-group" role="group" aria-label="Density"><button data-set="density=compact">Compact</button><button data-set="density=comfortable">Comfortable</button></span>
+  <span class="ds-group" role="group" aria-label="Contrast"><button data-set="contrast=normal">Standard</button><button data-set="contrast=more">More contrast</button></span>
+  <span class="ds-group" role="group" aria-label="Vocabulary labels"><button data-set="annotate=off">Plain</button><button data-set="annotate=on">Name the vocabulary</button></span>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <button class="btn btn-quiet btn-icon" data-nav-toggle aria-expanded="false" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <span data-mark></span>
+    <span class="topbar-title">Gap to Data engineer</span>
+    <span class="sync sync-offline"><svg class="ic"><use href="#i-wifi-off"/></svg>Offline</span>
+  </header>
+
+  <aside class="sidebar" aria-label="Pharoam">
+    <a class="brand" href="#" aria-label="Pharoam home"><span data-wordmark></span></a>
+
+    <button class="storage-switch" aria-label="Storage: My folder, pharoam-profile. Offline, 2 changes kept on this device. Change storage">
+      <svg class="ic"><use href="#i-folder"/></svg>
+      <span class="s-name">pharoam-profile</span>
+      <svg class="ic ic-sm" style="grid-row: span 2"><use href="#i-chevron-down"/></svg>
+      <span class="sync sync-offline" data-vocab="Sync: offline"><svg class="ic"><use href="#i-wifi-off"/></svg>Offline · 2 changes kept here</span>
+    </button>
+
+    <nav class="nav" aria-label="Main">
+      <a href="skills.html"><svg class="ic"><use href="#i-map"/></svg>Skills</a>
+      <a href="#"><svg class="ic"><use href="#i-file-text"/></svg>Evidence</a>
+      <a href="skills.html#queue"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count" aria-label="2 AI proposals waiting">2</span></a>
+      <a href="#"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</a>
+      <p class="nav-label">Where next</p>
+      <a href="#" aria-current="page"><svg class="ic"><use href="#i-compass"/></svg>Pathways</a>
+      <a href="#"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</a>
+      <a href="#"><svg class="ic"><use href="#i-briefcase-business"/></svg>Prepare</a>
+    </nav>
+
+    <div class="sidebar-foot nav">
+      <a href="#"><svg class="ic"><use href="#i-scroll-text"/></svg>Activity log</a>
+      <a href="#"><svg class="ic"><use href="#i-settings"/></svg>Settings</a>
+      <a href="#"><svg class="ic"><use href="#i-life-buoy"/></svg>Help from Ostmere University</a>
+      <a href="#" data-lock role="button"><svg class="ic"><use href="#i-lock"/></svg>Lock now</a>
+    </div>
+  </aside>
+
+  <main class="canvas" id="main">
+    <div class="canvas-inner">
+
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Pathways</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span aria-current="page">Data engineer</span>
+      </nav>
+      <div class="titlebar">
+        <div>
+          <h1 class="t-title">Gap to Data engineer</h1>
+          <p class="t-lead">Two core requirements have nothing in your profile yet: data modelling and Apache Airflow.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary"><svg class="ic"><use href="#i-columns-2"/></svg>Compare with another pathway</button>
+          <button class="btn btn-primary"><svg class="ic"><use href="#i-sprout"/></svg>Plan learning toward it</button>
+        </div>
+      </div>
+
+      <div class="provenance">
+        <span class="tag trust-pack" data-vocab="Trust: unverified content pack"><svg class="ic"><use href="#i-package"/></svg>Unverified content pack</span>
+        <span class="t-meta">From “Sample data roles” 0.3, a community pack nobody has reviewed yet. You chose this pathway on 4 Oct 2026.</span>
+        <a class="t-meta" href="#about">What the pack says</a>
+      </div>
+
+      <div class="key" aria-label="Key">
+        <span class="k"><span class="tag req-core" data-vocab="Requirement: core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span> the pathway needs it</span>
+        <span class="k"><span class="tag req-helpful" data-vocab="Requirement: helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span> it makes things easier</span>
+        <span class="k"><span class="none">—</span> nothing from this source</span>
+      </div>
+
+      <!-- Supported -->
+      <section class="sheet group" aria-labelledby="g-sup">
+        <div class="group-head">
+          <span class="tag gap-supported" data-vocab="Gap: supported"><svg class="ic"><use href="#i-anchor"/></svg>Supported</span>
+          <h2 class="t-section" id="g-sup">Shown by evidence or a demonstration</h2>
+          <p>At or above the level asked.</p>
+        </div>
+        <div class="gap-wrap">
+        <table class="table gap-table stackable">
+          <thead><tr>
+            <th scope="col">Requirement</th><th scope="col">Asked for</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-self)"><use href="#i-user-round"/></svg>Self-reported</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-evidence)"><use href="#i-paperclip"/></svg>Evidenced</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-demo)"><use href="#i-pencil-ruler"/></svg>Demonstrated</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-ai)"><use href="#i-ai"/></svg>AI-inferred</th>
+            <th scope="col" class="t-r"><span class="visually-hidden">Next step</span></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="skill-name">Python <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Demonstrated"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="AI-inferred"><span class="lvl" data-level="3" style="color:var(--src-ai)"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td class="next"><a href="skills.html#detail">See the evidence</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Apache Kafka <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><a class="tag ai-proposed" href="skills.html#queue" style="text-decoration:none"><svg class="ic"><use href="#i-ai"/></svg>Proposed: Proficient</a></td>
+              <td class="next"><a href="skills.html#queue">Review proposal</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Docker <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Mentoring <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Claimed -->
+      <section class="sheet group" aria-labelledby="g-cla">
+        <div class="group-head">
+          <span class="tag gap-claimed" data-vocab="Gap: claimed"><svg class="ic"><use href="#i-message-square-quote"/></svg>Claimed</span>
+          <h2 class="t-section" id="g-cla">Your word, or the AI’s, with nothing to show yet</h2>
+          <p>Evidence would make these stronger.</p>
+        </div>
+        <div class="gap-wrap">
+        <table class="table gap-table stackable">
+          <thead><tr>
+            <th scope="col">Requirement</th><th scope="col">Asked for</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-self)"><use href="#i-user-round"/></svg>Self-reported</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-evidence)"><use href="#i-paperclip"/></svg>Evidenced</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-demo)"><use href="#i-pencil-ruler"/></svg>Demonstrated</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-ai)"><use href="#i-ai"/></svg>AI-inferred</th>
+            <th scope="col" class="t-r"><span class="visually-hidden">Next step</span></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="skill-name">Cloud data warehouse <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span> <span class="t-meta">BigQuery</span></td>
+              <td data-label="Evidenced"><span class="none">—</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-paperclip"/></svg>Add evidence</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Data quality testing <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Evidenced"><span class="none">—</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="lvl" data-level="2" style="color:var(--src-ai)"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td class="next"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Take a check</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Go <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Evidenced"><span class="none">—</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"><button class="btn btn-quiet btn-sm">Add evidence</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Stakeholder communication <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Evidenced"><span class="none">—</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"><button class="btn btn-quiet btn-sm">Add evidence</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Below -->
+      <section class="sheet group" aria-labelledby="g-bel">
+        <div class="group-head">
+          <span class="tag gap-below" data-vocab="Gap: below"><svg class="ic"><use href="#i-footprints"/></svg>Below</span>
+          <h2 class="t-section" id="g-bel">Under the level asked, for now</h2>
+          <p>The clearest places to learn next.</p>
+        </div>
+        <div class="gap-wrap">
+        <table class="table gap-table stackable">
+          <thead><tr>
+            <th scope="col">Requirement</th><th scope="col">Asked for</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-self)"><use href="#i-user-round"/></svg>Self-reported</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-evidence)"><use href="#i-paperclip"/></svg>Evidenced</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-demo)"><use href="#i-pencil-ruler"/></svg>Demonstrated</th>
+            <th scope="col"><svg class="ic" style="color:var(--src-ai)"><use href="#i-ai"/></svg>AI-inferred</th>
+            <th scope="col" class="t-r"><span class="visually-hidden">Next step</span></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="skill-name">SQL <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-sprout"/></svg>Add to plan</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Apache Spark <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Self-reported"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Evidenced"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Demonstrated"><span class="none">—</span></td>
+              <td data-label="AI-inferred"><span class="none">—</span></td>
+              <td class="next"><button class="btn btn-quiet btn-sm">Add to plan</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Unknown -->
+      <section class="sheet group" aria-labelledby="g-unk">
+        <div class="group-head">
+          <span class="tag gap-unknown" data-vocab="Gap: unknown"><svg class="ic"><use href="#i-cloud-fog"/></svg>Unknown</span>
+          <h2 class="t-section" id="g-unk">Nothing in your profile yet</h2>
+          <p>Not a gap until you know. You may already have these.</p>
+        </div>
+        <div class="gap-wrap">
+        <table class="table gap-table stackable">
+          <thead><tr>
+            <th scope="col">Requirement</th><th scope="col">Asked for</th>
+            <th scope="col" colspan="4">What your profile says</th>
+            <th scope="col" class="t-r"><span class="visually-hidden">Next step</span></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="skill-name">Data modelling <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Your profile" colspan="4" class="muted">No skill with this name. <a href="#">Is it your Event modelling?</a></td>
+              <td class="next"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-plus"/></svg>Say where you stand</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Apache Airflow <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Your profile" colspan="4" class="muted">No skill with this name.</td>
+              <td class="next"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-plus"/></svg>Say where you stand</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">Terraform <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
+              <td data-label="Your profile" colspan="4" class="muted">You retracted your claim on 20 Jun. <span class="tag rec-retracted"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted</span></td>
+              <td class="next"><button class="btn btn-quiet btn-sm">Say where you stand</button></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="skill-name">dbt <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span></span></th>
+              <td data-label="Asked for" class="asked"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+              <td data-label="Your profile" colspan="4" class="muted">No skill with this name.</td>
+              <td class="next"><button class="btn btn-quiet btn-sm">Say where you stand</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <div class="lower">
+        <!-- AI-drafted text: labelled, named, disclaimed, decided by the person -->
+        <section class="ai" aria-labelledby="draft-title" data-vocab="AI output container">
+          <div class="ai-head">
+            <span class="tag ai-drafted" data-vocab="AI: drafted"><svg class="ic"><use href="#i-ai"/></svg>Drafted by AI</span>
+            <span class="ai-model">Claude Sonnet 5.5, with your key</span>
+            <span class="ai-when">24 Oct 2026, before you went offline</span>
+          </div>
+          <div class="ai-body stack">
+            <h2 class="t-section" id="draft-title">What this gap might mean</h2>
+            <div class="prose" style="font-size:var(--fs-lead);line-height:var(--lh-lead)">
+              <p>Your Python, Kafka and Docker work already covers the pipeline-building side of this pathway. The open questions are on the modelling side: how data is shaped for the people who query it.</p>
+              <p>If your event modelling workshops covered schema design, they may count toward data modelling. Airflow is new ground, but your scheduled ETL jobs are close to it.</p>
+            </div>
+            <div>
+              <h3 class="t-label" style="margin-block-end:4px">Places you could start</h3>
+              <ul class="list list-two">
+                <li><span class="li-main">Write up the event modelling workshops<span class="li-sub">Could become evidence for data modelling</span></span><button class="btn btn-quiet btn-sm">Add to plan</button></li>
+                <li><span class="li-main">Move one scheduled ETL job to Airflow<span class="li-sub">A small project that would leave evidence behind</span></span><button class="btn btn-quiet btn-sm">Add to plan</button></li>
+                <li><span class="li-main">Window functions and query plans in SQL<span class="li-sub">Toward the Proficient level the pathway asks for</span></span><button class="btn btn-quiet btn-sm">Add to plan</button></li>
+              </ul>
+            </div>
+            <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>Written by an AI from your files and this pathway. It can be wrong and it is not evidence. Nothing is saved until you accept or edit it.</p>
+          </div>
+          <div class="ai-actions">
+            <button class="btn btn-secondary btn-sm">Accept as a note</button>
+            <button class="btn btn-quiet btn-sm"><svg class="ic"><use href="#i-pencil"/></svg>Edit</button>
+            <button class="btn btn-quiet btn-sm">Discard</button>
+          </div>
+        </section>
+
+        <!-- About the pathway: long-form text, citations, untrusted content, a blocked image -->
+        <section class="panel" id="about" aria-labelledby="about-title">
+          <div class="panel-head"><h2 class="t-section" id="about-title">About this pathway</h2><span class="t-meta">From the pack</span></div>
+          <div class="prose stack" style="font-size:var(--fs-lead);line-height:var(--lh-lead)">
+            <p>Data engineers build and look after the systems that move data from where it is made to where it is used.<a class="cite" href="#c1">1</a> Most roles sit between software teams and analysts.<a class="cite" href="#c2">2</a></p>
+            <div class="img-blocked" data-vocab="Trust: blocked image">
+              <svg class="ic" style="width:24px;height:24px"><use href="#i-image-off"/></svg>
+              <p><strong>Image not loaded.</strong> It comes from images.example.net, which is not in this pack. Pharoam only loads images from places you trust.</p>
+              <button class="btn btn-secondary btn-sm">Load this once</button>
+            </div>
+            <div class="untrusted" data-vocab="Trust: untrusted web content">
+              <p class="t-meta" style="display:flex;gap:6px;align-items:center;margin:0 0 6px"><span class="tag trust-web"><svg class="ic"><use href="#i-globe"/></svg>From the web, not checked</span> Quoted from a job ad<a class="cite" href="#c2">2</a></p>
+              <blockquote class="web-excerpt">“You will own our batch and streaming pipelines, from ingestion to the warehouse, and help analysts trust the numbers.”</blockquote>
+            </div>
+          </div>
+          <hr class="divider">
+          <ol class="sources-list" aria-label="Sources">
+            <li id="c1"><span class="ref">1</span><span>Sample data roles 0.3, <code style="font-family:var(--font-code)">pathways/data-engineer.md</code>, section “What the work is”</span></li>
+            <li id="c2"><span class="ref">2</span><span>Job ad, “Data Engineer, Payments”, fetched 4 Oct 2026 from jobs.example.org. Untrusted: the text was not written for Pharoam.</span></li>
+          </ol>
+        </section>
+      </div>
+
+      <footer class="org-footer" data-vocab="Organisation footer slot">
+        <span class="hosted"><span data-mark style="width:16px;height:16px"></span>Pharoam, hosted for Ostmere University students</span>
+        <nav aria-label="Ostmere University">
+          <a href="#">Privacy notice</a><a href="#">Terms of use</a><a href="#">Careers service</a><a href="#">Contact support</a>
+        </nav>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div id="lock-screen" hidden style="position:fixed;inset:0;z-index:20;display:grid;background:var(--ground)">
+  <div class="lock" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <span data-mark="full"></span>
+    <h2 class="t-section" id="lock-title"><span class="tag trust-locked" style="vertical-align:3px;margin-inline-end:6px"><svg class="ic"><use href="#i-lock"/></svg>Locked</span>Pharoam is locked</h2>
+    <p class="muted" style="margin:0;max-width:40ch">Your profile is closed on this device. Your files are unchanged in your folder.</p>
+    <form>
+      <div class="field"><label for="pass">Passphrase</label><input class="input" id="pass" type="password" autocomplete="current-password"></div>
+      <button class="btn btn-primary" type="submit">Unlock</button>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/ds.js"></script>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pharoam design system</title>
+<meta name="description" content="The visual language, domain vocabulary and components Pharoam is built from, in light and dark.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/pharoam.css">
+<link rel="stylesheet" href="assets/css/doc.css">
+</head>
+<body>
+<script src="assets/icons/lucide/sprite.js"></script>
+<script src="assets/js/glyphs.js"></script>
+<script src="brand/marks.js"></script>
+
+<div class="doc">
+  <nav class="doc-toc" aria-label="Contents">
+    <a class="brand" href="#top" aria-label="Pharoam design system"><span data-wordmark></span></a>
+    <ol>
+      <li><a href="#identity">Identity</a></li>
+      <li><a href="#foundations">Foundations</a>
+        <ol>
+          <li><a href="#colour">Colour</a></li>
+          <li><a href="#type">Typography</a></li>
+          <li><a href="#space">Space and density</a></li>
+          <li><a href="#layout">Layout and breakpoints</a></li>
+          <li><a href="#shape">Shape and elevation</a></li>
+          <li><a href="#icons">Icons</a></li>
+          <li><a href="#motion">Motion</a></li>
+        </ol>
+      </li>
+      <li><a href="#vocabulary">Domain vocabulary</a>
+        <ol>
+          <li><a href="#v-sources">Sources</a></li>
+          <li><a href="#v-levels">Levels</a></li>
+          <li><a href="#v-gap">Gap groups</a></li>
+          <li><a href="#v-ai">AI states</a></li>
+          <li><a href="#v-records">Record states</a></li>
+          <li><a href="#v-sync">Save and sync</a></li>
+          <li><a href="#v-trust">Trust markers</a></li>
+        </ol>
+      </li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#hosting">Organisations</a></li>
+      <li><a href="#a11y">Accessibility and languages</a></li>
+      <li><a href="#voice">Voice</a></li>
+    </ol>
+    <div class="toc-samples">
+      <p class="t-meta" style="margin:0 0 6px;padding-inline-start:8px">Sample views</p>
+      <ol>
+        <li><a href="samples/skills.html">Skills overview</a></li>
+        <li><a href="samples/gap.html">Gap to a pathway</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="doc-main" id="top">
+    <div class="doc-switches" role="region" aria-label="Page settings">
+      <span class="sw-name">Theme</span>
+      <span class="seg" role="group" aria-label="Theme"><button data-set="theme=light">Light</button><button data-set="theme=dark">Dark</button></span>
+      <span class="sw-name">Density</span>
+      <span class="seg" role="group" aria-label="Density"><button data-set="density=compact">Compact</button><button data-set="density=comfortable">Comfortable</button></span>
+      <span class="sw-name">Contrast</span>
+      <span class="seg" role="group" aria-label="Contrast"><button data-set="contrast=normal">Standard</button><button data-set="contrast=more">More</button></span>
+    </div>
+
+    <!-- ================================================================ -->
+    <section id="identity" aria-labelledby="h-identity" style="padding-block-start:48px">
+      <h1 class="d-h2" id="h-identity">Pharoam design system</h1>
+      <p class="d-lead">“The lighthouse does not choose the road. It helps people see it.” Everything here serves that sentence: Pharoam shows what is known, says where it came from, and leaves the choice with the person.</p>
+      <p class="d-text">This is the visual language, the domain vocabulary and the components the whole product is built from: Map, Assess, Explore, Learn, Prepare, Settings, and later sharing and the organisation admin. The two <a href="samples/skills.html">sample</a> <a href="samples/gap.html">views</a> show it applied; they illustrate the system and are not final screens.</p>
+
+      <div class="id-hero">
+        <div class="tile tile-day">
+          <div class="id-lockup"><img src="brand/seal.svg" alt="The Pharoam seal" width="120" height="120"><img class="id-word" src="brand/wordmark.svg" alt="Pharoam"></div>
+          <p>Paper and Graphite by day: a quiet ground, near-black ink, and one channel blue for what evidence shows.</p>
+        </div>
+        <div class="tile tile-night">
+          <div class="id-lockup"><img src="brand/seal-reversed.svg" alt="The Pharoam seal, reversed" width="120" height="120"><img class="id-word" src="brand/wordmark-reversed.svg" alt="Pharoam"></div>
+          <p>The lamp room at night: the same marks reversed, and the lamp still lit.</p>
+        </div>
+      </div>
+
+      <h3 class="d-h3">The idea: the P is the lighthouse</h3>
+      <p class="d-text">The capital P is drawn as a lighthouse in one even line: two tapering tower walls, a dome, one band, and the lamp glowing in the counter of the P. Set in a seal with a fine inner ring, the shoreline and a beam running out past the edge, it becomes the identifier. In the wordmark the open line P takes the place of the first letter, so the name and the lighthouse are the same thing.</p>
+      <ul class="d-list">
+        <li><strong>Warm</strong> through the one gold lamp and the serif used for long reading, not through decoration.</li>
+        <li><strong>Calm</strong> through restraint: Graphite, Paper and one blue; flat surfaces; nothing that moves to get attention.</li>
+        <li><strong>Trustworthy</strong> through candour: every claim shows its source, AI is always labelled, history is never erased. The seal reads as something official.</li>
+        <li><strong>Lasting</strong>: a drawn mark and quiet colour age well across the years someone keeps a profile.</li>
+      </ul>
+
+      <h3 class="d-h3">Seal, line P and wordmark</h3>
+      <p class="d-text">The full brand board, with every file, lives in <a href="brand/index.html">brand/</a>.</p>
+      <div class="symbol-grid">
+        <div style="background:#f3f3f3;color:#1b1d1f">
+          <img src="brand/seal.svg" alt="Primary seal" width="72" height="72">
+          <span class="t-meta" style="color:#4b5057">Primary seal. Graphite disc, paper lines, gold lamp and beam. The identifier on its own.</span>
+        </div>
+        <div style="background:#1b1d1f;color:#f0f0f0">
+          <img src="brand/seal-reversed.svg" alt="Reversed seal" width="72" height="72">
+          <span class="t-meta" style="color:#c0c2c4">Reversed seal, for dark grounds and the dark theme.</span>
+        </div>
+        <div>
+          <div class="cluster" style="gap:16px"><img src="brand/seal-outline.svg" alt="Outline seal" width="72" height="72"><img src="brand/seal-channel.svg" alt="Channel seal" width="72" height="72"><img src="brand/line-p.svg" alt="Open line P" width="48" height="72"></div>
+          <span class="t-meta">Outline seal for print and one colour; channel seal for marketing only; the open line P for inline and very small use.</span>
+        </div>
+      </div>
+      <div class="logo-sizes" aria-label="Icon sizes">
+        <figure><img src="brand/app-icon.svg" width="96" height="96" alt="App icon" style="border-radius:22px"><figcaption>App icon</figcaption></figure>
+        <figure><img src="brand/favicon.svg" width="48" height="48" alt="48 pixel icon"><figcaption>48</figcaption></figure>
+        <figure><img src="brand/favicon.svg" width="32" height="32" alt="32 pixel favicon"><figcaption>32</figcaption></figure>
+        <figure><img src="brand/favicon-16.svg" width="16" height="16" alt="16 pixel favicon"><figcaption>16</figcaption></figure>
+        <figure><span data-wordmark class="wm-28" style="color:var(--ink)"></span><figcaption>Wordmark, 28 high</figcaption></figure>
+      </div>
+      <table class="d-table">
+        <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Construction</td><td>64-unit grid. Seal radius 30 with an inner ring at 26.5; the line P drawn at a 3-unit stroke with round ends; the beam a wedge from the bowl, clipped by the seal’s edge.</td></tr>
+          <tr><td>Wordmark</td><td>The open line P, then “haroam” in Figtree 800, tracking −0.05em, outlined to paths. The P sits on the baseline at 1.15 times the cap height. Never typed live.</td></tr>
+          <tr><td>Seal or wordmark</td><td>The seal stands alone (app icon, favicon, sign-in, documents). The wordmark carries the name. Never put the seal inside the word.</td></tr>
+          <tr><td>Clear space</td><td>A quarter of the seal’s diameter on every side; the height of the P around the wordmark.</td></tr>
+          <tr><td>Smallest size</td><td>Seal 16px with the 16px drawing (one heavy P, lamp and beam). Wordmark 96px wide.</td></tr>
+          <tr><td>Colour</td><td>Graphite seal with paper lines, or reversed. The lamp is always <code>#f2b632</code>. The channel seal is for marketing only.</td></tr>
+          <tr><td>Never</td><td>Recolour the lamp; add rays; set it in a gradient; animate it; let a hosting organisation replace, tint or co-brand it.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="d-h3">On the marketing website</h3>
+      <p class="d-text">The same identity, given more room. The site uses the page scale (large Figtree, one supporting sentence, one action) and shows the product as it is: a real piece of the interface, never an illustration of a lighthouse.</p>
+      <div class="mkt">
+        <div class="mkt-nav">
+          <span data-wordmark></span>
+          <nav aria-label="Marketing site"><a href="#">How it works</a><a href="#">Your files</a><a href="#">For universities</a><a href="#">Source code</a></nav>
+          <a class="btn btn-primary" href="#">Open Pharoam</a>
+        </div>
+        <div class="mkt-hero">
+          <div>
+            <h3>See the roads open to you.</h3>
+            <p>Pharoam helps you map your skills from real evidence, see what different careers ask for, and learn toward the one you choose. Your profile stays in your own files.</p>
+            <a class="btn btn-primary" href="#" style="min-height:44px;padding-inline:20px;font-size:16px">Start your map</a>
+          </div>
+          <div class="mkt-beam" data-theme="dark" data-ui style="padding:24px;display:grid;align-content:end;gap:10px">
+            <div class="sheet" style="padding:16px">
+              <p class="t-section" style="margin:0 0 10px">Python</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="spec-item"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
+                <div class="spec-item"><span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
+                <div class="spec-item"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div>
+                <div class="spec-item"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span><span class="lvl" data-level="3" style="color:var(--src-ai)"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
+              </div>
+            </div>
+            <p class="t-meta" style="margin:0;color:var(--ink-2)">Four sources, side by side. Never one blended number.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="foundations" aria-labelledby="h-found">
+      <h2 class="d-h2" id="h-found">Foundations</h2>
+      <p class="d-lead">Every value lives in <code>assets/css/tokens.css</code>. Components read token names only, so light and dark, the two densities and more contrast all come from the same components.</p>
+
+      <h3 class="d-h3" id="colour">Colour</h3>
+      <ul class="d-list">
+        <li><strong>Graphite is the brand.</strong> The seal, the wordmark, text and the one filled button on a screen.</li>
+        <li><strong>One hue does the work.</strong> Channel blue marks what is shown by evidence, the main data, links and focus. It stays near 2% of a screen.</li>
+        <li><strong>The lamp is graphic only.</strong> Gold appears in the logo and as a highlight wash (search hits, selected text, a changed line in a conflict). It never carries text or status.</li>
+        <li><strong>No green anywhere.</strong> Nothing in Pharoam passes or fails, so nothing is coloured as passing.</li>
+        <li><strong>Warning colours are kept for real problems.</strong> Amber means something needs attention (a missing file, unchecked content). Red means something is wrong (a conflict, a save that did not complete). A gap is never amber or red.</li>
+        <li><strong>Colour is never alone.</strong> Every coloured mark has an icon and a word.</li>
+      </ul>
+
+      <h4 class="d-h4">Surfaces and text</h4>
+      <table class="d-table">
+        <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>--ground</code></td><td><span class="cluster"><span class="chip-i" style="background:#f3f3f3"></span>#f3f3f3</span></td><td><span class="cluster"><span class="chip-i" style="background:#131415"></span>#131415</span></td><td>Paper: page and sidebar</td></tr>
+          <tr><td><code>--surface</code></td><td><span class="cluster"><span class="chip-i" style="background:#ffffff"></span>#ffffff</span></td><td><span class="cluster"><span class="chip-i" style="background:#1b1c1e"></span>#1b1c1e</span></td><td>The white sheet: tables, forms, AI output, files</td></tr>
+          <tr><td><code>--panel</code></td><td><span class="cluster"><span class="chip-i" style="background:#e9e9e9"></span>#e9e9e9</span></td><td><span class="cluster"><span class="chip-i" style="background:#222426"></span>#222426</span></td><td>Tonal panel, one step off the ground</td></tr>
+          <tr><td><code>--active</code></td><td><span class="cluster"><span class="chip-i" style="background:#dcdcdc"></span>#dcdcdc</span></td><td><span class="cluster"><span class="chip-i" style="background:#303236"></span>#303236</span></td><td>Current nav item, selected row</td></tr>
+          <tr><td><code>--line</code> / <code>--line-strong</code></td><td><span class="cluster"><span class="chip-i" style="background:#dadada"></span>#dadada / #84888d</span></td><td><span class="cluster"><span class="chip-i" style="background:#303236"></span>#303236 / #6c7076</span></td><td>Panel edges; input boundaries (3:1 or more)</td></tr>
+          <tr><td><code>--ink</code></td><td><span class="cluster"><span class="chip-i" style="background:#1b1d1f"></span>#1b1d1f</span></td><td><span class="cluster"><span class="chip-i" style="background:#f0f0f0"></span>#f0f0f0</span></td><td>Graphite: text, headings, figures, the brand</td></tr>
+          <tr><td><code>--ink-2</code> / <code>--ink-3</code></td><td><span class="cluster"><span class="chip-i" style="background:#4b5057"></span>#4b5057 / #5b6067</span></td><td><span class="cluster"><span class="chip-i" style="background:#b8bbbf"></span>#b8bbbf / #9da1a6</span></td><td>Secondary text; meta and placeholders</td></tr>
+          <tr><td><code>--channel</code></td><td><span class="cluster"><span class="chip-i" style="background:#2c6488"></span>#2c6488</span></td><td><span class="cluster"><span class="chip-i" style="background:#7fb2d8"></span>#7fb2d8</span></td><td>The one hue: evidence, links, main data, focus</td></tr>
+          <tr><td><code>--primary</code></td><td><span class="cluster"><span class="chip-i" style="background:#1b1d1f"></span>#1b1d1f</span></td><td><span class="cluster"><span class="chip-i" style="background:#f0f0f0"></span>#f0f0f0</span></td><td>One filled action per screen: Graphite, inverted in dark</td></tr>
+          <tr><td><code>--lamp</code></td><td colspan="2"><span class="cluster"><span class="chip-i" style="background:#f2b632"></span>#f2b632, wash #fbecc4 / #3d3115</span></td><td>The seal’s lamp and beam; highlight wash only</td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="d-h4">Domain and status colours</h4>
+      <p class="d-text">Each pair is text on its own pale wash. The washes are for tags and small areas, never for grounds.</p>
+      <div data-pair>
+        <div class="spec-row">
+          <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self</span>
+          <span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence, channel</span>
+          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated, ochre</span>
+          <span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI, graphite</span>
+          <span class="tag rec-attention"><svg class="ic"><use href="#i-triangle-alert"/></svg>Notice, amber</span>
+          <span class="tag" style="background:var(--problem-wash);color:var(--problem)"><svg class="ic"><use href="#i-circle-alert"/></svg>Problem, red</span>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="type">Typography</h3>
+      <p class="d-text">Figtree, the face of the wordmark, runs the whole interface and every title. Literata is kept for long reading, where a serif is kinder to the eye. A code face shows the files. All three are under the SIL Open Font Licence and served from <code>assets/fonts</code>; nothing loads from a third party.</p>
+      <table class="d-table">
+        <thead><tr><th>Family</th><th>Role</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><span style="font-size:20px;font-weight:800;letter-spacing:-0.02em">Figtree</span></td><td>Everything you operate and every title: navigation, labels, tables, buttons, tags, figures, page and section titles</td><td>The wordmark’s face. Open, friendly and very readable at small sizes; true tabular figures; titles at 800 with tight tracking echo the wordmark.</td></tr>
+          <tr><td><span style="font-family:var(--font-read);font-size:18px">Literata</span></td><td>Long-form reading only: records, pathway descriptions, AI drafts, interview feedback, the CV body</td><td>Made for long reading on screens. The warmth of the system where people read for minutes, not seconds.</td></tr>
+          <tr><td><span style="font-family:var(--font-code);font-size:16px">JetBrains Mono</span></td><td>Only the “Show file” view, file paths and the conflict view</td><td>Real files are shown as code. Nowhere else.</td></tr>
+          <tr><td>Noto Sans Arabic, Noto Naskh Arabic, Noto Sans Hebrew</td><td>Script fallbacks in each role</td><td>Right-to-left languages read in faces of the same weight and role.</td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="d-h4">Scale, by density</h4>
+      <table class="d-table">
+        <thead><tr><th>Role</th><th>Family</th><th class="num">Compact</th><th class="num">Comfortable</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Title</td><td>Figtree 800</td><td class="num">26 / 32</td><td class="num">30 / 36</td><td>The one h1 per screen. A noun, never a greeting.</td></tr>
+          <tr><td>Section</td><td>Figtree 700</td><td class="num">18 / 24</td><td class="num">20 / 28</td><td>Panel and group titles</td></tr>
+          <tr><td>Reading</td><td>Literata 400</td><td class="num">17 / 28</td><td class="num">19 / 32</td><td>Long-form Markdown, 68 characters a line at most</td></tr>
+          <tr><td>Lead</td><td>Figtree 400</td><td class="num">16 / 24</td><td class="num">18 / 28</td><td>The line under a title: the screen’s one finding</td></tr>
+          <tr><td>Body</td><td>Figtree 400, 600</td><td class="num">14 / 20</td><td class="num">16 / 24</td><td>Interface text, cells, labels</td></tr>
+          <tr><td>Meta</td><td>Figtree 400, 600</td><td class="num">12 / 16</td><td class="num">13 / 18</td><td>Dates, sources, tags, hints. Nothing smaller.</td></tr>
+        </tbody>
+      </table>
+      <ul class="d-list">
+        <li>Sentence case everywhere. No uppercase labels, no letter-spaced captions.</li>
+        <li>Tabular figures wherever numbers line up or update.</li>
+        <li>Weights: 400 and 600 for text, 700 for section titles, 800 for page titles and the wordmark.</li>
+      </ul>
+      <div class="specimen panel">
+        <p class="t-title">Data engineer</p>
+        <p class="t-lead" style="margin-block-start:6px">Two core requirements have nothing in your profile yet.</p>
+        <div class="prose" style="margin-block-start:16px">
+          <p>Data engineers build and look after the systems that move data from where it is made to where it is used. Most roles sit between software teams and analysts, and the work rewards patience with detail.</p>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="space">Space and density</h3>
+      <p class="d-text">Density is the person’s setting: compact by default, comfortable on request. Type size, row height and padding move together; a smaller type in the same padding is not a density. Spacing sits on a 4px base and every screen uses one gutter in both directions.</p>
+      <table class="d-table">
+        <thead><tr><th>Token</th><th class="num">Compact</th><th class="num">Comfortable</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>--gap</code></td><td class="num">16</td><td class="num">24</td><td>The one gutter between panels and grid columns</td></tr>
+          <tr><td><code>--pad</code></td><td class="num">16</td><td class="num">24</td><td>Panel padding</td></tr>
+          <tr><td><code>--row</code></td><td class="num">40</td><td class="num">52</td><td>Single-line rows in tables and lists</td></tr>
+          <tr><td><code>--row-2</code></td><td class="num">56</td><td class="num">72</td><td>Two-line rows</td></tr>
+          <tr><td><code>--control</code></td><td class="num">32</td><td class="num">40</td><td>Inputs, selects, buttons. Targets stay at 32 or more even in compact.</td></tr>
+          <tr><td><code>--nav-row</code></td><td class="num">32</td><td class="num">40</td><td>Sidebar items</td></tr>
+          <tr><td><code>--space-1…7</code></td><td class="num">4 8 12 16 24 32 48</td><td class="num">4 8 16 20 32 40 64</td><td>Internal spacing</td></tr>
+        </tbody>
+      </table>
+      <div class="density-cmp">
+        <div data-density="compact">
+          <p class="pair-label">Compact</p>
+          <ul class="list">
+            <li><span class="li-main">Python</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></li>
+            <li><span class="li-main">SQL</span><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></li>
+            <li><span class="li-main">Go</span><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></li>
+          </ul>
+          <div class="cluster" style="margin-block-start:12px"><button class="btn btn-primary">Add evidence</button><button class="btn btn-secondary">Cancel</button></div>
+        </div>
+        <div data-density="comfortable">
+          <p class="pair-label">Comfortable</p>
+          <ul class="list">
+            <li><span class="li-main">Python</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></li>
+            <li><span class="li-main">SQL</span><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></li>
+            <li><span class="li-main">Go</span><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></li>
+          </ul>
+          <div class="cluster" style="margin-block-start:16px"><button class="btn btn-primary">Add evidence</button><button class="btn btn-secondary">Cancel</button></div>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="layout">Layout and breakpoints</h3>
+      <p class="d-text">Desktop first, and every screen works on a phone. The breakpoints are Tailwind’s, so the shadcn/ui build needs no custom screens.</p>
+      <div class="bp">
+        <div><b>Phone</b>under 640<br>16px margins. Sidebar becomes a top bar and a sheet. Tables become one block per item, each field labelled.</div>
+        <div><b>Tablet</b>640 to 1023<br>Top bar navigation. Panels stack once either would be under 340. Tables keep their columns and scroll inside their own frame.</div>
+        <div><b>Laptop</b>1024 to 1279<br>240 sidebar. Detail panes move under their list.</div>
+        <div><b>Desktop</b>1280 and up<br>240 sidebar, canvas up to 1200 with 40 side padding. List and detail side by side.</div>
+      </div>
+      <ul class="d-list">
+        <li><strong>Shell:</strong> an open plane. The sidebar sits on the page ground with one soft rule; there is no top bar on desktop. The sidebar holds the wordmark, the storage switch with its sync status, the main areas, and settings, the activity log, help and “Lock now” at the foot.</li>
+        <li><strong>Grid:</strong> 12 columns with the one gutter. Spans change from row to row but land on shared column lines; cards in one row share a bottom edge or stack.</li>
+        <li><strong>Reading width:</strong> long text stops at 68 characters, whatever the canvas.</li>
+        <li><strong>Title row:</strong> breadcrumb when nested, the h1, one line saying the screen’s finding, actions on the right only when they are real.</li>
+      </ul>
+
+      <h3 class="d-h3" id="shape">Shape and elevation</h3>
+      <div data-pair>
+        <div class="spec-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+          <div class="spec-item"><div class="panel" style="min-height:64px"></div><span class="spec-note">Panel, radius 8, tone step, no edge</span></div>
+          <div class="spec-item"><div class="sheet" style="min-height:64px"></div><span class="spec-note">Sheet, radius 8, 1px line</span></div>
+          <div class="spec-item"><div class="menu" style="min-height:64px;min-inline-size:0"></div><span class="spec-note">Floating: menu, dialog. The only shadow.</span></div>
+          <div class="spec-item"><div class="ai" style="min-height:64px"></div><span class="spec-note">AI-made: dashed edge, always</span></div>
+        </div>
+      </div>
+      <ul class="d-list">
+        <li>Radii are decided once: panels 8, controls 6, tags 4, avatars round. Nested radii step down.</li>
+        <li>Surfaces separate by a tone step or a 1px line, never both, never a shadow at rest.</li>
+        <li>Shadows only on what floats over the page: menus, popovers, dialogs, the interview composer.</li>
+        <li>Dashed edges mean “not a fact”: AI output, and empty slots waiting for something.</li>
+      </ul>
+
+      <h3 class="d-h3" id="icons">Icons</h3>
+      <p class="d-text"><a href="https://lucide.dev">Lucide</a> (ISC licence), self-hosted as one sprite: outline, 1.75 stroke, 16px in compact and 20px in comfortable, in the text colour. Icons sit before a word; an icon alone always has an accessible name. Two glyphs are Pharoam’s own: the AI monogram and the level stair.</p>
+      <div data-pair>
+        <div class="spec-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+          <span class="cluster"><svg class="ic"><use href="#i-map"/></svg>Skills, map</span>
+          <span class="cluster"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</span>
+          <span class="cluster"><svg class="ic"><use href="#i-compass"/></svg>Pathways</span>
+          <span class="cluster"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</span>
+          <span class="cluster"><svg class="ic"><use href="#i-briefcase-business"/></svg>Prepare</span>
+          <span class="cluster"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>
+          <span class="cluster"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span>
+          <span class="cluster"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
+          <span class="cluster"><svg class="ic"><use href="#i-ai"/></svg>AI, Pharoam glyph</span>
+          <span class="cluster"><svg class="ic"><use href="#i-anchor"/></svg>Supported</span>
+          <span class="cluster"><svg class="ic"><use href="#i-message-square-quote"/></svg>Claimed</span>
+          <span class="cluster"><svg class="ic"><use href="#i-footprints"/></svg>Below</span>
+          <span class="cluster"><svg class="ic"><use href="#i-cloud-fog"/></svg>Unknown</span>
+          <span class="cluster"><svg class="ic"><use href="#i-file-code-2"/></svg>Show file</span>
+          <span class="cluster"><svg class="ic"><use href="#i-git-compare-arrows"/></svg>Conflict</span>
+          <span class="cluster"><svg class="ic"><use href="#i-lock"/></svg>Lock</span>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="motion">Motion</h3>
+      <p class="d-text">Motion is feedback, never performance. Nothing enters, nothing celebrates, nothing loops to draw the eye.</p>
+      <table class="d-table">
+        <thead><tr><th>Token</th><th class="num">Value</th><th>For</th></tr></thead>
+        <tbody>
+          <tr><td><code>--dur-feedback</code></td><td class="num">120ms</td><td>Hover, press, a toggle’s thumb, a border on focus</td></tr>
+          <tr><td><code>--dur-open</code></td><td class="num">200ms</td><td>Menus, popovers, a disclosure like “Show file”</td></tr>
+          <tr><td><code>--dur-sheet</code></td><td class="num">280ms</td><td>Dialogs and the phone navigation sheet</td></tr>
+          <tr><td><code>--ease</code></td><td class="num">cubic-bezier(.2, 0, 0, 1)</td><td>Everything that arrives; it settles rather than bounces</td></tr>
+        </tbody>
+      </table>
+      <ul class="d-list">
+        <li>Transform and opacity only. Layout never animates.</li>
+        <li>Saving shows a slow turning icon next to the word “Saving”; that is the only loop.</li>
+        <li>Loading shows the final layout with flat grey bars where values will be. No shimmer.</li>
+        <li>With reduced motion, from the system or the person’s setting, every duration drops to zero and the content is unchanged.</li>
+      </ul>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="vocabulary" aria-labelledby="h-vocab">
+      <h2 class="d-h2" id="h-vocab">Domain vocabulary</h2>
+      <p class="d-lead">The concepts that appear on every screen get one treatment each, everywhere: a word, an icon and a colour, in that order of importance. Every item is shown here in light and dark, and once in the sample views (switch on “Name the vocabulary” there to see where).</p>
+
+      <h3 class="d-h3" id="v-sources">The four sources</h3>
+      <p class="d-text">Each skill level comes from one source. Sources are always shown side by side, in this order, and never combined into one figure. When a source has nothing, it shows a grey dash, not a zero.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>
+            <span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span>
+            <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
+            <span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span>
+          </div>
+          <table class="d-table" style="margin:0">
+            <tbody>
+              <tr><td>Self-reported</td><td>What you say. Ink, a person.</td></tr>
+              <tr><td>Evidenced</td><td>Backed by a record: a job, project, course or certificate. Channel blue, a paperclip.</td></tr>
+              <tr><td>Demonstrated</td><td>Shown in an assessment in Pharoam. Ochre, a ruler and pencil.</td></tr>
+              <tr><td>AI-inferred</td><td>An AI’s reading of your records. Graphite, a dashed edge and hatching, the AI monogram. It is never styled like evidence.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-levels">The five levels</h3>
+      <p class="d-text">Levels are named steps, not amounts. The stair glyph lights only the step the person stands on, so it reads as “where”, never “how full”. The name always comes with it; the glyph alone means nothing.</p>
+      <div data-pair>
+        <div class="spec-grid" style="grid-template-columns:repeat(auto-fit,minmax(84px,1fr))">
+          <div class="spec-item"><span class="lvl" data-level="0"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span><span class="spec-note">Knows what it is and when it is used</span></div>
+          <div class="spec-item"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span><span class="spec-note">Has done it with guidance</span></div>
+          <div class="spec-item"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><span class="spec-note">Does it unaided on usual tasks</span></div>
+          <div class="spec-item"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span><span class="spec-note">Handles hard cases, helps others</span></div>
+          <div class="spec-item"><span class="lvl" data-level="4"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert</span><span class="spec-note">Shapes how others do it</span></div>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-gap">Gap groups and requirements</h3>
+      <p class="d-text">A gap is information, not failure. The four groups are neutral: only “supported” carries the evidence hue, and nothing is amber or red. Groups are sections of a page, never a count or a share.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag gap-supported"><svg class="ic"><use href="#i-anchor"/></svg>Supported</span>
+            <span class="tag gap-claimed"><svg class="ic"><use href="#i-message-square-quote"/></svg>Claimed</span>
+            <span class="tag gap-below"><svg class="ic"><use href="#i-footprints"/></svg>Below</span>
+            <span class="tag gap-unknown"><svg class="ic"><use href="#i-cloud-fog"/></svg>Unknown</span>
+          </div>
+          <div class="spec-row">
+            <span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span>
+            <span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span>
+          </div>
+          <table class="d-table" style="margin:0">
+            <tbody>
+              <tr><td>Supported</td><td>Evidence or a demonstration at or above the level asked.</td></tr>
+              <tr><td>Claimed</td><td>Only your word or the AI’s reaches it, with nothing to show yet.</td></tr>
+              <tr><td>Below</td><td>What your profile shows is under the level asked, for now.</td></tr>
+              <tr><td>Unknown</td><td>Nothing in your profile. Not a gap until you know.</td></tr>
+              <tr><td>Core / Helpful</td><td>The pathway needs it / it makes things easier. A filled diamond against an open ring.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-ai">AI states</h3>
+      <p class="d-text">Anything an AI made carries a dashed edge, the AI monogram, the model’s name and a disclaimer. It is never verified and never looks like evidence. The person accepts, corrects or rejects it, and the decision stays visible.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag ai-proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span>
+            <span class="tag ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted by you</span>
+            <span class="tag ai-rejected"><svg class="ic"><use href="#i-x"/></svg>Rejected by you</span>
+            <span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Drafted by AI</span>
+          </div>
+          <div class="ai-overall">
+            <svg class="ic"><use href="#i-ai"/></svg><span>The AI’s overall reading</span>
+            <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
+            <span class="t-meta" style="color:var(--ink-2)">Claude Sonnet 5.5 · an opinion, not a result</span>
+            <span class="ai-overall-actions"><button class="btn btn-quiet btn-sm">I disagree</button><button class="btn btn-quiet btn-sm">Dismiss</button></span>
+          </div>
+          <p class="t-meta" style="margin:0">The overall reading is optional, shown apart from the four sources, and stays dismissed once dismissed. “I disagree” records the person’s view beside it.</p>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-records">Record states</h3>
+      <p class="d-text">History is kept. A correction strikes the old value and shows the new one; a retraction strikes the whole record and keeps it in place with the person’s reason. Neither is red: changing your mind is not an error.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag rec-corrected"><svg class="ic"><use href="#i-pencil"/></svg>Corrected</span>
+            <span class="tag rec-retracted"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted</span>
+            <span class="tag rec-outside"><svg class="ic"><use href="#i-file-pen"/></svg>Changed outside Pharoam</span>
+            <span class="tag rec-custom"><svg class="ic"><use href="#i-user-round-pen"/></svg>Your own skill</span>
+            <span class="tag rec-attention"><svg class="ic"><use href="#i-triangle-alert"/></svg>Needs attention</span>
+          </div>
+          <ul class="list">
+            <li><span class="li-main"><strong>Mentoring</strong> <span class="lvl is-struck" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span> <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><span class="li-sub">Corrected 12 Mar 2026</span></span></li>
+            <li class="is-retracted"><span class="li-main"><span class="r-title">Evidence: Hackathon entry</span><span class="li-sub">Retracted 20 Jun 2026: “The repo was a team effort.”</span></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-sync">Save and sync</h3>
+      <p class="d-text">The files are the master copy. The sync status sits with the storage switch at the top of the sidebar, in words. A change made outside Pharoam is never silently overwritten: if both sides changed, Pharoam stops and asks.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="sync"><svg class="ic"><use href="#i-cloud-check"/></svg>Saved 2 min ago</span>
+            <span class="sync sync-saving"><svg class="ic"><use href="#i-loader-circle"/></svg>Saving</span>
+            <span class="sync sync-offline"><svg class="ic"><use href="#i-wifi-off"/></svg>Offline · 2 changes kept here</span>
+            <span class="sync sync-conflict"><svg class="ic"><use href="#i-git-compare-arrows"/></svg>Two versions of 1 file</span>
+            <span class="sync sync-error"><svg class="ic"><use href="#i-circle-alert"/></svg>Couldn’t save · Retry</span>
+          </div>
+          <div class="notice notice-problem">
+            <svg class="ic"><use href="#i-git-compare-arrows"/></svg>
+            <div><p class="notice-title">skills/sql.md was changed in your folder and here.</p><p class="muted">Nothing has been overwritten.</p></div>
+            <div class="notice-actions"><button class="btn btn-secondary btn-sm">Compare versions</button></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="d-h3" id="v-trust">Trust markers</h3>
+      <p class="d-text">Content Pharoam did not write and cannot vouch for is marked where it appears, in amber, with what it is and where it came from. These are real cautions, so they get the notice colour.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag trust-web"><svg class="ic"><use href="#i-globe"/></svg>From the web, not checked</span>
+            <span class="tag trust-pack"><svg class="ic"><use href="#i-package"/></svg>Unverified content pack</span>
+            <span class="tag trust-locked"><svg class="ic"><use href="#i-lock"/></svg>Locked</span>
+          </div>
+          <div class="untrusted"><p style="margin:0" class="muted">“You will own our batch and streaming pipelines.” Quoted from a job ad.</p></div>
+          <div class="img-blocked" style="min-block-size:0;padding:16px">
+            <svg class="ic"><use href="#i-image-off"/></svg>
+            <p><strong>Image not loaded.</strong> It comes from a site that is not in this pack.</p>
+            <button class="btn btn-secondary btn-sm">Load this once</button>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="d-h4">Where each item appears in the samples</h4>
+      <table class="d-table">
+        <thead><tr><th>Item</th><th>Skills overview</th><th>Gap to a pathway</th></tr></thead>
+        <tbody>
+          <tr><td>Four sources</td><td>Table columns; Python detail</td><td>Columns in every group</td></tr>
+          <tr><td>Five levels</td><td>Rust aware, Go beginner, Kafka working, Docker proficient, technical writing expert</td><td>Asked-for column</td></tr>
+          <tr><td>Gap groups, core and helpful</td><td>–</td><td>The four sections and the key</td></tr>
+          <tr><td>AI proposed, accepted, rejected</td><td>Review queue</td><td>Kafka “Proposed: Proficient”</td></tr>
+          <tr><td>AI-drafted</td><td>–</td><td>“What this gap might mean”</td></tr>
+          <tr><td>AI overall level</td><td>Python detail, dismissable</td><td>–</td></tr>
+          <tr><td>Corrected, retracted</td><td>Mentoring, Terraform, Python history</td><td>Terraform in Unknown</td></tr>
+          <tr><td>Edited outside, your own skill, needs attention</td><td>Go, Event modelling, Kubernetes</td><td>–</td></tr>
+          <tr><td>Saved, conflict</td><td>Sidebar; SQL notice and dialog</td><td>–</td></tr>
+          <tr><td>Offline</td><td>–</td><td>Sidebar and top bar</td></tr>
+          <tr><td>Untrusted web, unverified pack, blocked image</td><td>–</td><td>About this pathway; the provenance strip</td></tr>
+          <tr><td>Locked app</td><td>“Lock now” in the sidebar</td><td>“Lock now” in the sidebar</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="components" aria-labelledby="h-comp">
+      <h2 class="d-h2" id="h-comp">Components</h2>
+      <p class="d-lead">The shared building blocks follow the shadcn/ui component model (Radix behaviour, Tailwind tokens) and keep its names where one exists. The Pharoam-specific components are built from the same parts.</p>
+
+      <h3 class="d-h3">Navigation</h3>
+      <div data-pair>
+        <div class="spec-grid" style="grid-template-columns:200px 1fr;align-items:start">
+          <nav class="nav" aria-label="Sidebar example">
+            <a href="#" aria-current="page" onclick="return false"><svg class="ic"><use href="#i-map"/></svg>Skills</a>
+            <a href="#" onclick="return false"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count">2</span></a>
+            <p class="nav-label">Where next</p>
+            <a href="#" onclick="return false"><svg class="ic"><use href="#i-compass"/></svg>Pathways</a>
+          </nav>
+          <div class="stack">
+            <nav class="crumbs" aria-label="Breadcrumb example"><a href="#">Pathways</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span>Data engineer</span></nav>
+            <div class="tabs" role="tablist" aria-label="Tabs example"><button role="tab" aria-selected="true">Gap</button><button role="tab" aria-selected="false">Compare</button><button role="tab" aria-selected="false">About</button></div>
+            <p class="t-meta" style="margin:0">Active nav is a neutral fill, never a coloured bar. Counts only on queues that need action. Tabs sit on a full-width rule.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="d-h3">Buttons</h3>
+      <div data-pair>
+        <div class="spec-row">
+          <button class="btn btn-primary">Add evidence</button>
+          <button class="btn btn-secondary">Compare</button>
+          <button class="btn btn-quiet">Correct</button>
+          <button class="btn btn-problem">Delete file</button>
+          <button class="btn btn-secondary" disabled>Saved</button>
+          <button class="btn btn-secondary btn-icon" aria-label="More"><svg class="ic"><use href="#i-ellipsis"/></svg></button>
+        </div>
+      </div>
+      <p class="d-text">One primary per screen. Labels say what happens (“Add evidence”, “Keep this version”), never “Submit” or “OK”. Destructive actions are outlined in red and confirmed by naming the file.</p>
+
+      <h3 class="d-h3">Forms and pickers</h3>
+      <div data-pair>
+        <form class="spec-grid" style="grid-template-columns:1fr 1fr" onsubmit="return false">
+          <div class="field"><label for="f-title">Title</label><input class="input" id="f-title" value="Moving payments to events"></div>
+          <div class="field"><label for="f-kind">Kind of evidence</label><select class="select" id="f-kind"><option>Project</option><option>Job</option><option>Course</option><option>Certificate</option></select></div>
+          <div class="field"><label for="f-date">Finished</label><input class="input" id="f-date" aria-invalid="true" value="31/02/2025" aria-describedby="f-date-e"><span class="field-error" id="f-date-e"><svg class="ic ic-sm"><use href="#i-circle-alert"/></svg>That date does not exist. Try 28 Feb 2025.</span></div>
+          <div class="field"><label for="f-link">Link</label><div class="input-group"><input class="input" id="f-link" value="code.example.org/maya/ledger"><button class="btn btn-secondary" type="button">Check</button></div></div>
+          <div class="field" style="grid-column:1/-1"><label for="f-notes">What you did</label><textarea class="textarea" id="f-notes" aria-describedby="f-notes-h">Designed the topic layout and ran the cut-over weekend.</textarea><span class="hint" id="f-notes-h">Saved as Markdown in evidence/2024-payments-events.md</span></div>
+          <label class="check"><input type="checkbox" checked> Use this as evidence for Kafka</label>
+          <label class="radio"><input type="radio" name="vis" checked> Only me</label>
+          <label class="switch" style="grid-column:1/-1">Lock Pharoam after 10 minutes away <input type="checkbox" checked></label>
+          <div class="field" style="grid-column:1/-1">
+            <span class="field-label" id="src-pick">Which source is this?</span>
+            <div class="seg" role="group" aria-labelledby="src-pick">
+              <button type="button" aria-pressed="true"><svg class="ic"><use href="#i-user-round"/></svg>My own view</button>
+              <button type="button" aria-pressed="false"><svg class="ic"><use href="#i-paperclip"/></svg>A record</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <ul class="d-list">
+        <li>Labels above fields, always. No placeholder in place of a label.</li>
+        <li>Errors say what happened and what to do, beside the field and tied to it.</li>
+        <li>Dates are parsed from any common format and shown in words.</li>
+      </ul>
+
+      <h3 class="d-h3">Level picker</h3>
+      <p class="d-text">A radio group of five named steps, each with what it means, plus an honest way out. Never a slider, never stars.</p>
+      <div data-pair class="pair-stack">
+        <form onsubmit="return false">
+          <fieldset class="lvl-picker">
+            <legend>Where are you with SQL?</legend>
+            <label><input type="radio" name="lp" data-name="Aware"><span class="lvl" data-level="0"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span><span class="lvl-desc">I know what it is</span></label>
+            <label><input type="radio" name="lp" data-name="Beginner"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span><span class="lvl-desc">I’ve done it with help</span></label>
+            <label><input type="radio" name="lp" data-name="Working" checked><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><span class="lvl-desc">I do it on my own</span></label>
+            <label><input type="radio" name="lp" data-name="Proficient"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span><span class="lvl-desc">I handle hard cases</span></label>
+            <label><input type="radio" name="lp" data-name="Expert"><span class="lvl" data-level="4"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert</span><span class="lvl-desc">Others learn from me</span></label>
+            <label class="unsure"><input type="radio" name="lp" data-name="Not sure"><svg class="ic"><use href="#i-circle-help"/></svg>I’m not sure yet</label>
+          </fieldset>
+          <p class="t-meta" style="margin:10px 0 0">Saved as self-reported: <strong data-level-out>Working</strong></p>
+        </form>
+      </div>
+
+      <h3 class="d-h3">Tables and lists</h3>
+      <div data-pair>
+        <table class="table">
+          <thead><tr><th scope="col">Evidence</th><th scope="col">Kind</th><th scope="col" class="t-r">Finished</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Billing API rewrite</th><td>Job</td><td class="t-r num">2025-03-31</td></tr>
+            <tr><th scope="row">Data pipelines in Python</th><td>Course</td><td class="t-r num">2022-06-14</td></tr>
+            <tr><th scope="row">Kubernetes platform migration <span class="tag rec-attention"><svg class="ic"><use href="#i-triangle-alert"/></svg>File missing</span></th><td>Project</td><td class="t-r"><span class="none">—</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="d-text">Rules and alignment, no zebra stripes. Grey sentence-case headers. Dates right-aligned in ISO where rows are compared. Missing values are a grey dash. On a phone a table becomes one block per row, every field labelled.</p>
+
+      <h3 class="d-h3">Panels and notices</h3>
+      <div data-pair>
+        <div class="stack">
+          <div class="notice notice-attention"><svg class="ic"><use href="#i-triangle-alert"/></svg><div><p class="notice-title">An evidence file is missing.</p><p class="muted">evidence/2025-platform-migration.md is no longer in your folder.</p></div><div class="notice-actions"><button class="btn btn-secondary btn-sm">Find it</button></div></div>
+          <div class="notice notice-info"><svg class="ic"><use href="#i-info"/></svg><div><p class="notice-title">go.md changed in your editor on 21 Oct.</p><p class="muted">Pharoam reloaded it. Nothing else changed.</p></div><div class="notice-actions"></div></div>
+        </div>
+      </div>
+      <p class="d-text">Notices sit inside the block they concern, never as a page-wide banner, and say what happened and what to do.</p>
+
+      <h3 class="d-h3">Empty states</h3>
+      <div data-pair>
+        <div class="empty"><p>No evidence yet. Start with something you did recently: a project, a job, or a course you finished.</p><button class="btn btn-primary">Add evidence</button></div>
+      </div>
+      <p class="d-text">An empty section keeps its frame and its heading and says the next step in one sentence. No illustrations, no “Nothing to see here!”.</p>
+
+      <h3 class="d-h3">Dialog, menu and tooltip</h3>
+      <div data-pair>
+        <div class="spec-grid" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:start">
+          <div class="dialog" role="dialog" aria-label="Retract example">
+            <h2 class="t-section">Retract “Hackathon entry”?</h2>
+            <p class="muted" style="margin:0">It stays in your history, struck through, with your reason. Skills that relied on it lose it as evidence.</p>
+            <div class="field" style="margin-top:12px"><label for="why">Your reason (kept in the file)</label><input class="input" id="why" value="The repo was a team effort."></div>
+            <div class="dialog-actions"><button class="btn btn-quiet">Keep it</button><button class="btn btn-primary">Retract</button></div>
+          </div>
+          <div class="stack">
+            <div class="menu" role="menu" aria-label="Record menu"><button role="menuitem"><svg class="ic"><use href="#i-pencil"/></svg>Correct</button><button role="menuitem"><svg class="ic"><use href="#i-file-code-2"/></svg>Show file</button><button role="menuitem"><svg class="ic"><use href="#i-history"/></svg>History</button><hr><button role="menuitem"><svg class="ic"><use href="#i-undo-2"/></svg>Retract</button></div>
+            <span class="tooltip">Evidenced: backed by a record you added</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="d-h3">History timeline</h3>
+      <div data-pair>
+        <ol class="timeline">
+          <li><span class="dot dot-ai"></span><span class="when">3 Oct 2026</span><span class="what"><span class="tag ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted</span> AI-inferred <strong>Proficient</strong></span></li>
+          <li><span class="dot dot-demo"></span><span class="when">14 Sep 2026</span><span class="what">Demonstrated <strong>Working</strong> in a practical task</span></li>
+          <li><span class="dot dot-retracted"></span><span class="when">20 Jun 2026</span><span class="what"><span class="tag rec-retracted"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted</span> <del>Evidence: Hackathon entry</del></span><p class="why">“The repo was a team effort.”</p></li>
+          <li><span class="dot dot-evidence"></span><span class="when">12 Mar 2026</span><span class="what">Evidenced <strong>Proficient</strong> from Billing API rewrite</span></li>
+        </ol>
+      </div>
+      <p class="d-text">Newest first. The dot takes the source’s colour; AI is dashed; a retraction is hollow. Nothing is ever removed from a timeline.</p>
+
+      <h3 class="d-h3">Long-form text and citations</h3>
+      <div data-pair>
+        <div>
+          <div class="prose">
+            <p>Data engineers build and look after the systems that move data from where it is made to where it is used.<a class="cite" href="#">1</a> Most roles sit between software teams and analysts.<a class="cite" href="#">2</a></p>
+            <blockquote>“Help analysts trust the numbers.”</blockquote>
+          </div>
+          <hr class="divider">
+          <ol class="sources-list"><li><span class="ref">1</span><span>Sample data roles 0.3, pathways/data-engineer.md</span></li><li><span class="ref">2</span><span>Job ad, fetched 4 Oct 2026 from jobs.example.org. Untrusted.</span></li></ol>
+        </div>
+      </div>
+      <p class="d-text">Markdown records render in Literata at the reading size and measure. Citations are small superscript numbers linked to a sources list under the text; every quoted line says where it came from.</p>
+
+      <h3 class="d-h3">AI output container</h3>
+      <div data-pair>
+        <section class="ai" aria-label="AI output example">
+          <div class="ai-head"><span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Drafted by AI</span><span class="ai-model">Claude Sonnet 5.5, with your key</span><span class="ai-when">Today, 10:42</span></div>
+          <div class="ai-body stack">
+            <p class="prose" style="font-size:var(--fs-lead);line-height:var(--lh-lead);margin:0">Your Kafka work covers the pipeline-building side of this pathway. The open questions are on the modelling side.</p>
+            <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>Written by an AI from your files. It can be wrong and it is not evidence.</p>
+          </div>
+          <div class="ai-actions"><button class="btn btn-secondary btn-sm">Accept as a note</button><button class="btn btn-quiet btn-sm">Edit</button><button class="btn btn-quiet btn-sm">Discard</button></div>
+        </section>
+      </div>
+      <ul class="d-list">
+        <li>Always: the dashed edge, the hatched band, “Drafted by AI” or “Proposed”, the model’s name, when it ran, a one-line disclaimer, and the person’s three choices.</li>
+        <li>Never: the word “verified”, a tick on AI output, the evidence colour, or anything saved before the person decides.</li>
+        <li>After a decision the edge turns solid and the band says “Accepted by you” or “Edited by you”; it remains AI-inferred in the file.</li>
+      </ul>
+
+      <h3 class="d-h3">Review queue</h3>
+      <div data-pair>
+        <ul class="queue">
+          <li class="queue-item"><div class="q-claim"><span class="tag q-state ai-proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span><strong>Apache Kafka</strong><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div><div class="q-actions"><button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button><button class="btn btn-quiet btn-sm">Correct</button><button class="btn btn-quiet btn-sm" data-decide="reject">Reject</button></div><p class="q-why">“You chose the partition keys for 14 topics.” Quoted from your write-up, paragraph 3.</p></li>
+          <li class="queue-item is-rejected"><div class="q-claim"><span class="tag q-state ai-rejected"><svg class="ic"><use href="#i-x"/></svg>Rejected by you</span><strong>Leadership</strong><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div><div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div></li>
+        </ul>
+      </div>
+      <p class="d-text">Each proposal quotes what it was inferred from. Decisions stay in the queue under “Decided today” and can be undone. Accepting keeps the source as AI-inferred.</p>
+
+      <h3 class="d-h3">Show file</h3>
+      <div data-pair>
+        <div class="file-view">
+          <div class="file-bar"><svg class="ic ic-sm"><use href="#i-file-code-2"/></svg><code>skills/python.md</code><span class="file-actions"><button class="btn btn-quiet btn-sm">Copy</button><button class="btn btn-quiet btn-sm">Open in your editor</button></span></div>
+<pre><span class="y-com">---</span>
+<span class="y-key">skill</span>: <span class="y-str">Python</span>
+<span class="y-key">self_reported</span>:
+  <span class="y-key">level</span>: <span class="y-str">proficient</span>
+<span class="y-com">---</span>
+<span class="y-head">## Notes</span>
+Most of my Python is services and ETL jobs.</pre>
+        </div>
+      </div>
+      <p class="d-text">The friendly view is the default. “Show file” swaps it for the file as it is on disk, read-only by default, in the code face with gentle syntax colour. Files are always left-to-right, even in a right-to-left interface.</p>
+
+      <h3 class="d-h3">Two-version conflict view</h3>
+      <div data-pair>
+        <div class="conflict">
+          <div class="conflict-side"><header><strong>In your folder</strong><span class="t-meta">25 Oct, 09:14, outside Pharoam</span></header><div class="c-body">level: <span class="c-diff">proficient</span></div><div class="c-foot"><button class="btn btn-secondary btn-sm">Keep this version</button></div></div>
+          <div class="conflict-side"><header><strong>In Pharoam</strong><span class="t-meta">25 Oct, 09:20, this device</span></header><div class="c-body">level: <span class="c-diff">working</span></div><div class="c-foot"><button class="btn btn-secondary btn-sm">Keep this version</button></div></div>
+        </div>
+      </div>
+      <p class="d-text">Both versions side by side, the folder’s on the start side. Differences carry the lamp wash. Choices: keep one, keep both as separate files, or decide later. Nothing is written until the person chooses.</p>
+
+      <h3 class="d-h3">Pathway comparison</h3>
+      <div data-pair>
+        <div class="compare" style="--cols:2">
+          <div class="c-head t-meta">Requirement</div>
+          <div class="c-head"><strong>Data engineer</strong><span class="t-meta" style="display:block">Chosen 4 Oct</span></div>
+          <div class="c-head"><strong>Platform engineer</strong><span class="t-meta" style="display:block">Exploring</span></div>
+          <div class="c-req">SQL</div>
+          <div class="c-cell"><span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span><span class="tag gap-below"><svg class="ic"><use href="#i-footprints"/></svg>Below</span></div>
+          <div class="c-cell"><span class="tag req-helpful"><svg class="ic"><use href="#i-circle"/></svg>Helpful</span><span class="tag gap-supported"><svg class="ic"><use href="#i-anchor"/></svg>Supported</span></div>
+          <div class="c-req">Kubernetes</div>
+          <div class="c-cell c-na">Not asked</div>
+          <div class="c-cell"><span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span><span class="tag gap-claimed"><svg class="ic"><use href="#i-message-square-quote"/></svg>Claimed</span></div>
+          <div class="c-req">Apache Airflow</div>
+          <div class="c-cell"><span class="tag req-core"><svg class="ic"><use href="#i-diamond"/></svg>Core</span><span class="tag gap-unknown"><svg class="ic"><use href="#i-cloud-fog"/></svg>Unknown</span></div>
+          <div class="c-cell c-na">Not asked</div>
+        </div>
+      </div>
+      <p class="d-text">Columns appear in the order the person added them, never sorted by any “fit”. Rows are requirements in alphabetical order. No totals, no column highlighted as best, no summary line.</p>
+
+      <h3 class="d-h3">Conversation: interview practice</h3>
+      <div data-pair>
+        <div class="chat">
+          <div class="turn turn-ai"><span class="who"><svg class="ic ic-sm"><use href="#i-ai"/></svg>Interviewer, played by Claude Sonnet 5.5</span><div class="bubble">Tell me about a time a data pipeline failed in production. What did you do first?</div></div>
+          <div class="turn turn-me"><span class="who">You</span><div class="bubble">On the payments cut-over, a consumer fell behind. I paused the producer and replayed from the last good offset.</div></div>
+          <div class="composer"><textarea aria-label="Your answer" placeholder="Your answer"></textarea><button class="btn btn-quiet btn-icon" aria-label="Answer by voice"><svg class="ic"><use href="#i-mic"/></svg></button><button class="btn btn-primary btn-icon" aria-label="Send"><svg class="ic ic-dir"><use href="#i-send"/></svg></button></div>
+        </div>
+      </div>
+      <p class="d-text">The AI’s turns carry the dashed edge and the model’s name; the person’s turns are a plain tonal bubble on the end side. Feedback after a session is an AI output container, never a mark out of ten.</p>
+
+      <h3 class="d-h3">Printable CV</h3>
+      <div class="specimen" style="background:var(--panel);padding:24px;border-radius:10px;overflow-x:auto">
+        <article class="cv" aria-label="CV example">
+          <p class="cv-name">Maya Varnhollow</p>
+          <p class="cv-contact">Backend developer · Leeds · maya@example.org · code.example.org/maya</p>
+          <h2>Experience</h2>
+          <div class="cv-role"><strong>Software engineer, Pellwick Energy</strong><span class="cv-date">2021 – 2025</span></div>
+          <ul><li>Rewrote the billing API in Python; moved payments to an event pipeline on Kafka.</li><li>Mentored two junior engineers through their first on-call rota.</li></ul>
+          <h2>Skills</h2>
+          <p>Python, SQL, Apache Kafka, Docker, technical writing.</p>
+        </article>
+      </div>
+      <p class="d-text">A4 and US Letter, black on white in both themes: Literata for the text, Figtree for the name and small headings. No skill levels, bars or icons on the CV: it lists what the person chooses, in their words. AI-drafted lines are marked in the editor and print plainly once accepted.</p>
+
+      <h3 class="d-h3">Lock screen</h3>
+      <div data-pair>
+        <div class="lock" style="padding:24px 0">
+          <span data-mark="full"></span>
+          <p class="t-section" style="margin:0"><span class="tag trust-locked"><svg class="ic"><use href="#i-lock"/></svg>Locked</span> Pharoam is locked</p>
+          <form onsubmit="return false"><div class="field"><label for="lk">Passphrase</label><input class="input" id="lk" type="password"></div><button class="btn btn-primary">Unlock</button></form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="hosting" aria-labelledby="h-host">
+      <h2 class="d-h2" id="h-host">Organisations hosting Pharoam</h2>
+      <p class="d-lead">Universities and charities can host Pharoam for their people. The identity stays Pharoam’s: no logo, colour or font changes. Organisations get two places of their own.</p>
+      <ul class="d-list">
+        <li><strong>Footer links.</strong> Up to six links (privacy notice, terms, their careers service, support) in the footer of every screen, after “Pharoam, hosted for …”. Their name is text, never a logo.</li>
+        <li><strong>Help and support content.</strong> A section of the Help screen titled with their name, written in Markdown and rendered in the reading style, plus one “Help from …” item at the foot of the sidebar.</li>
+        <li><strong>Later, the admin side</strong> uses the same shell and components. It shows configuration and counts of accounts, never anyone’s profile, skills or gaps.</li>
+      </ul>
+      <div data-pair>
+        <div class="stack">
+          <footer class="org-footer" style="margin:0">
+            <span class="hosted"><span data-mark style="width:16px;height:16px"></span>Pharoam, hosted for Ostmere University students</span>
+            <nav aria-label="Organisation links"><a href="#">Privacy notice</a><a href="#">Terms of use</a><a href="#">Careers service</a><a href="#">Contact support</a></nav>
+          </footer>
+          <div class="panel">
+            <p class="t-section" style="margin:0 0 6px">Help from Ostmere University</p>
+            <div class="prose" style="font-size:var(--fs-lead);line-height:var(--lh-lead)"><p>Book a 30-minute talk with a careers adviser. They can see only what you choose to share.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="a11y" aria-labelledby="h-a11y">
+      <h2 class="d-h2" id="h-a11y">Accessibility and languages</h2>
+      <p class="d-lead">WCAG 2.2 AA in both themes and both densities is the floor, not a goal.</p>
+      <ul class="d-list">
+        <li><strong>Never colour alone.</strong> Every source, level, state and marker has a word and an icon; the samples remain fully readable in greyscale.</li>
+        <li><strong>Contrast.</strong> All text 4.5:1 or more (table below); input boundaries, the AI edge and the focus ring 3:1 or more.</li>
+        <li><strong>Focus.</strong> A 2px ring with a 2px gap in the primary colour, 3px with more contrast. Never removed, never hidden by a sticky bar.</li>
+        <li><strong>Targets.</strong> Controls are 32px in compact and 40px in comfortable; nothing interactive is under 24 by 24, including tags that are links.</li>
+        <li><strong>Reduced motion</strong> and <strong>more contrast</strong> follow the system and can be set in Pharoam. More contrast turns grey text to ink and every line to the strong line. In Windows high contrast (forced colours) every tag, panel and AI edge keeps a system-coloured border, AI stays dashed, and the level stair keeps its lit step.</li>
+        <li><strong>Structure.</strong> One h1 per screen, headings in order, row headers in tables, live regions for queue decisions and sync changes, labels on every icon-only button.</li>
+      </ul>
+      <table class="d-table">
+        <thead><tr><th>Pair</th><th class="num">Light</th><th class="num">Dark</th></tr></thead>
+        <tbody>
+          <tr><td>Ink on ground / panel</td><td class="num">15.2 / 13.9</td><td class="num">16.2 / 13.7</td></tr>
+          <tr><td>Secondary text on ground / panel</td><td class="num">7.3 / 6.7</td><td class="num">9.6 / 8.1</td></tr>
+          <tr><td>Meta text on ground / panel</td><td class="num">5.7 / 5.2</td><td class="num">7.1 / 6.0</td></tr>
+          <tr><td>Channel on ground / surface</td><td class="num">5.8 / 6.4</td><td class="num">8.1 / 7.5</td></tr>
+          <tr><td>Source tags on their wash (lowest of four)</td><td class="num">5.1</td><td class="num">6.3</td></tr>
+          <tr><td>Notice / problem on their wash</td><td class="num">6.0 / 5.5</td><td class="num">7.7 / 6.4</td></tr>
+          <tr><td>Primary label on primary</td><td class="num">15.2</td><td class="num">14.8</td></tr>
+          <tr><td>Input boundary on surface (non-text)</td><td class="num">3.6</td><td class="num">3.4</td></tr>
+          <tr><td>AI dashed edge on surface (non-text)</td><td class="num">3.6</td><td class="num">4.2</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="d-h3">Right to left</h3>
+      <p class="d-text">Every component uses logical properties, so it mirrors without a second stylesheet: the sidebar moves to the right, the start side of a conflict view is the folder’s, chevrons and send arrows flip. Files, code and Latin skill names stay left to right inside the mirrored layout.</p>
+      <div data-pair>
+        <div dir="rtl" lang="ar" class="stack">
+          <p class="t-section" style="margin:0">المهارات</p>
+          <table class="table">
+            <thead><tr><th scope="col">المهارة</th><th scope="col"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>تقييم ذاتي</span></th><th scope="col"><span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>مدعوم بدليل</span></th></tr></thead>
+            <tbody><tr><th scope="row"><bdi>Python</bdi></th><td><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>متمكّن</span></td><td><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>عملي</span></td></tr></tbody>
+          </table>
+          <nav class="crumbs"><a href="#">المسارات</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span>مهندس بيانات</span></nav>
+        </div>
+      </div>
+      <p class="t-meta" style="margin-block-start:8px">The Arabic is illustrative and must be reviewed by a translator.</p>
+
+      <h3 class="d-h3">Longer translations</h3>
+      <p class="d-text">German and Finnish run about 30–40% longer than English. Tags never truncate (they wrap to the next line as a whole), buttons grow, table headers wrap onto two lines, and no label sits in a fixed-width box.</p>
+      <div data-pair>
+        <div lang="de" class="spec-row">
+          <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Selbst eingeschätzt</span>
+          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>In einer Prüfung gezeigt</span>
+          <span class="tag rec-outside"><svg class="ic"><use href="#i-file-pen"/></svg>Außerhalb von Pharoam geändert</span>
+          <button class="btn btn-primary">Nachweis hinzufügen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section id="voice" aria-labelledby="h-voice">
+      <h2 class="d-h2" id="h-voice">Voice</h2>
+      <p class="d-lead">Plain and kind, to someone who may be unsure about their career. Pharoam describes; the person decides.</p>
+      <table class="d-table">
+        <thead><tr><th>Principle</th><th>Write</th><th>Not</th></tr></thead>
+        <tbody>
+          <tr><td>Say what is known</td><td>“Two core requirements have nothing in your profile yet.”</td><td>“You’re missing 2 key skills!”</td></tr>
+          <tr><td>Gaps are places to go</td><td>“Under the level asked, for now.”</td><td>“You failed to meet this requirement.”</td></tr>
+          <tr><td>Name the source</td><td>“Quoted from your write-up, paragraph 3.”</td><td>“Based on your profile.”</td></tr>
+          <tr><td>AI is an opinion</td><td>“The AI’s overall reading. An opinion, not a result.”</td><td>“Verified by AI.”</td></tr>
+          <tr><td>Reassure with facts</td><td>“Nothing has been overwritten.”</td><td>“Don’t worry!”</td></tr>
+          <tr><td>No pressure</td><td>“Decide later.”</td><td>“Don’t lose your progress! Finish now.”</td></tr>
+        </tbody>
+      </table>
+      <ul class="d-list">
+        <li>Sentence case, active voice, second person. Short sentences. No exclamation marks.</li>
+        <li>Buttons name what happens. Errors say what happened and what to do next.</li>
+        <li>Dates in words (“14 Sep 2026”); relative only for the last few days (“2 min ago”, “Yesterday”).</li>
+        <li>No streaks, badges, points, confetti, congratulations or reminders that nag.</li>
+      </ul>
+
+      <h3 class="d-h3">Glossary of fixed terms</h3>
+      <div class="gloss">
+        <dl>
+          <div><dt>Evidence</dt><dd>A record of something you did: a job, project, course or certificate. Lives in its own file.</dd></div>
+          <div><dt>Skill</dt><dd>Something you can do, at a level, from one or more sources.</dd></div>
+          <div><dt>Level</dt><dd>Aware, Beginner, Working, Proficient or Expert. Never a number on screen.</dd></div>
+          <div><dt>Self-reported · Evidenced · Demonstrated · AI-inferred</dt><dd>The four sources of a level. Always these words.</dd></div>
+          <div><dt>Pathway</dt><dd>A kind of role and what it asks for. Not “job”, not “match”.</dd></div>
+        </dl>
+        <dl>
+          <div><dt>Gap</dt><dd>The difference between what a pathway asks for and what your profile shows.</dd></div>
+          <div><dt>Supported · Claimed · Below · Unknown</dt><dd>The four gap groups.</dd></div>
+          <div><dt>Core · Helpful</dt><dd>How much a pathway needs a requirement.</dd></div>
+          <div><dt>Check</dt><dd>A knowledge check, open answer or practical task in Assess. Not “test” or “exam”.</dd></div>
+          <div><dt>Learning plan</dt><dd>What you intend to learn toward a pathway. Progress shows as new evidence.</dd></div>
+        </dl>
+        <dl>
+          <div><dt>Your folder</dt><dd>The storage you chose. The files there are the master copy.</dd></div>
+          <div><dt>Proposed · Accepted · Rejected · Drafted by AI</dt><dd>The AI states. The person accepts, corrects or rejects.</dd></div>
+          <div><dt>Corrected · Retracted</dt><dd>Changes of mind. Both stay in the history.</dd></div>
+          <div><dt>Content pack</dt><dd>A set of pathways and checks from someone else. Unverified until reviewed.</dd></div>
+          <div><dt>Activity log</dt><dd>What Pharoam read, sent and wrote, and when.</dd></div>
+        </dl>
+      </div>
+
+      <h3 class="d-h3">Words to avoid</h3>
+      <div class="avoid">
+        <div><s>Score, rating, percentage</s><b>Say the level’s name, or what the evidence shows.</b></div>
+        <div><s>Fit, match, compatible</s><b>“What the pathway asks for” and “what your profile shows”.</b></div>
+        <div><s>Rank, best, top, recommended</s><b>List in the person’s order or A to Z.</b></div>
+        <div><s>Failed, weak, lacking, missing skills</s><b>“Below the level asked, for now”, “nothing in your profile yet”.</b></div>
+        <div><s>Verified, confirmed, proven (for AI output)</s><b>“AI-inferred”, “an opinion, not a result”.</b></div>
+        <div><s>Streak, badge, level up, unlock, achievement</s><b>Nothing. Progress is new evidence.</b></div>
+        <div><s>Delete (for history)</s><b>“Retract” or “correct”. History is kept.</b></div>
+        <div><s>Sync failed, error 409</s><b>“Two versions of sql.md. Nothing has been overwritten.”</b></div>
+      </div>
+    </section>
+
+    <footer class="d-foot">
+      <span data-wordmark></span>
+      <span>Fonts: Figtree, Literata, JetBrains Mono, Noto (SIL OFL 1.1). Icons: Lucide (ISC and MIT). All served from this repository.</span>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/js/ds.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pharoam brand</title>
+<meta name="description" content="The Pharoam identity: the Line P seal, the wordmark, and the Graphite and channel colour scheme.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  @font-face {
+    font-family: "Figtree";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 900;
+    src: url("../assets/fonts/figtree/figtree-latin.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Figtree";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 900;
+    src: url("../assets/fonts/figtree/figtree-latin-ext.woff2") format("woff2-variations");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF;
+  }
+  :root {
+    --graphite: #1b1d1f;
+    --channel: #2c6488;
+    --paper: #f3f3f3;
+    --fog: #e5e5e5;
+    --lamp: #f2b632;
+    --muted: #4b5057;
+    --line: #dcdcdc;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ffffff; color: var(--graphite); font-family: "Figtree", system-ui, sans-serif; font-size: 16px; line-height: 24px; }
+  main { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; display: grid; gap: 28px; }
+  h1 { margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em; }
+  h2 { margin: 0 0 12px; font-size: 18px; line-height: 24px; font-weight: 800; }
+  p { margin: 0; }
+  .lead { font-size: 18px; line-height: 28px; color: var(--muted); max-width: 72ch; margin-top: 8px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 13px; line-height: 18px; }
+
+  .hero { display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 20px; }
+  .tile { border-radius: 16px; background: var(--paper); display: flex; align-items: center; justify-content: center; }
+  .hero > .tile { min-height: 440px; }
+  .hero > .tile img { width: 300px; height: 300px; }
+  .lockups { display: grid; grid-template-rows: 1fr 1fr auto; gap: 20px; }
+  .lockup { border-radius: 16px; padding: 28px 40px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .lockup img { height: 72px; width: auto; align-self: flex-start; }
+  .lockup.light { background: var(--paper); }
+  .lockup.dark { background: var(--graphite); color: var(--paper); }
+  .lockup.dark .muted { color: #c0c2c4; }
+
+  .sizes { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .sizes figure { margin: 0; display: grid; justify-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+  .app-icon { border-radius: 22%; }
+
+  .row3 { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 24px; }
+  .family { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .family figure { margin: 0; display: grid; justify-items: center; gap: 8px; text-align: center; font-size: 13px; line-height: 18px; font-weight: 600; }
+  .family img { width: 72px; height: 72px; }
+  .family .on-dark { background: var(--graphite); border-radius: 12px; padding: 8px; }
+
+  .swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .swatch { display: grid; gap: 4px; font-size: 12px; line-height: 16px; }
+  .swatch i { display: block; height: 48px; border-radius: 6px; }
+  .swatch b { font-size: 13px; }
+
+  .product { display: grid; gap: 12px; }
+  .bar { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--paper); }
+  .bar img { height: 24px; width: auto; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .chip { font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+  .btn { margin-left: auto; font: inherit; font-size: 13px; font-weight: 700; padding: 7px 12px; border-radius: 6px; border: 0; background: var(--graphite); color: var(--paper); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 20px; }
+  th { text-align: left; font-weight: 400; color: var(--muted); font-size: 12px; padding: 0 12px 8px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 10px 12px 10px 0; border-bottom: 1px solid #ececec; vertical-align: top; }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .hero, .row3 { grid-template-columns: 1fr; }
+    .hero > .tile { min-height: 300px; }
+    .hero > .tile img { width: 220px; height: 220px; }
+    .lockup img { height: 52px; }
+    .family { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Pharoam brand: the Line P seal</h1>
+    <p class="lead">The Line P lighthouse inside a seal, with a fine inner ring, the shoreline, and the beam running out past the edge. The seal is the identifier on its own: app icon, favicon, sign-in, documents. In the wordmark, the open line P stands in for the first letter. Colours: Graphite and channel.</p>
+  </header>
+
+  <section class="hero" aria-label="Identifier and lockups">
+    <div class="tile"><img src="seal.svg" alt="The Pharoam seal"></div>
+    <div class="lockups">
+      <div class="lockup light">
+        <span class="small muted">Wordmark on light</span>
+        <img src="wordmark.svg" alt="Pharoam">
+      </div>
+      <div class="lockup dark">
+        <span class="small muted">Wordmark on dark</span>
+        <img src="wordmark-reversed.svg" alt="Pharoam">
+      </div>
+      <div class="sizes" aria-label="Icon sizes">
+        <figure><img class="app-icon" src="app-icon.svg" width="96" height="96" alt="App icon"><figcaption>App icon</figcaption></figure>
+        <figure><img src="favicon.svg" width="48" height="48" alt="48 pixel icon"><figcaption>48</figcaption></figure>
+        <figure><img src="favicon.svg" width="32" height="32" alt="32 pixel favicon"><figcaption>32</figcaption></figure>
+        <figure><img src="favicon-16.svg" width="16" height="16" alt="16 pixel favicon"><figcaption>16</figcaption></figure>
+        <p class="small muted" style="max-width: 220px; margin-bottom: 22px">The ring, band and dome drop away as it shrinks; the P, the lamp and the beam stay.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="row3">
+    <div>
+      <h2>The family</h2>
+      <div class="family">
+        <figure><img src="seal.svg" alt=""><figcaption>Primary seal</figcaption></figure>
+        <figure><img src="seal-outline.svg" alt=""><figcaption>Outline seal, print and one colour</figcaption></figure>
+        <figure><img src="seal-channel.svg" alt=""><figcaption>Channel seal, marketing</figcaption></figure>
+        <figure><img src="line-p.svg" alt="" style="width: 50px"><figcaption>Open line P, inline</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <h2>Palette</h2>
+      <div class="swatches">
+        <div class="swatch"><i style="background: var(--graphite)"></i><b>Graphite</b><span class="muted">#1b1d1f</span></div>
+        <div class="swatch"><i style="background: var(--channel)"></i><b>Channel</b><span class="muted">#2c6488</span></div>
+        <div class="swatch"><i style="background: var(--paper); border: 1px solid var(--line)"></i><b>Paper</b><span class="muted">#f3f3f3</span></div>
+        <div class="swatch"><i style="background: var(--fog)"></i><b>Fog</b><span class="muted">#e5e5e5</span></div>
+        <div class="swatch"><i style="background: var(--lamp)"></i><b>Lamp</b><span class="muted">#f2b632</span></div>
+      </div>
+    </div>
+    <div class="product">
+      <h2 style="margin: 0">In the product</h2>
+      <div class="bar"><img src="wordmark.svg" alt="Pharoam"><span class="small muted" style="margin-left: auto">Sidebar</span></div>
+      <div class="chips">
+        <span class="chip" style="background: #e9e9e9; color: #3b3e42">Self-reported</span>
+        <span class="chip" style="background: #dce8f1; color: var(--channel)">Evidenced</span>
+        <span class="chip" style="background: #f5ead9; color: #7a4f17">Demonstrated</span>
+        <span class="chip" style="border: 1px dashed #80858b; color: var(--muted); padding: 2px 7px">AI-inferred</span>
+        <button class="btn" type="button">Add evidence</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the colours work</h2>
+    <table>
+      <thead><tr><th>Colour</th><th>Role</th><th>Never</th></tr></thead>
+      <tbody>
+        <tr><td>Graphite #1b1d1f</td><td>The brand: the seal, the wordmark, text, and the one filled button on a screen.</td><td>Tinted or replaced by an organisation's colour.</td></tr>
+        <tr><td>Channel #2c6488</td><td>The one hue for data: evidence, links, the main data on a screen, focus. 6.4:1 on white.</td><td>Used on chrome, navigation or decoration.</td></tr>
+        <tr><td>Paper #f3f3f3, Fog #e5e5e5</td><td>Page ground and tonal panels.</td><td>A cream or yellow tint.</td></tr>
+        <tr><td>Lamp #f2b632</td><td>The lamp and the beam in the logo, and a highlight wash.</td><td>Text, a status, or the only signal of anything.</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>
