@@ -135,17 +135,20 @@
   --line-soft: #e5e5e5;     /* row rules */
   --line-strong: #84888d;   /* input boundaries: 3.6:1, meets 1.4.11 */
 
-  --channel: #2c6488;       /* the one hue: evidence, links, the main data */
+  --channel: #2c6488;       /* the one hue: tested levels, links, the main data */
   --channel-wash: #dce8f1;
   --primary: #1b1d1f;       /* the one filled action per screen: Graphite */
   --primary-ink: #f3f3f3;
   --focus: #2c6488;
   --lamp-wash: #fbecc4;     /* <mark>, search hits, a changed line */
 
-  /* The four sources. Colour is never alone: each has an icon and a word. */
+  /* The four sources of a level. Colour is never alone: each has an icon
+     and a word. Tested results take the channel: Demonstrated (question
+     bank) and AI correlated (AI-led diagnostic) share --src-demo. Untested
+     claims stay neutral: Self-reported in ink, AI judgement in graphite.
+     Evidence carries no level, so it has no source colour of its own. */
   --src-self: #42464b;      --src-self-wash: #e6e6e6;
-  --src-evidence: #2c6488;  --src-evidence-wash: #dce8f1;
-  --src-demo: #7a4f17;      --src-demo-wash: #f5ead9;
+  --src-demo: #2c6488;      --src-demo-wash: #dce8f1;
   --src-ai: #4b4f55;        --src-ai-wash: #ececec;
   --ai-edge: #84888d;       /* the dashed edge every AI-made thing carries */
   --ai-hatch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M-1 1l2-2M0 8l8-8M7 9l2-2' stroke='%23d2d2d2' stroke-width='1'/%3E%3C/svg%3E");
@@ -186,8 +189,7 @@
   --lamp-wash: #3d3115;
 
   --src-self: #d5d7da;      --src-self-wash: #2a2c2e;
-  --src-evidence: #7fb2d8;  --src-evidence-wash: #1b2c3a;
-  --src-demo: #e2b56f;      --src-demo-wash: #3a2c16;
+  --src-demo: #7fb2d8;      --src-demo-wash: #1b2c3a;
   --src-ai: #cdd0d3;        --src-ai-wash: #25272a;
   --ai-edge: #7a7e84;
   --ai-hatch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M-1 1l2-2M0 8l8-8M7 9l2-2' stroke='%233a3c40' stroke-width='1'/%3E%3C/svg%3E");
@@ -206,8 +208,8 @@
     --ink: #f0f0f0; --ink-2: #b8bbbf; --ink-3: #9da1a6; --ink-inverse: #1b1d1f;
     --line: #303236; --line-soft: #27292b; --line-strong: #6c7076;
     --channel: #7fb2d8; --channel-wash: #1b2c3a; --primary: #f0f0f0; --primary-ink: #1b1d1f; --focus: #9cc5e6; --lamp-wash: #3d3115;
-    --src-self: #d5d7da; --src-self-wash: #2a2c2e; --src-evidence: #7fb2d8; --src-evidence-wash: #1b2c3a;
-    --src-demo: #e2b56f; --src-demo-wash: #3a2c16; --src-ai: #cdd0d3; --src-ai-wash: #25272a; --ai-edge: #7a7e84;
+    --src-self: #d5d7da; --src-self-wash: #2a2c2e;
+    --src-demo: #7fb2d8; --src-demo-wash: #1b2c3a; --src-ai: #cdd0d3; --src-ai-wash: #25272a; --ai-edge: #7a7e84;
     --ai-hatch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M-1 1l2-2M0 8l8-8M7 9l2-2' stroke='%233a3c40' stroke-width='1'/%3E%3C/svg%3E");
     --notice: #f0b860; --notice-wash: #3a2a10; --notice-edge: #6e5223;
     --problem: #f28b80; --problem-wash: #3c1d1a; --problem-edge: #7a3a33;

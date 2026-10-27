@@ -21,7 +21,7 @@ The chosen identity is the **Line P seal** in the **Graphite and channel** colou
 | Name | Hex | Role |
 | --- | --- | --- |
 | Graphite | `#1b1d1f` | The brand: seal, wordmark, text, the one filled button |
-| Channel | `#2c6488` | The one hue for data: evidence, links, main data, focus (6.4:1 on white) |
+| Channel | `#2c6488` | The one hue for data: tested levels, links, main data, focus (6.4:1 on white) |
 | Paper | `#f3f3f3` | Page ground |
 | Fog | `#e5e5e5` | Tonal panels |
 | Lamp | `#f2b632` | The lamp and beam in the logo, a highlight wash; never text or status |

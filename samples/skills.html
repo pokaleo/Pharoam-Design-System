@@ -11,25 +11,42 @@
 <link rel="stylesheet" href="../assets/css/doc.css">
 <style>
   /* Grid arithmetic, desktop 1440: canvas 1440 - 240 sidebar - 2 x 40 padding = 1120.
-     Main column 704 + 16 gutter + 400 detail = 1120. The table needs about 640
-     for a name and four source columns; the detail needs 400 for its 2 x 2 sources. */
+     Main column 704 + 16 gutter + 400 detail = 1120; at 1360, 664 + 16 + 360 = 1040. The table needs about 620
+     for a name, the one level, its source label and the evidence count; the
+     detail needs 400 for the level, its source line and the history. */
   .skills-grid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: var(--gap); align-items: start; }
   .skills-grid > .main { display: grid; gap: var(--gap); min-width: 0; }
   .skills-grid > .main > *, .detail > * { min-width: 0; }
-  .table-wrap { overflow-x: auto; padding: 4px var(--pad) var(--space-2); }
-  .table-wrap .table { min-width: 600px; }
-  .table td.src-cell { white-space: nowrap; }
-  .table .ai-cell .lvl { color: var(--src-ai); }
+  .table-wrap { overflow-x: auto; padding: 4px var(--pad) var(--space-3); }
+  .table-tools { padding: var(--space-3) var(--pad) 0; }
+  .table-wrap .table { min-width: 560px; }
+  .table td .src-line { row-gap: 2px; }
+  .table-wrap .table thead th:last-child { min-inline-size: 80px; }
+  /* The evidence figures end 8px inside the table, so they never meet the card edge. */
+  .table-wrap .table :is(th, td):last-child { padding-inline-end: 8px; }
+  .table-wrap .table :is(thead, tbody) th:first-child { padding-inline-end: 4px; }
+  .table td[data-label="Level"] .lvl + .lvl { margin-block-start: 2px; }
+  .table td[data-label="Level"] .from-cell { padding-block: 6px; }
   .detail { position: sticky; top: 16px; display: grid; gap: var(--gap); }
-  .detail .sources4 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius-control); overflow: hidden; }
-  .detail .sources4 > div { background: var(--surface); padding: 10px 12px; display: grid; gap: 6px; align-content: start; }
-  .detail .sources4 .src-from { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--ink-2); }
-  .detail .sources4 > div.is-ai { background: var(--src-ai-wash); outline: 1px dashed var(--ai-edge); outline-offset: -1px; }
+  /* The AI judgement review folds into one line above the table, so the
+     skills answer the screen's question first; the batch opens in place. */
+  .queue-strip { padding-block: 10px; }
+  .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  .strip .strip-names { flex: 1 1 24ch; color: var(--ink-2); }
+  .strip-body { margin-block-start: var(--space-3); }
+  .ev-list li { grid-template-columns: 20px minmax(0, 1fr) auto; align-items: baseline; min-height: 36px; }
+  .ev-list li > .t-meta { white-space: nowrap; }
   .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
   .q-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-block: var(--space-3) var(--space-2); }
   .q-head h3 { margin: 0; font-size: var(--fs-meta); font-weight: 600; color: var(--ink-2); }
-  .ev-list li { gap: var(--space-2); }
-  @media (max-width: 1279px) { .skills-grid { grid-template-columns: 1fr; } .detail { position: static; } }
+  /* Record tags wrap under the name rather than widen the skill column. */
+  .table .skill-name .tag { white-space: normal; text-align: start; line-height: 16px; padding-block: 3px; }
+  /* Side by side only while the table keeps its columns: it needs about 630px.
+     1360-1439: 360px detail; under 1360 the detail moves under its list. */
+  @media (max-width: 1439px) { .skills-grid { grid-template-columns: minmax(0, 1fr) 360px; } }
+  @media (max-width: 1359px) { .skills-grid { grid-template-columns: 1fr; } .detail { position: static; } }
+  /* On a phone the table stacks into blocks, so it needs no scroll frame. */
+  @media (max-width: 639px) { .table-wrap { overflow-x: visible; } }
 </style>
 </head>
 <body>
@@ -39,7 +56,7 @@
 
 <div class="ds-bar no-print" role="region" aria-label="Sample view settings">
   <a href="../index.html">Pharoam design system</a>
-  <span class="ds-name">Sample view: Skills overview · <a href="gap.html">Gap to a pathway</a></span>
+  <span class="ds-name">Sample: Skills overview · <a href="gap.html">Gap</a> · <a href="diagnostic.html">Diagnostic</a> · <a href="session.html">Session</a></span>
   <span class="ds-spacer"></span>
   <span class="ds-group" role="group" aria-label="Theme"><button data-set="theme=light">Light</button><button data-set="theme=dark">Dark</button></span>
   <span class="ds-group" role="group" aria-label="Density"><button data-set="density=compact">Compact</button><button data-set="density=comfortable">Comfortable</button></span>
@@ -69,8 +86,8 @@
     <nav class="nav" aria-label="Main">
       <a href="#" aria-current="page"><svg class="ic"><use href="#i-map"/></svg>Skills</a>
       <a href="#"><svg class="ic"><use href="#i-file-text"/></svg>Evidence</a>
-      <a href="#queue"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count" aria-label="2 AI proposals waiting">2</span></a>
-      <a href="#"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</a>
+      <a href="#queue"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count" aria-label="3 AI judgements waiting">3</span></a>
+      <a href="diagnostic.html"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</a>
       <p class="nav-label">Where next</p>
       <a href="gap.html"><svg class="ic"><use href="#i-compass"/></svg>Pathways</a>
       <a href="#"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</a>
@@ -91,7 +108,7 @@
       <div class="titlebar">
         <div>
           <h1 class="t-title">Skills</h1>
-          <p class="t-lead">Two suggestions from your write-up of the payments pipeline are waiting for you. Nothing changes until you decide.</p>
+          <p class="t-lead">16 skills, 4 of them tested in a diagnostic. Three AI judgements from your CV are waiting.</p>
         </div>
         <div class="actions">
           <button class="btn btn-secondary"><svg class="ic"><use href="#i-plus"/></svg>Add a skill</button>
@@ -111,41 +128,63 @@
       <div class="skills-grid">
         <div class="main">
 
-          <!-- Review queue for AI proposals -->
-          <section class="panel" id="queue" aria-labelledby="queue-title" data-vocab="Review queue">
-            <div class="panel-head">
-              <h2 class="t-section" id="queue-title">Waiting for you</h2>
-              <span class="t-meta">From “Moving payments to events”, read 25 Oct</span>
+          <!-- AI judgement review: proposals from the evidence, decided one by one or all at once -->
+          <section class="panel queue-strip" aria-labelledby="queue-title" data-vocab="AI judgement review">
+            <div class="strip">
+              <span class="tag ai-pending"><svg class="ic"><use href="#i-ai"/></svg>3 waiting</span>
+              <h2 class="t-label" id="queue-title">AI judgements from your CV</h2>
+              <span class="t-meta strip-names">Apache Kafka, Stream processing, Linux</span>
+              <button class="btn btn-secondary btn-sm" data-disclose aria-expanded="false" aria-controls="queue" data-open="Hide" data-closed="Review"><span class="label">Review</span></button>
             </div>
-            <ul class="queue">
+            <div id="queue" class="strip-body" hidden>
+            <div class="queue-bar">
+              <span class="t-meta">Proposed by Claude Sonnet 5.5, which can make mistakes. Each one counts only once you accept it; a diagnostic is still what sets a demonstrated level.</span>
+              <button class="btn btn-secondary btn-sm" data-accept-all="queue-waiting"><svg class="ic"><use href="#i-check"/></svg>Accept all <span class="n">3</span> waiting</button>
+            </div>
+            <ul class="queue" id="queue-waiting">
               <li class="queue-item">
                 <div class="q-claim">
-                  <span class="tag q-state ai-proposed" data-vocab="AI: proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span>
+                  <span class="tag q-state ai-pending" data-vocab="AI: pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span>
                   <strong>Apache Kafka</strong>
                   <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                  <span class="t-meta">AI-inferred · Claude Sonnet 5.5</span>
+                  <span class="t-meta">AI judgement · Claude Sonnet 5.5</span>
                 </div>
                 <div class="q-actions">
                   <button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button>
-                  <button class="btn btn-quiet btn-sm">Correct</button>
-                  <button class="btn btn-quiet btn-sm" data-decide="reject">Reject</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="adjust">Adjust</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="skip">Skip</button>
                 </div>
-                <p class="q-why">“You chose the partition keys for 14 topics and ran the cut-over weekend.” Quoted from your write-up, paragraph 3. AI can be wrong; this would sit beside your own level, not replace it.</p>
+                <p class="q-why">“Chose the partition keys for 14 topics and ran the cut-over weekend.” Quoted from your CV, Pellwick Energy. Once accepted it becomes the level shown, until a diagnostic.</p>
               </li>
               <li class="queue-item">
                 <div class="q-claim">
-                  <span class="tag q-state ai-proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span>
+                  <span class="tag q-state ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span>
                   <strong>Stream processing</strong>
                   <span class="tag rec-custom">New skill</span>
                   <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
-                  <span class="t-meta">AI-inferred · Claude Sonnet 5.5</span>
+                  <span class="t-meta">AI judgement · Claude Sonnet 5.5</span>
                 </div>
                 <div class="q-actions">
                   <button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button>
-                  <button class="btn btn-quiet btn-sm">Correct</button>
-                  <button class="btn btn-quiet btn-sm" data-decide="reject">Reject</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="adjust">Adjust</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="skip">Skip</button>
                 </div>
-                <p class="q-why">“Wrote the consumer that rebuilt balances from the event log.” Quoted from paragraph 5.</p>
+                <p class="q-why">“Wrote the consumer that rebuilt balances from the event log.” From the repo pellwick/ledger, README.</p>
+              </li>
+              <li class="queue-item">
+                <div class="q-claim">
+                  <span class="tag q-state ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span>
+                  <strong>Linux</strong>
+                  <span class="tag rec-custom">New skill</span>
+                  <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
+                  <span class="t-meta">AI judgement · Claude Sonnet 5.5</span>
+                </div>
+                <div class="q-actions">
+                  <button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="adjust">Adjust</button>
+                  <button class="btn btn-quiet btn-sm" data-decide="skip">Skip</button>
+                </div>
+                <p class="q-why">“Ran the on-call rota for the billing services.” Quoted from your CV.</p>
               </li>
             </ul>
             <div class="q-head"><h3>Decided today</h3><a class="t-meta" href="#">All decisions</a></div>
@@ -153,157 +192,190 @@
               <li class="queue-item is-accepted">
                 <div class="q-claim">
                   <span class="tag q-state ai-accepted" data-vocab="AI: accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted by you</span>
-                  <strong>Technical writing</strong>
+                  <strong>PostgreSQL</strong>
                   <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                  <span class="t-meta">Kept as AI-inferred, not as evidence</span>
+                  <span class="t-meta">Accepted before your AI diagnostic, which now sets the level</span>
                 </div>
-                <div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div>
+                <div class="q-actions">
+                  <button class="btn btn-quiet btn-sm" data-undo>Undo</button>
+                </div>
               </li>
-              <li class="queue-item is-rejected">
+              <li class="queue-item is-accepted">
                 <div class="q-claim">
-                  <span class="tag q-state ai-rejected" data-vocab="AI: rejected"><svg class="ic"><use href="#i-x"/></svg>Rejected by you</span>
+                  <span class="tag q-state ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted by you</span>
+                  <strong>Apache Spark</strong>
+                  <span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span>
+                  <span class="t-meta">Now the level shown, until a diagnostic</span>
+                </div>
+                <div class="q-actions">
+                  <button class="btn btn-quiet btn-sm" data-undo>Undo</button>
+                </div>
+              </li>
+              <li class="queue-item is-adjusted">
+                <div class="q-claim">
+                  <span class="tag q-state ai-adjusted" data-vocab="AI: adjusted"><svg class="ic"><use href="#i-pencil"/></svg>Adjusted by you</span>
+                  <strong>Data quality testing</strong>
+                  <span class="lvl is-struck" data-level="3" aria-label="proposed Proficient"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span> <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
+                  <span class="t-meta">Saved as your own level</span>
+                </div>
+                <div class="q-actions">
+                  <button class="btn btn-quiet btn-sm" data-undo>Undo</button>
+                </div>
+              </li>
+              <li class="queue-item is-skipped">
+                <div class="q-claim">
+                  <span class="tag q-state ai-skipped" data-vocab="AI: skipped"><svg class="ic"><use href="#i-x"/></svg>Skipped by you</span>
                   <strong>Leadership</strong>
                   <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
                   <span class="t-meta">“I coordinated, I didn’t lead.”</span>
                 </div>
-                <div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div>
+                <div class="q-actions">
+                  <button class="btn btn-quiet btn-sm" data-undo>Undo</button>
+                </div>
               </li>
             </ul>
+            </div>
             <p id="queue-live" class="visually-hidden" aria-live="polite"></p>
           </section>
 
-          <!-- The skills table: four sources side by side, never blended -->
+          <!-- The skills table: one level per skill, with the source it came from -->
           <section class="sheet" aria-labelledby="table-title">
-            <div class="panel-head" style="padding: var(--pad) var(--pad) 0">
+            <div class="panel-head" style="padding: var(--pad) var(--pad) 0; flex-wrap: wrap">
               <h2 class="t-section" id="table-title">Your skills</h2>
-              <span class="t-meta">Grouped by area · sorted A to Z</span>
+              <span class="t-meta" data-vocab="Which level is shown">One level each: latest diagnostic, then an accepted AI judgement, then your own</span>
+            </div>
+            <div class="toolbar table-tools" id="skill-tools" data-list-tools="skill-rows" data-noun="skills" data-page-size="10" role="search" aria-label="Find skills" data-vocab="List tools">
+              <label class="search"><svg class="ic"><use href="#i-search"/></svg><input class="input" type="search" placeholder="Search skills" aria-label="Search skills" data-search></label>
+              <span class="seg" role="group" aria-label="Show">
+                <button type="button" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" data-filter="tested" aria-pressed="false">Tested</button>
+                <button type="button" data-filter="untested" aria-pressed="false">Untested</button>
+              </span>
+              <label class="sort">Sort
+                <select class="select" data-sort>
+                  <option value="default">By area</option>
+                  <option value="level:desc">Level, highest first</option>
+                  <option value="level:asc">Level, lowest first</option>
+                  <option value="name:asc">A to Z</option>
+                  <option value="date:desc">Recently changed</option>
+                </select>
+              </label>
+              <span class="count" aria-live="polite">16 skills</span>
             </div>
             <div class="table-wrap">
-            <table class="table stackable" data-vocab="The four sources">
+            <table class="table stackable">
               <thead>
                 <tr>
                   <th scope="col">Skill</th>
-                  <th scope="col"><span class="tag src-self" data-vocab="Source: self-reported"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span></th>
-                  <th scope="col"><span class="tag src-evidence" data-vocab="Source: evidenced"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span></th>
-                  <th scope="col"><span class="tag src-demo" data-vocab="Source: demonstrated"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span></th>
-                  <th scope="col"><span class="tag src-ai" data-vocab="Source: AI-inferred"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span></th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Source</th>
+                  <th scope="col" class="t-r"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence<span class="visually-hidden">, linked records</span></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="group-row"><td colspan="5">Programming</td></tr>
-                <tr class="row-link" aria-selected="true">
+              <tbody id="skill-rows" data-empty="No skills match. Try another word, or show all.">
+                <tr class="group-row"><td colspan="4">Programming</td></tr>
+                <tr class="row-link" data-row data-name="python" data-level="2" data-date="2026-09-14" data-tags="tested" aria-selected="true">
                   <th scope="row"><span class="skill-name"><a href="#detail" style="color:var(--ink);text-decoration:none">Python</a></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Demonstrated" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="AI-inferred" class="src-cell ai-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span data-vocab="Source: demonstrated" class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span>14 Sep</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#" data-vocab="Evidence: linked, no level"><svg class="ic"><use href="#i-paperclip"/></svg>2<span class="visually-hidden"> records</span></a></td>
                 </tr>
-                <tr>
-                  <th scope="row"><span class="skill-name">SQL <span class="tag notice-problem" style="background:var(--problem-wash);color:var(--problem)"><svg class="ic"><use href="#i-git-compare-arrows"/></svg>Two versions</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                <tr data-row data-name="sql" data-level="2" data-date="2026-10-24" data-tags="untested">
+                  <th scope="row"><span class="skill-name">SQL <span class="tag" style="background:var(--problem-wash);color:var(--problem)"><svg class="ic"><use href="#i-git-compare-arrows"/></svg>Two versions</span></span></th>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span data-vocab="Source: self-reported" class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>24 Oct</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="go" data-level="1" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">Go <span class="tag rec-outside" data-vocab="Record: edited outside Pharoam" title="go.md changed in your editor on 21 Oct. Pharoam reloaded it."><svg class="ic"><use href="#i-file-pen"/></svg>Changed outside Pharoam</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="1" data-vocab="Level 1: beginner"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="1" data-vocab="Level 1: beginner"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="rust" data-level="0" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">Rust</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="0" data-vocab="Level 0: aware"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="0" data-vocab="Level 0: aware"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-
-                <tr class="group-row"><td colspan="5">Data</td></tr>
-                <tr>
+                <tr class="group-row"><td colspan="4">Data</td></tr>
+                <tr data-row data-name="apache kafka" data-level="2" data-date="2026-02-02" data-tags="untested waiting">
                   <th scope="row"><span class="skill-name">Apache Kafka</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2" data-vocab="Level 2: working"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred" class="src-cell"><a class="tag ai-proposed" href="#queue" style="text-decoration:none"><svg class="ic"><use href="#i-ai"/></svg>Proposed: Proficient</a></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2" data-vocab="Level 2: working"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><a class="tag ai-pending" href="#queue" style="text-decoration:none" data-vocab="AI judgement waiting"><svg class="ic"><use href="#i-ai"/></svg>Pending: Proficient</a></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="apache spark" data-level="1" data-date="2026-10-25" data-tags="untested">
                   <th scope="row"><span class="skill-name">Apache Spark</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl by-ai" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span data-vocab="Source: AI judgement" class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span><span>25 Oct</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="bigquery" data-level="2" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">BigQuery</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="data quality testing" data-level="2" data-date="2026-10-25" data-tags="untested">
                   <th scope="row"><span class="skill-name">Data quality testing</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred" class="src-cell ai-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>25 Oct</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="event modelling" data-level="2" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">Event modelling <span class="tag rec-custom" data-vocab="Record: your own skill"><svg class="ic"><use href="#i-user-round-pen"/></svg>Your own skill</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-
-                <tr class="group-row"><td colspan="5">Infrastructure</td></tr>
-                <tr>
+                <tr data-row data-name="postgresql" data-level="2" data-date="2026-10-25" data-tags="tested">
+                  <th scope="row"><span class="skill-name"><a href="diagnostic.html" style="color:var(--ink);text-decoration:none">PostgreSQL</a></span></th>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span></span></td>
+                  <td data-label="Source"><p class="src-line"><span data-vocab="Source: AI correlated" class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span><span>25 Oct</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>3<span class="visually-hidden"> records</span></a></td>
+                </tr>
+                <tr class="group-row"><td colspan="4">Infrastructure</td></tr>
+                <tr data-row data-name="docker" data-level="3" data-date="2026-10-10" data-tags="tested">
                   <th scope="row"><span class="skill-name">Docker</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="3" data-vocab="Level 3: proficient"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl by-demo" data-level="3" data-vocab="Level 3: proficient"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span><p class="claim-note" data-vocab="Newer-claim note"><svg class="ic"><use href="#i-message-square-quote"/></svg>You’ve since put yourself at Expert. <a href="#">Check it?</a></p></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span>10 Oct</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="kubernetes" data-level="2" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">Kubernetes <span class="tag rec-attention" data-vocab="Record: needs attention" title="The evidence file evidence/2025-platform-migration.md is missing from your folder."><svg class="ic"><use href="#i-triangle-alert"/></svg>Evidence file missing</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-                <tr class="is-retracted">
+                <tr class="is-retracted" data-row data-name="terraform" data-level="-1" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name"><span>Terraform</span> <span class="tag rec-retracted" data-vocab="Record: retracted" title="Retracted 20 Jun 2026: “I’ve only read about it.”"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted 20 Jun</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl is-struck" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl is-struck" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
-
-                <tr class="group-row"><td colspan="5">Working with people</td></tr>
-                <tr>
+                <tr class="group-row"><td colspan="4">Working with people</td></tr>
+                <tr data-row data-name="mentoring" data-level="2" data-date="2026-03-12" data-tags="untested">
                   <th scope="row"><span class="skill-name">Mentoring <span class="tag rec-corrected" data-vocab="Record: corrected" title="Corrected 12 Mar 2026 from Proficient to Working."><svg class="ic"><use href="#i-pencil"/></svg>Corrected</span></span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl is-struck" data-level="3" aria-label="was Proficient"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span> <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl is-struck" data-level="3" aria-label="was Proficient"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span> <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>12 Mar</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>1<span class="visually-hidden"> record</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="technical writing" data-level="4" data-date="2026-10-21" data-tags="tested">
                   <th scope="row"><span class="skill-name">Technical writing</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Evidenced" class="src-cell"><span class="lvl" data-level="4" data-vocab="Level 4: expert"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred" class="src-cell ai-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl by-corr" data-level="4" data-vocab="Level 4: expert"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span><span>21 Oct</span></p></td>
+                  <td data-label="Evidence"><a class="ev-count" href="#"><svg class="ic"><use href="#i-paperclip"/></svg>2<span class="visually-hidden"> records</span></a></td>
                 </tr>
-                <tr>
+                <tr data-row data-name="stakeholder communication" data-level="3" data-date="2026-02-02" data-tags="untested">
                   <th scope="row"><span class="skill-name">Stakeholder communication</span></th>
-                  <td data-label="Self-reported" class="src-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td>
-                  <td data-label="Evidenced"><span class="none">—</span></td>
-                  <td data-label="Demonstrated"><span class="none">—</span></td>
-                  <td data-label="AI-inferred"><span class="none">—</span></td>
+                  <td data-label="Level"><span class="from-cell"><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></span></td>
+                  <td data-label="Source"><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td>
+                  <td data-label="Evidence"><span class="none">—</span></td>
                 </tr>
               </tbody>
             </table>
+            <div class="list-foot" data-list-foot="skill-tools" hidden><span class="range">Showing 10 of 16</span><button type="button" class="btn btn-secondary btn-sm">Show all 16</button></div>
             </div>
           </section>
         </div>
@@ -320,65 +392,41 @@
             </div>
 
             <div id="python-friendly" class="stack" style="margin-block-start: var(--space-4)">
-              <div class="sources4" role="list" aria-label="Python, by source">
-                <div role="listitem">
-                  <span class="tag src-self tag-plain" style="background:none"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>
-                  <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                  <span class="src-from">You, 2 Feb 2026</span>
-                </div>
-                <div role="listitem">
-                  <span class="tag src-evidence tag-plain" style="background:none"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span>
-                  <span class="lvl by-evidence" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                  <span class="src-from">2 records <a class="cite" href="#ev1">1</a><a class="cite" href="#ev2">2</a></span>
-                </div>
-                <div role="listitem">
-                  <span class="tag src-demo tag-plain" style="background:none"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
-                  <span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
-                  <span class="src-from">Practical task, 14 Sep 2026 <a class="cite" href="#ev3">3</a></span>
-                </div>
-                <div role="listitem" class="is-ai">
-                  <span class="tag src-ai tag-plain" style="background:none;outline:0"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span>
-                  <span class="lvl" data-level="3" style="color:var(--src-ai)"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                  <span class="src-from">Accepted by you, 3 Oct 2026</span>
-                </div>
+              <div class="skill-level" data-vocab="Skill level display">
+                <span class="lvl lvl-lg by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working <span class="lvl-n">level 2</span></span>
+                <p class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>From your question-bank diagnostic on 14 Sep 2026</p>
               </div>
-
-              <div class="ai-overall" id="overall" data-vocab="AI: overall level (optional)">
-                <svg class="ic"><use href="#i-ai"/></svg>
-                <span>The AI’s overall reading</span>
-                <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-                <span class="t-meta" style="color:var(--ink-2)">Claude Sonnet 5.5 · an opinion, not a result</span>
-                <span class="ai-overall-actions">
-                  <button class="btn btn-quiet btn-sm">I disagree</button>
-                  <button class="btn btn-quiet btn-sm" data-dismiss="overall">Dismiss</button>
+              <p class="offline-note" data-vocab="Offline-limit note"><svg class="ic"><use href="#i-info"/></svg>Based on this session only. Your evidence wasn’t considered.</p>
+              <div class="cluster">
+                <a class="btn btn-secondary btn-sm" href="session.html" data-vocab="More accurate with AI"><svg class="ic"><use href="#i-ai"/></svg>Get a more accurate result with AI</a>
+                <span class="help-tip">
+                  <button class="help-btn" data-help aria-expanded="false" aria-controls="py-why-ai" aria-label="Why AI is more accurate"><svg class="ic"><use href="#i-circle-help"/></svg></button>
+                  <span class="tooltip help-pop" id="py-why-ai" role="note" hidden>AI tailors the questions to you, adds open answers and practical tasks, takes your evidence into account, and explains the result.</span>
                 </span>
               </div>
-              <p id="overall-back" class="t-meta" hidden>The AI’s overall reading is hidden. <button class="link-btn" data-restore="overall">Show it again</button></p>
 
               <div>
-                <h3 class="t-label" style="margin-block-end:4px">Evidence</h3>
-                <ol class="list list-two sources-list ev-list" style="font-size:var(--fs-body);line-height:var(--lh-body)">
-                  <li id="ev1"><span class="ref">1</span><span class="li-main"><a href="#">Billing API rewrite</a><span class="li-sub">Job · Pellwick Energy · 2024 to 2025</span></span></li>
-                  <li id="ev2"><span class="ref">2</span><span class="li-main"><a href="#">Data pipelines in Python</a> <span class="tag rec-corrected"><svg class="ic"><use href="#i-pencil"/></svg>Corrected</span><span class="li-sub">Course · Tarrowen College · finished <del>2023</del> 2022</span></span></li>
-                  <li id="ev3"><span class="ref">3</span><span class="li-main"><a href="#">Parse and summarise logs</a><span class="li-sub">Practical task in Assess · judged by AI (Claude Sonnet 5.5), judgement accepted by you</span></span></li>
+                <div class="panel-head" style="margin-block-end:4px"><h3 class="t-label">Linked evidence</h3><span class="t-meta">2 records, no level</span></div>
+                <ol class="list sources-list ev-list" style="font-size:var(--fs-body);line-height:var(--lh-body)">
+                  <li id="ev1"><span class="ref">1</span><span class="li-main"><a href="#">Billing API rewrite</a></span><span class="t-meta">Job, 2024 to 2025</span></li>
+                  <li id="ev2"><span class="ref">2</span><span class="li-main"><a href="#">Data pipelines in Python</a> <span class="tag rec-corrected"><svg class="ic"><use href="#i-pencil"/></svg>Corrected</span></span><span class="t-meta">Course, 2022</span></li>
                 </ol>
               </div>
 
               <div>
-                <h3 class="t-label" style="margin-block-end:10px">History</h3>
-                <ol class="timeline" data-vocab="History timeline">
-                  <li><span class="dot dot-ai"></span><span class="when">3 Oct 2026</span>
-                    <span class="what"><span class="tag ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted</span> AI-inferred <strong>Proficient</strong></span></li>
+                <div class="panel-head" style="margin-block-end:10px"><h3 class="t-label">Skill history</h3><span class="t-meta">Newest first</span></div>
+                <ol class="timeline" data-vocab="Skill history">
                   <li><span class="dot dot-demo"></span><span class="when">14 Sep 2026</span>
-                    <span class="what">Demonstrated <strong>Working</strong> in a practical task</span></li>
+                    <span class="what"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><strong>Working</strong><span class="tag shown">Shown</span></span></li>
+                  <li><span class="dot dot-ai"></span><span class="when">2 Sep 2026</span>
+                    <span class="what"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span><strong>Proficient</strong><span class="t-meta">accepted by you</span></span></li>
                   <li><span class="dot dot-retracted"></span><span class="when">20 Jun 2026</span>
                     <span class="what"><span class="tag rec-retracted"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted</span> <del>Evidence: Hackathon entry</del></span>
                     <p class="why">“The repo was a team effort. I didn’t write the Python.”</p></li>
-                  <li><span class="dot"></span><span class="when">12 Mar 2026</span>
-                    <span class="what"><span class="tag rec-corrected"><svg class="ic"><use href="#i-pencil"/></svg>Corrected</span> Course finished <del>2023</del> 2022</span></li>
-                  <li><span class="dot"></span><span class="when">2 Feb 2026</span>
-                    <span class="what">Self-reported <strong>Proficient</strong></span></li>
+                  <li id="py-hist-more" hidden><span class="dot dot-self"></span><span class="when">2 Feb 2026</span>
+                    <span class="what"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><strong>Proficient</strong></span></li>
                 </ol>
+                <button class="link-btn" data-disclose aria-expanded="false" aria-controls="py-hist-more" data-open="Show the latest 3" data-closed="Show all 4 entries"><span class="label">Show all 4 entries</span></button>
               </div>
             </div>
 
@@ -392,14 +440,19 @@
 <pre><span class="y-com">---</span>
 <span class="y-key">skill</span>: <span class="y-str">Python</span>
 <span class="y-key">area</span>: <span class="y-str">Programming</span>
-<span class="y-key">self_reported</span>:
-  <span class="y-key">level</span>: <span class="y-str">proficient</span>
-  <span class="y-key">date</span>: 2026-02-02
-<span class="y-key">ai_inferred</span>:
-  <span class="y-key">level</span>: <span class="y-str">proficient</span>
-  <span class="y-key">model</span>: <span class="y-str">claude-sonnet-5-5</span>
-  <span class="y-key">status</span>: <span class="y-str">accepted</span>
-  <span class="y-key">date</span>: 2026-10-03
+<span class="y-key">history</span>:
+  - <span class="y-key">source</span>: <span class="y-str">demonstrated</span>
+    <span class="y-key">level</span>: <span class="y-str">working</span>
+    <span class="y-key">date</span>: 2026-09-14
+    <span class="y-key">session</span>: <span class="y-str">diagnostics/python/2026-09-14.md</span>
+  - <span class="y-key">source</span>: <span class="y-str">ai-judged</span>
+    <span class="y-key">level</span>: <span class="y-str">proficient</span>
+    <span class="y-key">model</span>: <span class="y-str">claude-sonnet-5-5</span>
+    <span class="y-key">status</span>: <span class="y-str">accepted</span>
+    <span class="y-key">date</span>: 2026-09-02
+  - <span class="y-key">source</span>: <span class="y-str">self-reported</span>
+    <span class="y-key">level</span>: <span class="y-str">proficient</span>
+    <span class="y-key">date</span>: 2026-02-02
 <span class="y-key">evidence</span>:
   - <span class="y-str">evidence/2024-billing-api.md</span>
   - <span class="y-str">evidence/2022-ou-data-pipelines.md</span>
@@ -430,18 +483,20 @@ I'm slower with packaging and typing.</pre>
   <div class="conflict">
     <div class="conflict-side">
       <header><strong>In your folder</strong><span class="t-meta">Changed 25 Oct, 09:14, outside Pharoam</span></header>
-      <div class="c-body">self_reported:
-  level: <span class="c-diff">proficient</span>
-  date: <span class="c-diff">2026-10-25</span>
+      <div class="c-body">history:
+  - source: self-reported
+    level: <span class="c-diff">proficient</span>
+    date: <span class="c-diff">2026-10-25</span>
 evidence:
   - evidence/2024-billing-api.md</div>
       <div class="c-foot"><button class="btn btn-secondary btn-sm">Keep this version</button></div>
     </div>
     <div class="conflict-side">
       <header><strong>In Pharoam</strong><span class="t-meta">Changed 25 Oct, 09:20, on this device</span></header>
-      <div class="c-body">self_reported:
-  level: <span class="c-diff">working</span>
-  date: <span class="c-diff">2026-10-24</span>
+      <div class="c-body">history:
+  - source: self-reported
+    level: <span class="c-diff">working</span>
+    date: <span class="c-diff">2026-10-24</span>
 evidence:
   - evidence/2024-billing-api.md
   <span class="c-diff">- evidence/2026-sql-course.md</span></div>

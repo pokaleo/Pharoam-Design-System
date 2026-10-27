@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-led session · Pharoam sample</title>
+<meta name="description" content="Pharoam design system: an AI-led diagnostic session in progress, an illustration of the system.">
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/pharoam.css">
+<link rel="stylesheet" href="../assets/css/doc.css">
+<style>
+  /* Desktop 1440: canvas 1120. The question takes the main column, 736; the
+     session so far takes the rail, 368: 736 + 16 + 368 = 1120. One question
+     at a time, so the rail answers "where am I" and the main column the task. */
+  .session-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
+  .session-grid > * { min-width: 0; }
+  .rail { display: grid; gap: var(--gap); }
+  .so-far { list-style: none; margin: 0; padding: 0; }
+  .so-far > li { display: grid; grid-template-columns: 20px 1fr; gap: 2px 10px; padding-block: 10px; border-block-end: 1px solid var(--line-soft); }
+  .so-far > li:last-child { border-block-end: 0; }
+  .so-far .n { color: var(--ink-3); font-size: var(--fs-meta); font-variant-numeric: tabular-nums; padding-block-start: 3px; }
+  .so-far .q { display: grid; gap: 4px; justify-items: start; }
+  .so-far .q p { margin: 0; }
+  .so-far .why-asked, .so-far .mine { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--ink-2); }
+  .so-far li.is-now { background: var(--active); margin-inline: calc(var(--pad) * -1); padding-inline: var(--pad); border-radius: var(--radius-control); }
+  .task-log { margin: 0; padding: 10px 14px; font-family: var(--font-code); font-size: 12px; line-height: 18px; background: var(--panel); border-radius: var(--radius-control); overflow-x: auto; direction: ltr; text-align: left; }
+  .config { width: 100%; min-height: 132px; resize: vertical; border: 0; padding: 12px 16px; font-family: var(--font-code); font-size: 13px; line-height: 20px; background: var(--surface); color: var(--ink); direction: ltr; }
+  .config:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: 0; }
+  @media (max-width: 1023px) { .session-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<script src="../assets/icons/lucide/sprite.js"></script>
+<script src="../assets/js/glyphs.js"></script>
+<script src="../brand/marks.js"></script>
+
+<div class="ds-bar no-print" role="region" aria-label="Sample view settings">
+  <a href="../index.html">Pharoam design system</a>
+  <span class="ds-name">Sample: AI-led session · <a href="skills.html">Skills</a> · <a href="gap.html">Gap</a> · <a href="diagnostic.html">Diagnostic</a></span>
+  <span class="ds-spacer"></span>
+  <span class="ds-group" role="group" aria-label="Theme"><button data-set="theme=light">Light</button><button data-set="theme=dark">Dark</button></span>
+  <span class="ds-group" role="group" aria-label="Density"><button data-set="density=compact">Compact</button><button data-set="density=comfortable">Comfortable</button></span>
+  <span class="ds-group" role="group" aria-label="Contrast"><button data-set="contrast=normal">Standard</button><button data-set="contrast=more">More contrast</button></span>
+  <span class="ds-group" role="group" aria-label="Vocabulary labels"><button data-set="annotate=off">Plain</button><button data-set="annotate=on">Name the vocabulary</button></span>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <button class="btn btn-quiet btn-icon" data-nav-toggle aria-expanded="false" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <span data-mark></span>
+    <span class="topbar-title">Apache Kafka diagnostic</span>
+    <span class="sync"><svg class="ic"><use href="#i-cloud-check"/></svg>Saved</span>
+  </header>
+
+  <aside class="sidebar" aria-label="Pharoam">
+    <a class="brand" href="#" aria-label="Pharoam home"><span data-wordmark></span></a>
+
+    <button class="storage-switch" aria-label="Storage: My folder, pharoam-profile. Saved just now. Change storage">
+      <svg class="ic"><use href="#i-folder"/></svg>
+      <span class="s-name">pharoam-profile</span>
+      <svg class="ic ic-sm" style="grid-row: span 2"><use href="#i-chevron-down"/></svg>
+      <span class="sync"><svg class="ic"><use href="#i-cloud-check"/></svg>Saved just now</span>
+    </button>
+
+    <nav class="nav" aria-label="Main">
+      <a href="skills.html"><svg class="ic"><use href="#i-map"/></svg>Skills</a>
+      <a href="#"><svg class="ic"><use href="#i-file-text"/></svg>Evidence</a>
+      <a href="skills.html#queue"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count" aria-label="3 AI judgements waiting">3</span></a>
+      <a href="diagnostic.html" aria-current="page"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</a>
+      <p class="nav-label">Where next</p>
+      <a href="gap.html"><svg class="ic"><use href="#i-compass"/></svg>Pathways</a>
+      <a href="#"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</a>
+      <a href="#"><svg class="ic"><use href="#i-briefcase-business"/></svg>Prepare</a>
+    </nav>
+
+    <div class="sidebar-foot nav">
+      <a href="#"><svg class="ic"><use href="#i-scroll-text"/></svg>Activity log</a>
+      <a href="#"><svg class="ic"><use href="#i-settings"/></svg>Settings</a>
+      <a href="#"><svg class="ic"><use href="#i-life-buoy"/></svg>Help</a>
+      <a href="#" data-lock role="button"><svg class="ic"><use href="#i-lock"/></svg>Lock now</a>
+    </div>
+  </aside>
+
+  <main class="canvas" id="main">
+    <div class="canvas-inner">
+
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="diagnostic.html">Assess</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span aria-current="page">Apache Kafka</span>
+      </nav>
+      <div class="titlebar">
+        <div>
+          <h1 class="t-title">Apache Kafka diagnostic</h1>
+          <p class="t-lead">An AI-led session checking the Working level you claim. It adapts to your answers, so it has no fixed length; you can ask it to finish sooner.</p>
+        </div>
+      </div>
+
+      <div class="session-grid">
+        <!-- The current question: a practical task -->
+        <section class="session ai-session" aria-labelledby="q6" data-vocab="Diagnostic session: AI-led">
+          <div class="session-head">
+            <span class="s-skill">Apache Kafka</span>
+            <span class="tag q-type"><svg class="ic"><use href="#i-ai"/></svg>AI-led session</span>
+            <span class="s-end"><button class="btn btn-quiet btn-sm" data-pace aria-pressed="false" aria-controls="pace-note" data-vocab="Finish sooner"><svg class="ic"><use href="#i-route"/></svg><span class="label">Finish sooner</span></button><button class="btn btn-quiet btn-sm" data-dialog="paused"><svg class="ic"><use href="#i-clock"/></svg>Pause</button></span>
+          </div>
+          <div class="session-progress" data-vocab="Session phases">
+            <ol class="phases" aria-label="Session progress">
+              <li class="done">Finding your level</li>
+              <li class="now" aria-current="step">Checking around it</li>
+              <li>Wrapping up</li>
+            </ol>
+            <span>Question 6 · 14 min so far</span>
+          </div>
+          <p class="pace-note" id="pace-note" hidden>Pharoam will try to wrap up in fewer questions. It can’t promise how many; the explanation will say if there was too little to go on.</p>
+          <form class="session-q" onsubmit="return false">
+            <p class="q-label">
+              <span class="tag q-type" data-vocab="Question type"><svg class="ic"><use href="#i-square-terminal"/></svg>Practical task</span>
+              <span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Written by AI for this session</span>
+              <span class="t-meta">Claude Sonnet 5.5 · AI can make mistakes · takes about 10 minutes</span>
+            </p>
+            <h2 class="q-text" id="q6">A consumer group falls behind every night while the batch export runs. Change its settings so it keeps up, then say why.</h2>
+            <div class="task" data-vocab="Practical task">
+              <p class="task-brief">The group reads <code style="font-family:var(--font-code);font-size:0.92em">payments-events</code>: 12 partitions, 3 consumers, each record takes about 40 ms to process. This is last night’s log.</p>
+              <pre class="task-log">02:14:07 WARN  Lag 184,220 on payments-events, group ledger-balances
+02:14:07 WARN  Member ledger-2 left the group: poll interval exceeded
+02:14:09 INFO  Rebalance started (generation 4,812)</pre>
+              <div class="file-view">
+                <div class="file-bar"><svg class="ic ic-sm"><use href="#i-file-code-2"/></svg><code>consumer.properties</code><span class="file-actions"><button class="btn btn-quiet btn-sm" type="button"><svg class="ic"><use href="#i-undo-2"/></svg>Start over</button></span></div>
+                <label class="visually-hidden" for="cfg">consumer.properties, editable</label>
+                <textarea class="config" id="cfg" spellcheck="false">group.id=ledger-balances
+max.poll.records=500
+max.poll.interval.ms=300000
+fetch.min.bytes=1
+enable.auto.commit=true</textarea>
+              </div>
+              <div class="open-answer">
+                <label class="field-label" for="why6">Why this change? A sentence or two is enough.</label>
+                <textarea class="textarea" id="why6" placeholder="Your reasoning, in your own words"></textarea>
+              </div>
+            </div>
+          </form>
+          <div class="session-foot"><button class="btn btn-quiet btn-sm">Skip this task</button><button class="btn btn-primary btn-sm">Submit for marking</button></div>
+        </section>
+
+        <div class="rail">
+          <!-- The session so far: a mix of question types, never marked right or wrong here -->
+          <section class="sheet" style="padding: var(--pad)" aria-labelledby="sofar-title">
+            <div class="panel-head">
+              <h2 class="t-section" id="sofar-title">This session so far</h2>
+              <span class="t-meta">Marked at the end</span>
+            </div>
+            <ol class="so-far">
+              <li><span class="n">1</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type"><svg class="ic"><use href="#i-list-checks"/></svg>Multiple-choice</span></span><p>Which part of a record decides its partition?</p></span></li>
+              <li><span class="n">2</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type"><svg class="ic"><use href="#i-list-checks"/></svg>Multiple-choice</span></span><p>What does a consumer commit, and when?</p></span></li>
+              <li><span class="n">3</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type" data-vocab="Open answer"><svg class="ic"><use href="#i-message-square"/></svg>Open answer</span></span><p>When would you add partitions to a topic, and what does it cost?</p><span class="mine">Your answer: “When consumers can’t keep up and the work splits by key. It breaks key ordering for…” 84 words</span></span></li>
+              <li><span class="n">4</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type"><svg class="ic"><use href="#i-list-checks"/></svg>Multiple-choice</span></span><p>Which setting stops a slow consumer being thrown out of its group?</p></span></li>
+              <li><span class="n">5</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type"><svg class="ic"><use href="#i-message-square"/></svg>Open answer</span></span><p>How did you choose the partition keys for the payments topics?</p><span class="why-asked">Asked because your CV mentions it but no record shows how.</span></span></li>
+              <li class="is-now" aria-current="step"><span class="n">6</span><span class="q"><span class="cluster" style="gap:4px"><span class="tag ai-drafted" aria-label="Written by AI"><svg class="ic"><use href="#i-ai"/></svg>AI</span><span class="tag q-type"><svg class="ic"><use href="#i-square-terminal"/></svg>Practical task</span></span><p>Keep a lagging consumer group up to date</p></span></li>
+            </ol>
+          </section>
+
+          <section class="panel" aria-labelledby="start-title">
+            <h2 class="t-label" id="start-title" style="margin-block-end:6px">Where it started</h2>
+            <p class="muted" style="margin:0">At Working, from your CV, the repo pellwick/ledger and your self-reported level. The AI judgement waiting for Kafka isn’t used until you accept it.</p>
+          </section>
+        </div>
+      </div>
+
+      <footer class="org-footer">
+        <span class="hosted"><span data-mark style="width:16px;height:16px"></span>Pharoam 1.4 · open source · your files stay in your folder</span>
+        <nav aria-label="Pharoam">
+          <a href="#">Activity log</a><a href="#">Accessibility</a><a href="#">Source code</a>
+        </nav>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<!-- Paused: the session waits, with its place kept -->
+<dialog id="paused" class="dialog" aria-labelledby="paused-title" data-vocab="Paused session">
+  <h2 class="t-section" id="paused-title">Apache Kafka diagnostic, paused at question 6</h2>
+  <p class="muted" style="margin:0">Your answers so far are kept. Resume from the skill or from Assess at any time; it picks up where you stopped.</p>
+  <div class="dialog-actions"><button class="btn btn-quiet" data-close>Leave for now</button><button class="btn btn-primary" data-close><svg class="ic"><use href="#i-arrow-right"/></svg>Resume</button></div>
+</dialog>
+
+<div id="lock-screen" hidden style="position:fixed;inset:0;z-index:20;display:grid;background:var(--ground)">
+  <div class="lock" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <span data-mark="full"></span>
+    <h2 class="t-section" id="lock-title"><span class="tag trust-locked" style="vertical-align:3px;margin-inline-end:6px"><svg class="ic"><use href="#i-lock"/></svg>Locked</span>Pharoam is locked</h2>
+    <p class="muted" style="margin:0;max-width:40ch">Your profile is closed on this device. Your files are unchanged in your folder.</p>
+    <form>
+      <div class="field"><label for="pass">Passphrase</label><input class="input" id="pass" type="password" autocomplete="current-password"></div>
+      <button class="btn btn-primary" type="submit">Unlock</button>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/ds.js"></script>
+</body>
+</html>

@@ -34,7 +34,9 @@
       <li><a href="#vocabulary">Domain vocabulary</a>
         <ol>
           <li><a href="#v-sources">Sources</a></li>
+          <li><a href="#v-shown">Which level is shown</a></li>
           <li><a href="#v-levels">Levels</a></li>
+          <li><a href="#v-diagnostic">Diagnostic results</a></li>
           <li><a href="#v-gap">Gap groups</a></li>
           <li><a href="#v-ai">AI states</a></li>
           <li><a href="#v-records">Record states</a></li>
@@ -52,6 +54,8 @@
       <ol>
         <li><a href="samples/skills.html">Skills overview</a></li>
         <li><a href="samples/gap.html">Gap to a pathway</a></li>
+        <li><a href="samples/diagnostic.html">Diagnostic results</a></li>
+        <li><a href="samples/session.html">AI-led session</a></li>
       </ol>
     </div>
   </nav>
@@ -70,12 +74,12 @@
     <section id="identity" aria-labelledby="h-identity" style="padding-block-start:48px">
       <h1 class="d-h2" id="h-identity">Pharoam design system</h1>
       <p class="d-lead">“The lighthouse does not choose the road. It helps people see it.” Everything here serves that sentence: Pharoam shows what is known, says where it came from, and leaves the choice with the person.</p>
-      <p class="d-text">This is the visual language, the domain vocabulary and the components the whole product is built from: Map, Assess, Explore, Learn, Prepare, Settings, and later sharing and the organisation admin. The two <a href="samples/skills.html">sample</a> <a href="samples/gap.html">views</a> show it applied; they illustrate the system and are not final screens.</p>
+      <p class="d-text">This is the visual language, the domain vocabulary and the components the whole product is built from: Map, Assess, Explore, Learn, Prepare, Settings, and later sharing and the organisation admin. The four sample views (<a href="samples/skills.html">skills</a>, <a href="samples/gap.html">gap</a>, <a href="samples/diagnostic.html">diagnostic results</a> and <a href="samples/session.html">an AI-led session</a>) show it applied; they illustrate the system and are not final screens.</p>
 
       <div class="id-hero">
         <div class="tile tile-day">
           <div class="id-lockup"><img src="brand/seal.svg" alt="The Pharoam seal" width="120" height="120"><img class="id-word" src="brand/wordmark.svg" alt="Pharoam"></div>
-          <p>Paper and Graphite by day: a quiet ground, near-black ink, and one channel blue for what evidence shows.</p>
+          <p>Paper and Graphite by day: a quiet ground, near-black ink, and one channel blue for what a person has shown.</p>
         </div>
         <div class="tile tile-night">
           <div class="id-lockup"><img src="brand/seal-reversed.svg" alt="The Pharoam seal, reversed" width="120" height="120"><img class="id-word" src="brand/wordmark-reversed.svg" alt="Pharoam"></div>
@@ -139,20 +143,28 @@
         <div class="mkt-hero">
           <div>
             <h3>See the roads open to you.</h3>
-            <p>Pharoam helps you map your skills from real evidence, see what different careers ask for, and learn toward the one you choose. Your profile stays in your own files.</p>
+            <p>Pharoam helps you find where you really stand in your skills, see what different careers ask for, and learn toward the one you choose. Your profile stays in your own files.</p>
             <a class="btn btn-primary" href="#" style="min-height:44px;padding-inline:20px;font-size:16px">Start your map</a>
           </div>
-          <div class="mkt-beam" data-theme="dark" data-ui style="padding:24px;display:grid;align-content:end;gap:10px">
-            <div class="sheet" style="padding:16px">
-              <p class="t-section" style="margin:0 0 10px">Python</p>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-                <div class="spec-item"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
-                <div class="spec-item"><span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
-                <div class="spec-item"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div>
-                <div class="spec-item"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span><span class="lvl" data-level="3" style="color:var(--src-ai)"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div>
-              </div>
+          <div class="mkt-beam" data-theme="dark" data-ui>
+            <div class="sheet mkt-card">
+              <div class="mkt-card-head"><p class="t-section">Your skills</p><span class="t-meta">3 of 16</span></div>
+              <ul class="mkt-skills">
+                <li>
+                  <span class="ms-name"><strong>Python</strong><span class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>14 Sep</span></span>
+                  <span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
+                </li>
+                <li>
+                  <span class="ms-name"><strong>PostgreSQL</strong><span class="src-line"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span></span></span>
+                  <span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span>
+                </li>
+                <li>
+                  <span class="ms-name"><strong>Apache Kafka</strong><span class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>2 Feb</span></span>
+                  <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
+                </li>
+              </ul>
             </div>
-            <p class="t-meta" style="margin:0;color:var(--ink-2)">Four sources, side by side. Never one blended number.</p>
+            <p class="mkt-caption">One level per skill, and where it came from. Never a blend.</p>
           </div>
         </div>
       </div>
@@ -166,7 +178,7 @@
       <h3 class="d-h3" id="colour">Colour</h3>
       <ul class="d-list">
         <li><strong>Graphite is the brand.</strong> The seal, the wordmark, text and the one filled button on a screen.</li>
-        <li><strong>One hue does the work.</strong> Channel blue marks what is shown by evidence, the main data, links and focus. It stays near 2% of a screen.</li>
+        <li><strong>One hue does the work.</strong> Channel blue marks a tested level (what a person showed in a diagnostic), the main data, links and focus. It stays near 2% of a screen.</li>
         <li><strong>The lamp is graphic only.</strong> Gold appears in the logo and as a highlight wash (search hits, selected text, a changed line in a conflict). It never carries text or status.</li>
         <li><strong>No green anywhere.</strong> Nothing in Pharoam passes or fails, so nothing is coloured as passing.</li>
         <li><strong>Warning colours are kept for real problems.</strong> Amber means something needs attention (a missing file, unchecked content). Red means something is wrong (a conflict, a save that did not complete). A gap is never amber or red.</li>
@@ -184,20 +196,21 @@
           <tr><td><code>--line</code> / <code>--line-strong</code></td><td><span class="cluster"><span class="chip-i" style="background:#dadada"></span>#dadada / #84888d</span></td><td><span class="cluster"><span class="chip-i" style="background:#303236"></span>#303236 / #6c7076</span></td><td>Panel edges; input boundaries (3:1 or more)</td></tr>
           <tr><td><code>--ink</code></td><td><span class="cluster"><span class="chip-i" style="background:#1b1d1f"></span>#1b1d1f</span></td><td><span class="cluster"><span class="chip-i" style="background:#f0f0f0"></span>#f0f0f0</span></td><td>Graphite: text, headings, figures, the brand</td></tr>
           <tr><td><code>--ink-2</code> / <code>--ink-3</code></td><td><span class="cluster"><span class="chip-i" style="background:#4b5057"></span>#4b5057 / #5b6067</span></td><td><span class="cluster"><span class="chip-i" style="background:#b8bbbf"></span>#b8bbbf / #9da1a6</span></td><td>Secondary text; meta and placeholders</td></tr>
-          <tr><td><code>--channel</code></td><td><span class="cluster"><span class="chip-i" style="background:#2c6488"></span>#2c6488</span></td><td><span class="cluster"><span class="chip-i" style="background:#7fb2d8"></span>#7fb2d8</span></td><td>The one hue: evidence, links, main data, focus</td></tr>
+          <tr><td><code>--channel</code></td><td><span class="cluster"><span class="chip-i" style="background:#2c6488"></span>#2c6488</span></td><td><span class="cluster"><span class="chip-i" style="background:#7fb2d8"></span>#7fb2d8</span></td><td>The one hue: tested levels, links, main data, focus</td></tr>
           <tr><td><code>--primary</code></td><td><span class="cluster"><span class="chip-i" style="background:#1b1d1f"></span>#1b1d1f</span></td><td><span class="cluster"><span class="chip-i" style="background:#f0f0f0"></span>#f0f0f0</span></td><td>One filled action per screen: Graphite, inverted in dark</td></tr>
           <tr><td><code>--lamp</code></td><td colspan="2"><span class="cluster"><span class="chip-i" style="background:#f2b632"></span>#f2b632, wash #fbecc4 / #3d3115</span></td><td>The seal’s lamp and beam; highlight wash only</td></tr>
         </tbody>
       </table>
 
       <h4 class="d-h4">Domain and status colours</h4>
-      <p class="d-text">Each pair is text on its own pale wash. The washes are for tags and small areas, never for grounds.</p>
+      <p class="d-text">Each pair is text on its own pale wash. The washes are for tags and small areas, never for grounds. Evidence has no colour of its own: it carries no level, so it never competes with one.</p>
       <div data-pair>
         <div class="spec-row">
-          <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self</span>
-          <span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence, channel</span>
-          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated, ochre</span>
+          <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self, ink</span>
+          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated, channel</span>
+          <span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated, channel and dashed</span>
           <span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI, graphite</span>
+          <span class="tag" style="color:var(--ink-2)"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence, neutral</span>
           <span class="tag rec-attention"><svg class="ic"><use href="#i-triangle-alert"/></svg>Notice, amber</span>
           <span class="tag" style="background:var(--problem-wash);color:var(--problem)"><svg class="ic"><use href="#i-circle-alert"/></svg>Problem, red</span>
         </div>
@@ -281,7 +294,7 @@
         <div><b>Phone</b>under 640<br>16px margins. Sidebar becomes a top bar and a sheet. Tables become one block per item, each field labelled.</div>
         <div><b>Tablet</b>640 to 1023<br>Top bar navigation. Panels stack once either would be under 340. Tables keep their columns and scroll inside their own frame.</div>
         <div><b>Laptop</b>1024 to 1279<br>240 sidebar. Detail panes move under their list.</div>
-        <div><b>Desktop</b>1280 and up<br>240 sidebar, canvas up to 1200 with 40 side padding. List and detail side by side.</div>
+        <div><b>Desktop</b>1280 and up<br>240 sidebar, canvas up to 1200 with 40 side padding. List and detail side by side once the list keeps its columns; until then the detail stays under it.</div>
       </div>
       <ul class="d-list">
         <li><strong>Shell:</strong> an open plane. The sidebar sits on the page ground with one soft rule; there is no top bar on desktop. The sidebar holds the wordmark, the storage switch with its sync status, the main areas, and settings, the activity log, help and “Lock now” at the foot.</li>
@@ -316,8 +329,12 @@
           <span class="cluster"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</span>
           <span class="cluster"><svg class="ic"><use href="#i-briefcase-business"/></svg>Prepare</span>
           <span class="cluster"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>
-          <span class="cluster"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span>
+          <span class="cluster"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence, linked</span>
           <span class="cluster"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
+          <span class="cluster"><svg class="ic"><use href="#i-signpost"/></svg>Mismatch</span>
+          <span class="cluster"><svg class="ic"><use href="#i-message-square"/></svg>Open answer</span>
+          <span class="cluster"><svg class="ic"><use href="#i-square-terminal"/></svg>Practical task</span>
+          <span class="cluster"><svg class="ic"><use href="#i-circle-help"/></svg>Why? (opens)</span>
           <span class="cluster"><svg class="ic"><use href="#i-ai"/></svg>AI, Pharoam glyph</span>
           <span class="cluster"><svg class="ic"><use href="#i-anchor"/></svg>Supported</span>
           <span class="cluster"><svg class="ic"><use href="#i-message-square-quote"/></svg>Claimed</span>
@@ -353,29 +370,56 @@
       <h2 class="d-h2" id="h-vocab">Domain vocabulary</h2>
       <p class="d-lead">The concepts that appear on every screen get one treatment each, everywhere: a word, an icon and a colour, in that order of importance. Every item is shown here in light and dark, and once in the sample views (switch on “Name the vocabulary” there to see where).</p>
 
-      <h3 class="d-h3" id="v-sources">The four sources</h3>
-      <p class="d-text">Each skill level comes from one source. Sources are always shown side by side, in this order, and never combined into one figure. When a source has nothing, it shows a grey dash, not a zero.</p>
+      <h3 class="d-h3" id="v-sources">The four sources, and evidence</h3>
+      <p class="d-text">Every level comes from one of four sources, and every label says whether the level was tested. Two are untested claims; two are tested in a diagnostic. <strong>The level moves only on what a person shows:</strong> claims and evidence decide what a diagnostic asks and what its explanation says, never a tested level.</p>
       <div data-pair>
         <div class="stack">
           <div class="spec-row">
+            <span class="t-meta">Untested</span>
             <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>
-            <span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>Evidenced</span>
+            <span class="tag src-ai is-pending"><svg class="ic"><use href="#i-ai"/></svg>AI judgement · pending</span>
+            <span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-meta">Tested</span>
             <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
-            <span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI-inferred</span>
+            <span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span>
+          </div>
+          <div class="spec-row">
+            <span class="t-meta">Not a source</span>
+            <span class="tag" style="color:var(--ink-2)"><svg class="ic"><use href="#i-paperclip"/></svg>Evidence</span>
           </div>
           <table class="d-table" style="margin:0">
             <tbody>
-              <tr><td>Self-reported</td><td>What you say. Ink, a person.</td></tr>
-              <tr><td>Evidenced</td><td>Backed by a record: a job, project, course or certificate. Channel blue, a paperclip.</td></tr>
-              <tr><td>Demonstrated</td><td>Shown in an assessment in Pharoam. Ochre, a ruler and pencil.</td></tr>
-              <tr><td>AI-inferred</td><td>An AI’s reading of your records. Graphite, a dashed edge and hatching, the AI monogram. It is never styled like evidence.</td></tr>
+              <tr><td>Self-reported</td><td>The level you give yourself. Untested. Ink, a person.</td></tr>
+              <tr><td>AI judgement</td><td>A level an AI gave by scanning your evidence. Untested, and it counts only once you accept it. Graphite, the AI monogram, a dashed edge; hatched while it waits for you.</td></tr>
+              <tr><td>Demonstrated</td><td>Shown in a question-bank diagnostic: multiple-choice, marked by a fixed rule. Tested. Channel blue, the ruler.</td></tr>
+              <tr><td>AI correlated · after diagnostic</td><td>Shown in an AI-led diagnostic (multiple-choice, open answers and practical tasks) and explained against your evidence. Tested. Channel blue and the ruler, plus the AI monogram and a dashed edge. Always written in full.</td></tr>
+              <tr><td>Evidence (not a source)</td><td>A record of something you did: a job, project, repo, degree or certificate. Linked to skills, with no level. Neutral, a paperclip, shown as a count of records.</td></tr>
             </tbody>
           </table>
         </div>
       </div>
+      <p class="d-text">Tested and untested read apart three ways at once: the channel colour, the ruler icon, and the word. Demonstrated and AI correlated then read apart by the AI monogram and the dashed edge.</p>
+
+      <h3 class="d-h3" id="v-shown">Which level is shown</h3>
+      <p class="d-text">Each skill shows <strong>one level</strong>, with a line saying where it came from. Pharoam picks it by a written order, never by blending sources:</p>
+      <ol class="d-list">
+        <li>The latest diagnostic result: AI correlated or demonstrated.</li>
+        <li>Otherwise, the latest AI judgement you accepted.</li>
+        <li>Otherwise, your latest self-report.</li>
+      </ol>
+      <div data-pair>
+        <ul class="list">
+          <li><span class="li-main"><strong>Python</strong></span><span class="skill-level" style="justify-items:end"><span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><span class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>From your question-bank diagnostic on 14 Sep</span></span></li>
+          <li style="padding-block:8px"><span class="li-main"><strong>Docker</strong></span><span class="skill-level" style="justify-items:end"><span class="lvl by-demo" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span><span class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>From your question-bank diagnostic on 10 Oct</span><p class="claim-note"><svg class="ic"><use href="#i-message-square-quote"/></svg>You’ve since put yourself at Expert. <a href="#">Check it?</a></p></span></li>
+          <li style="padding-block:8px"><span class="li-main"><strong>Apache Kafka</strong></span><span class="skill-level" style="justify-items:end"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><span class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span>From you, on 2 Feb</span><a class="tag ai-pending" href="#" style="text-decoration:none"><svg class="ic"><use href="#i-ai"/></svg>Pending: Proficient</a></span></li>
+        </ul>
+      </div>
+      <p class="d-text">A newer claim that differs from a tested result appears as a note on the level (“You’ve since put yourself at Expert. Check it?”), never as the level. An AI judgement not yet accepted appears as a prompt to review. Every entry from every source stays in the skill’s history, newest first, with the shown one marked.</p>
 
       <h3 class="d-h3" id="v-levels">The five levels</h3>
-      <p class="d-text">Levels are named steps, not amounts. The stair glyph lights only the step the person stands on, so it reads as “where”, never “how full”. The name always comes with it; the glyph alone means nothing.</p>
+      <p class="d-text">Levels are named steps on a 0 to 4 scale, not amounts. The stair glyph lights only the step the person stands on, so it reads as “where”, never “how full”. The name always comes with it; the glyph alone means nothing. On a result card the number may follow the name in grey (“Working level 2”); it never stands alone, and there are no percentages, gauges or progress to 100.</p>
       <div data-pair>
         <div class="spec-grid" style="grid-template-columns:repeat(auto-fit,minmax(84px,1fr))">
           <div class="spec-item"><span class="lvl" data-level="0"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span><span class="spec-note">Knows what it is and when it is used</span></div>
@@ -386,8 +430,31 @@
         </div>
       </div>
 
+      <h3 class="d-h3" id="v-diagnostic">Diagnostic results</h3>
+      <p class="d-text">A diagnostic is the only thing that produces a tested level. It is adaptive: questions get harder after right answers and easier after wrong ones. Offline it is a multiple-choice question bank, and the result is <em>demonstrated</em>. In AI mode it is a tailored session of multiple-choice, open answers and practical tasks, and the result is <em>AI correlated · after diagnostic</em>. The latest result counts; every one stays in the skill’s history.</p>
+      <div data-pair>
+        <div class="stack">
+          <div class="spec-row">
+            <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
+            <span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span>
+            <span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span>
+            <span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span>
+            <span class="tag shown">Shown</span>
+          </div>
+          <p class="offline-note"><svg class="ic"><use href="#i-info"/></svg>Based on this session only. Your evidence wasn’t considered.</p>
+          <table class="d-table" style="margin:0">
+            <tbody>
+              <tr><td>Demonstrated</td><td>Offline. Multiple-choice questions starting at your claimed level (or Working), marked by a published rule. Always carries the offline-limit note above, word for word.</td></tr>
+              <tr><td>AI correlated</td><td>An AI-led session that starts where your evidence points, probes where it is thin or conflicting, and mixes multiple-choice, open answers and practical tasks. Comes with a written explanation.</td></tr>
+              <tr><td>Shown</td><td>Marks the history entry that is the skill’s level. Every other entry stays listed, never hidden.</td></tr>
+              <tr><td>Explanation</td><td>The written account with an AI-correlated result: what the session showed, how it compares with the evidence, possible reasons for any difference, and a next step.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <h3 class="d-h3" id="v-gap">Gap groups and requirements</h3>
-      <p class="d-text">A gap is information, not failure. The four groups are neutral: only “supported” carries the evidence hue, and nothing is amber or red. Groups are sections of a page, never a count or a share.</p>
+      <p class="d-text">A gap is information, not failure. The four groups are neutral: only “supported” carries the channel, because it rests on a tested level, and nothing is amber or red. Groups are sections of a page, never a count or a share. Every requirement shows its one level and the source label of that level.</p>
       <div data-pair>
         <div class="stack">
           <div class="spec-row">
@@ -402,9 +469,9 @@
           </div>
           <table class="d-table" style="margin:0">
             <tbody>
-              <tr><td>Supported</td><td>Evidence or a demonstration at or above the level asked.</td></tr>
-              <tr><td>Claimed</td><td>Only your word or the AI’s reaches it, with nothing to show yet.</td></tr>
-              <tr><td>Below</td><td>What your profile shows is under the level asked, for now.</td></tr>
+              <tr><td>Supported</td><td>A tested level, demonstrated or AI correlated, at or above the level asked. Nothing untested supports a requirement.</td></tr>
+              <tr><td>Claimed</td><td>Your own level, or an AI judgement you accepted, reaches it; untested so far.</td></tr>
+              <tr><td>Below</td><td>What you have shown or claimed is under the level asked, for now.</td></tr>
               <tr><td>Unknown</td><td>Nothing in your profile. Not a gap until you know.</td></tr>
               <tr><td>Core / Helpful</td><td>The pathway needs it / it makes things easier. A filled diamond against an open ring.</td></tr>
             </tbody>
@@ -413,22 +480,17 @@
       </div>
 
       <h3 class="d-h3" id="v-ai">AI states</h3>
-      <p class="d-text">Anything an AI made carries a dashed edge, the AI monogram, the model’s name and a disclaimer. It is never verified and never looks like evidence. The person accepts, corrects or rejects it, and the decision stays visible.</p>
+      <p class="d-text">Anything an AI made carries a dashed edge, the AI monogram, the model’s name and a disclaimer. It is never verified and never looks like a demonstrated level. The person accepts, adjusts or skips an AI judgement, and the decision stays visible.</p>
       <div data-pair>
         <div class="stack">
           <div class="spec-row">
-            <span class="tag ai-proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span>
+            <span class="tag ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span>
             <span class="tag ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted by you</span>
-            <span class="tag ai-rejected"><svg class="ic"><use href="#i-x"/></svg>Rejected by you</span>
+            <span class="tag ai-adjusted"><svg class="ic"><use href="#i-pencil"/></svg>Adjusted by you</span>
+            <span class="tag ai-skipped"><svg class="ic"><use href="#i-x"/></svg>Skipped by you</span>
             <span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Drafted by AI</span>
           </div>
-          <div class="ai-overall">
-            <svg class="ic"><use href="#i-ai"/></svg><span>The AI’s overall reading</span>
-            <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span>
-            <span class="t-meta" style="color:var(--ink-2)">Claude Sonnet 5.5 · an opinion, not a result</span>
-            <span class="ai-overall-actions"><button class="btn btn-quiet btn-sm">I disagree</button><button class="btn btn-quiet btn-sm">Dismiss</button></span>
-          </div>
-          <p class="t-meta" style="margin:0">The overall reading is optional, shown apart from the four sources, and stays dismissed once dismissed. “I disagree” records the person’s view beside it.</p>
+          <p class="t-meta" style="margin:0">An accepted AI judgement is an untested claim. It becomes the level shown only while no diagnostic exists. Adjusting one saves the level you chose as self-reported. There is no AI overall level: a diagnostic’s explanation does that job.</p>
         </div>
       </div>
 
@@ -488,21 +550,28 @@
       </div>
 
       <h4 class="d-h4">Where each item appears in the samples</h4>
-      <table class="d-table">
-        <thead><tr><th>Item</th><th>Skills overview</th><th>Gap to a pathway</th></tr></thead>
+      <table class="d-table d-table-wrap">
+        <thead><tr><th>Item</th><th>Skills overview</th><th>Gap to a pathway</th><th>Diagnostic results</th></tr></thead>
         <tbody>
-          <tr><td>Four sources</td><td>Table columns; Python detail</td><td>Columns in every group</td></tr>
-          <tr><td>Five levels</td><td>Rust aware, Go beginner, Kafka working, Docker proficient, technical writing expert</td><td>Asked-for column</td></tr>
-          <tr><td>Gap groups, core and helpful</td><td>–</td><td>The four sections and the key</td></tr>
-          <tr><td>AI proposed, accepted, rejected</td><td>Review queue</td><td>Kafka “Proposed: Proficient”</td></tr>
-          <tr><td>AI-drafted</td><td>–</td><td>“What this gap might mean”</td></tr>
-          <tr><td>AI overall level</td><td>Python detail, dismissable</td><td>–</td></tr>
-          <tr><td>Corrected, retracted</td><td>Mentoring, Terraform, Python history</td><td>Terraform in Unknown</td></tr>
-          <tr><td>Edited outside, your own skill, needs attention</td><td>Go, Event modelling, Kubernetes</td><td>–</td></tr>
-          <tr><td>Saved, conflict</td><td>Sidebar; SQL notice and dialog</td><td>–</td></tr>
-          <tr><td>Offline</td><td>–</td><td>Sidebar and top bar</td></tr>
-          <tr><td>Untrusted web, unverified pack, blocked image</td><td>–</td><td>About this pathway; the provenance strip</td></tr>
-          <tr><td>Locked app</td><td>“Lock now” in the sidebar</td><td>“Lock now” in the sidebar</td></tr>
+          <tr><td>Four source labels, evidence count</td><td>Source column; Python detail</td><td>Source column in every group</td><td>Result cards; skill history</td></tr>
+          <tr><td>One level per skill, newer-claim note</td><td>Every row; Docker note; Kafka review prompt</td><td>Your level column</td><td>–</td></tr>
+          <tr><td>Five levels</td><td>Rust aware, Go beginner, Kafka working, Docker proficient, technical writing expert</td><td>Asked-for column</td><td>Result levels; history</td></tr>
+          <tr><td>Demonstrated and AI correlated</td><td>Python, PostgreSQL, technical writing</td><td>Supported group</td><td>The two cards side by side</td></tr>
+          <tr><td>Mismatch callout, both ways</td><td>–</td><td>–</td><td>PostgreSQL (said higher), technical writing (showed higher)</td></tr>
+          <tr><td>Offline-limit note, “more accurate with AI”</td><td>Python detail</td><td>–</td><td>Demonstrated card</td></tr>
+          <tr><td>Skill history, AI call log, AI data notice</td><td>Python history</td><td>–</td><td>PostgreSQL history; AI calls; “Run the diagnostic again”</td></tr>
+          <tr><td>Search, filter, sort, show all</td><td>The skills table toolbar</td><td>Filter and sort above the groups</td><td>–</td></tr>
+          <tr><td>Level over time, opening entries</td><td>–</td><td>–</td><td>PostgreSQL chart and history</td></tr>
+          <tr><td>Question kinds, phases, finish sooner</td><td colspan="3">The AI-led session sample: Apache Kafka, question 6</td></tr>
+          <tr><td>Gap groups, core and helpful</td><td>–</td><td>The four sections and the key</td><td>–</td></tr>
+          <tr><td>AI pending, accepted, adjusted, skipped</td><td>AI judgement review</td><td>Kafka “Pending: Proficient”</td><td>–</td></tr>
+          <tr><td>AI-drafted</td><td>–</td><td>“What this gap might mean”</td><td>Explanations</td></tr>
+          <tr><td>Corrected, retracted</td><td>Mentoring, Terraform, Python history</td><td>Terraform in Unknown</td><td>–</td></tr>
+          <tr><td>Edited outside, your own skill, needs attention</td><td>Go, Event modelling, Kubernetes</td><td>–</td><td>–</td></tr>
+          <tr><td>Saved, conflict</td><td>Sidebar; SQL notice and dialog</td><td>–</td><td>Sidebar</td></tr>
+          <tr><td>Offline</td><td>–</td><td>Sidebar and top bar</td><td>–</td></tr>
+          <tr><td>Untrusted web, unverified pack, blocked image</td><td>–</td><td>About this pathway; the provenance strip</td><td>–</td></tr>
+          <tr><td>Locked app</td><td colspan="3">“Lock now” in the sidebar of every sample</td></tr>
         </tbody>
       </table>
     </section>
@@ -550,14 +619,14 @@
           <div class="field"><label for="f-date">Finished</label><input class="input" id="f-date" aria-invalid="true" value="31/02/2025" aria-describedby="f-date-e"><span class="field-error" id="f-date-e"><svg class="ic ic-sm"><use href="#i-circle-alert"/></svg>That date does not exist. Try 28 Feb 2025.</span></div>
           <div class="field"><label for="f-link">Link</label><div class="input-group"><input class="input" id="f-link" value="code.example.org/maya/ledger"><button class="btn btn-secondary" type="button">Check</button></div></div>
           <div class="field" style="grid-column:1/-1"><label for="f-notes">What you did</label><textarea class="textarea" id="f-notes" aria-describedby="f-notes-h">Designed the topic layout and ran the cut-over weekend.</textarea><span class="hint" id="f-notes-h">Saved as Markdown in evidence/2024-payments-events.md</span></div>
-          <label class="check"><input type="checkbox" checked> Use this as evidence for Kafka</label>
+          <label class="check"><input type="checkbox" checked> Link this to Apache Kafka</label>
           <label class="radio"><input type="radio" name="vis" checked> Only me</label>
           <label class="switch" style="grid-column:1/-1">Lock Pharoam after 10 minutes away <input type="checkbox" checked></label>
           <div class="field" style="grid-column:1/-1">
-            <span class="field-label" id="src-pick">Which source is this?</span>
+            <span class="field-label" id="src-pick">How do you want to check this level?</span>
             <div class="seg" role="group" aria-labelledby="src-pick">
-              <button type="button" aria-pressed="true"><svg class="ic"><use href="#i-user-round"/></svg>My own view</button>
-              <button type="button" aria-pressed="false"><svg class="ic"><use href="#i-paperclip"/></svg>A record</button>
+              <button type="button" aria-pressed="true"><svg class="ic"><use href="#i-list-checks"/></svg>Question bank</button>
+              <button type="button" aria-pressed="false"><svg class="ic"><use href="#i-ai"/></svg>With AI</button>
             </div>
           </div>
         </form>
@@ -582,8 +651,13 @@
             <label class="unsure"><input type="radio" name="lp" data-name="Not sure"><svg class="ic"><use href="#i-circle-help"/></svg>I’m not sure yet</label>
           </fieldset>
           <p class="t-meta" style="margin:10px 0 0">Saved as self-reported: <strong data-level-out>Working</strong></p>
+          <div class="claim-prompt" style="margin-block-start:10px">
+            <p>Check this level? A diagnostic is what sets a demonstrated level.</p>
+            <span class="cp-actions"><button type="button" class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-list-checks"/></svg>Question bank</button><button type="button" class="btn btn-quiet btn-sm"><svg class="ic"><use href="#i-ai"/></svg>With AI</button><button type="button" class="btn btn-quiet btn-sm" data-claim-skip>Skip</button></span>
+          </div>
         </form>
       </div>
+      <p class="d-text">Straight after a claim, the self-claim prompt offers to check it: question bank, AI or skip. Skipping keeps the claim as self-reported, with nothing held against it.</p>
 
       <h3 class="d-h3">Tables and lists</h3>
       <div data-pair>
@@ -597,6 +671,36 @@
         </table>
       </div>
       <p class="d-text">Rules and alignment, no zebra stripes. Grey sentence-case headers. Dates right-aligned in ISO where rows are compared. Missing values are a grey dash. On a phone a table becomes one block per row, every field labelled.</p>
+
+      <h3 class="d-h3">List tools: search, filter, sort, show all</h3>
+      <div data-pair class="pair-stack">
+        <div class="stack">
+          <div class="toolbar" id="lt-tools" data-list-tools="lt-rows" data-noun="skills" data-page-size="3" role="search" aria-label="Find skills">
+            <label class="search"><svg class="ic"><use href="#i-search"/></svg><input class="input" type="search" placeholder="Search skills" aria-label="Search skills" data-search></label>
+            <span class="seg" role="group" aria-label="Show"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="tested" aria-pressed="false">Tested</button><button type="button" data-filter="untested" aria-pressed="false">Untested</button></span>
+            <label class="sort">Sort <select class="select" data-sort><option value="default">By area</option><option value="level:desc">Level, highest first</option><option value="name:asc">A to Z</option><option value="date:desc">Recently changed</option></select></label>
+            <span class="count" aria-live="polite">5 skills</span>
+          </div>
+          <div style="overflow-x:auto">
+          <table class="table" style="min-inline-size:460px">
+            <thead><tr><th scope="col">Skill</th><th scope="col">Level</th><th scope="col">Source</th></tr></thead>
+            <tbody id="lt-rows" data-empty="No skills match. Try another word, or show all.">
+            <tr data-row data-name="python" data-level="2" data-date="2026-09-14" data-tags="tested"><th scope="row">Python</th><td><span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td><td><p class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span></p></td></tr>
+            <tr data-row data-name="postgresql" data-level="2" data-date="2026-10-25" data-tags="tested"><th scope="row">PostgreSQL</th><td><span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span></td><td><p class="src-line"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span></p></td></tr>
+            <tr data-row data-name="apache kafka" data-level="2" data-date="2026-02-02" data-tags="untested"><th scope="row">Apache Kafka</th><td><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td><td><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span></p></td></tr>
+            <tr data-row data-name="docker" data-level="3" data-date="2026-10-10" data-tags="tested"><th scope="row">Docker</th><td><span class="lvl by-demo" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td><td><p class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span></p></td></tr>
+            <tr data-row data-name="rust" data-level="0" data-date="2026-02-02" data-tags="untested"><th scope="row">Rust</th><td><span class="lvl" data-level="0"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Aware</span></td><td><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span></p></td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="list-foot" data-list-foot="lt-tools" hidden><span class="range"></span><button type="button" class="btn btn-secondary btn-sm">Show all</button></div>
+        </div>
+      </div>
+      <ul class="d-list">
+        <li>One row above the list it scopes: search, then a filter as a segmented control, then the sort, then the count on the end side. Counts follow the view (“4 of 16 skills”).</li>
+        <li>Sorting by level reads from the level shown, highest first by default, with ties A to Z. A sort other than the default drops group headings; on the gap view each row then carries its own Core or Helpful glyph.</li>
+        <li>Long lists show the first rows and say so (“Showing 10 of 16”), with “Show all” at the foot. Nothing is paged on a short list. An empty result keeps the frame and says what to try.</li>
+      </ul>
 
       <h3 class="d-h3">Panels and notices</h3>
       <div data-pair>
@@ -618,27 +722,28 @@
         <div class="spec-grid" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);align-items:start">
           <div class="dialog" role="dialog" aria-label="Retract example">
             <h2 class="t-section">Retract “Hackathon entry”?</h2>
-            <p class="muted" style="margin:0">It stays in your history, struck through, with your reason. Skills that relied on it lose it as evidence.</p>
+            <p class="muted" style="margin:0">It stays in your history, struck through, with your reason. It is unlinked from its skills; no level changes.</p>
             <div class="field" style="margin-top:12px"><label for="why">Your reason (kept in the file)</label><input class="input" id="why" value="The repo was a team effort."></div>
             <div class="dialog-actions"><button class="btn btn-quiet">Keep it</button><button class="btn btn-primary">Retract</button></div>
           </div>
           <div class="stack">
             <div class="menu" role="menu" aria-label="Record menu"><button role="menuitem"><svg class="ic"><use href="#i-pencil"/></svg>Correct</button><button role="menuitem"><svg class="ic"><use href="#i-file-code-2"/></svg>Show file</button><button role="menuitem"><svg class="ic"><use href="#i-history"/></svg>History</button><hr><button role="menuitem"><svg class="ic"><use href="#i-undo-2"/></svg>Retract</button></div>
-            <span class="tooltip">Evidenced: backed by a record you added</span>
+            <span class="tooltip">AI correlated: from an AI-led diagnostic, explained against your evidence</span>
           </div>
         </div>
       </div>
 
-      <h3 class="d-h3">History timeline</h3>
+      <h3 class="d-h3">Skill history</h3>
       <div data-pair>
         <ol class="timeline">
-          <li><span class="dot dot-ai"></span><span class="when">3 Oct 2026</span><span class="what"><span class="tag ai-accepted"><svg class="ic"><use href="#i-check"/></svg>Accepted</span> AI-inferred <strong>Proficient</strong></span></li>
-          <li><span class="dot dot-demo"></span><span class="when">14 Sep 2026</span><span class="what">Demonstrated <strong>Working</strong> in a practical task</span></li>
+          <li><span class="dot dot-corr"></span><span class="when">25 Oct 2026</span><span class="what"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span><strong>Working</strong><span class="tag shown">Shown</span></span></li>
+          <li><span class="dot dot-ai"></span><span class="when">25 Oct 2026</span><span class="what"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span><strong>Proficient</strong><span class="t-meta">accepted by you</span></span></li>
+          <li><span class="dot dot-demo"></span><span class="when">18 Oct 2026</span><span class="what"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><strong>Working</strong></span></li>
           <li><span class="dot dot-retracted"></span><span class="when">20 Jun 2026</span><span class="what"><span class="tag rec-retracted"><svg class="ic"><use href="#i-undo-2"/></svg>Retracted</span> <del>Evidence: Hackathon entry</del></span><p class="why">“The repo was a team effort.”</p></li>
-          <li><span class="dot dot-evidence"></span><span class="when">12 Mar 2026</span><span class="what">Evidenced <strong>Proficient</strong> from Billing API rewrite</span></li>
+          <li><span class="dot dot-self"></span><span class="when">2 Feb 2026</span><span class="what"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><strong>Proficient</strong></span></li>
         </ol>
       </div>
-      <p class="d-text">Newest first. The dot takes the source’s colour; AI is dashed; a retraction is hollow. Nothing is ever removed from a timeline.</p>
+      <p class="d-text">Every entry from every source, newest first, each with its date and source label. The entry shown as the level is marked “Shown”. On a skill’s own page each entry opens its result in place, and the level-over-time chart draws the same entries. Tested entries take the channel; anything AI-made is dashed; a retraction is hollow. Nothing is ever removed from a history.</p>
 
       <h3 class="d-h3">Long-form text and citations</h3>
       <div data-pair>
@@ -659,40 +764,211 @@
           <div class="ai-head"><span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Drafted by AI</span><span class="ai-model">Claude Sonnet 5.5, with your key</span><span class="ai-when">Today, 10:42</span></div>
           <div class="ai-body stack">
             <p class="prose" style="font-size:var(--fs-lead);line-height:var(--lh-lead);margin:0">Your Kafka work covers the pipeline-building side of this pathway. The open questions are on the modelling side.</p>
-            <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>Written by an AI from your files. It can be wrong and it is not evidence.</p>
+            <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>Written by an AI from your files. It can be wrong and it never changes a level.</p>
           </div>
           <div class="ai-actions"><button class="btn btn-secondary btn-sm">Accept as a note</button><button class="btn btn-quiet btn-sm">Edit</button><button class="btn btn-quiet btn-sm">Discard</button></div>
         </section>
       </div>
       <ul class="d-list">
         <li>Always: the dashed edge, the hatched band, “Drafted by AI” or “Proposed”, the model’s name, when it ran, a one-line disclaimer, and the person’s three choices.</li>
-        <li>Never: the word “verified”, a tick on AI output, the evidence colour, or anything saved before the person decides.</li>
-        <li>After a decision the edge turns solid and the band says “Accepted by you” or “Edited by you”; it remains AI-inferred in the file.</li>
+        <li>Never: the word “verified”, a tick on AI output, the channel colour of a demonstrated level, or anything saved before the person decides.</li>
+        <li>After a decision the edge turns solid and the band says “Accepted by you” or “Edited by you”; the file still records it as AI-made.</li>
       </ul>
 
-      <h3 class="d-h3">Review queue</h3>
+      <h3 class="d-h3">AI judgement review</h3>
       <div data-pair>
-        <ul class="queue">
-          <li class="queue-item"><div class="q-claim"><span class="tag q-state ai-proposed"><svg class="ic"><use href="#i-ai"/></svg>Proposed</span><strong>Apache Kafka</strong><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div><div class="q-actions"><button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button><button class="btn btn-quiet btn-sm">Correct</button><button class="btn btn-quiet btn-sm" data-decide="reject">Reject</button></div><p class="q-why">“You chose the partition keys for 14 topics.” Quoted from your write-up, paragraph 3.</p></li>
-          <li class="queue-item is-rejected"><div class="q-claim"><span class="tag q-state ai-rejected"><svg class="ic"><use href="#i-x"/></svg>Rejected by you</span><strong>Leadership</strong><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div><div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div></li>
-        </ul>
+        <div>
+          <div class="queue-bar"><span class="t-meta">From your CV, by Claude Sonnet 5.5 · AI can make mistakes · 2 waiting, 2 decided</span><button class="btn btn-secondary btn-sm" data-accept-all="q-spec"><svg class="ic"><use href="#i-check"/></svg>Accept all <span class="n">2</span> waiting</button></div>
+          <ul class="queue" id="q-spec">
+            <li class="queue-item"><div class="q-claim"><span class="tag q-state ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span><strong>Apache Kafka</strong><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></div><div class="q-actions"><button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button><button class="btn btn-quiet btn-sm" data-decide="adjust">Adjust</button><button class="btn btn-quiet btn-sm" data-decide="skip">Skip</button></div><p class="q-why">“Chose the partition keys for 14 topics.” Quoted from your CV, Pellwick Energy.</p></li>
+            <li class="queue-item"><div class="q-claim"><span class="tag q-state ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Pending</span><strong>Stream processing</strong><span class="tag rec-custom">New skill</span><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div><div class="q-actions"><button class="btn btn-secondary btn-sm" data-decide="accept">Accept</button><button class="btn btn-quiet btn-sm" data-decide="adjust">Adjust</button><button class="btn btn-quiet btn-sm" data-decide="skip">Skip</button></div><p class="q-why">“Wrote the consumer that rebuilt balances from the event log.” From the repo pellwick/ledger.</p></li>
+            <li class="queue-item is-adjusted"><div class="q-claim"><span class="tag q-state ai-adjusted"><svg class="ic"><use href="#i-pencil"/></svg>Adjusted by you</span><strong>Data quality testing</strong><span class="lvl is-struck" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span> <span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div><div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div></li>
+            <li class="queue-item is-skipped"><div class="q-claim"><span class="tag q-state ai-skipped"><svg class="ic"><use href="#i-x"/></svg>Skipped by you</span><strong>Leadership</strong><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></div><div class="q-actions"><button class="btn btn-quiet btn-sm" data-undo>Undo</button></div></li>
+          </ul>
+        </div>
       </div>
-      <p class="d-text">Each proposal quotes what it was inferred from. Decisions stay in the queue under “Decided today” and can be undone. Accepting keeps the source as AI-inferred.</p>
+      <p class="d-text">One CV can suggest forty skills, so the review works in batch: accept all that are waiting, or go one by one. Each proposal gives its reason, quoted from where it came from. Accepting keeps it as an AI judgement; adjusting saves the level you chose as self-reported; skipping keeps it in the history. Every decision can be undone.</p>
 
       <h3 class="d-h3">Show file</h3>
       <div data-pair>
         <div class="file-view">
-          <div class="file-bar"><svg class="ic ic-sm"><use href="#i-file-code-2"/></svg><code>skills/python.md</code><span class="file-actions"><button class="btn btn-quiet btn-sm">Copy</button><button class="btn btn-quiet btn-sm">Open in your editor</button></span></div>
+          <div class="file-bar"><svg class="ic ic-sm"><use href="#i-file-code-2"/></svg><code>skills/postgresql.md</code><span class="file-actions"><button class="btn btn-quiet btn-sm">Copy</button><button class="btn btn-quiet btn-sm">Open in your editor</button></span></div>
 <pre><span class="y-com">---</span>
-<span class="y-key">skill</span>: <span class="y-str">Python</span>
-<span class="y-key">self_reported</span>:
-  <span class="y-key">level</span>: <span class="y-str">proficient</span>
+<span class="y-key">skill</span>: <span class="y-str">PostgreSQL</span>
+<span class="y-key">history</span>:
+  - <span class="y-key">source</span>: <span class="y-str">ai-correlated</span>
+    <span class="y-key">level</span>: <span class="y-str">working</span>
+    <span class="y-key">model</span>: <span class="y-str">claude-sonnet-5-5</span>
+    <span class="y-key">date</span>: 2026-10-25
+  - <span class="y-key">source</span>: <span class="y-str">demonstrated</span>
+    <span class="y-key">level</span>: <span class="y-str">working</span>
+    <span class="y-key">date</span>: 2026-10-18
+  - <span class="y-key">source</span>: <span class="y-str">self-reported</span>
+    <span class="y-key">level</span>: <span class="y-str">proficient</span>
+    <span class="y-key">date</span>: 2026-02-02
 <span class="y-com">---</span>
 <span class="y-head">## Notes</span>
-Most of my Python is services and ETL jobs.</pre>
+Mostly reporting databases; replication was another team's.</pre>
         </div>
       </div>
       <p class="d-text">The friendly view is the default. “Show file” swaps it for the file as it is on disk, read-only by default, in the code face with gentle syntax colour. Files are always left-to-right, even in a right-to-left interface.</p>
+
+      <h3 class="d-h3">Evidence card</h3>
+      <div data-pair>
+        <div class="stack">
+          <div class="ev-card">
+            <p class="ev-title"><strong>Billing API rewrite</strong><span class="t-meta">Job · Pellwick Energy · 2024 to 2025</span></p>
+            <div class="ev-links"><span class="t-meta">Linked to</span><span class="tag skill-chip">Python</span><span class="tag skill-chip">PostgreSQL</span><span class="tag skill-chip">Apache Kafka</span></div>
+          </div>
+          <div class="ev-card">
+            <p class="ev-title"><strong>pellwick/ledger</strong><span class="t-meta">Repo · scanned 25 Oct 2026</span></p>
+            <div class="ev-links"><span class="t-meta">Linked to</span><span class="tag skill-chip">PostgreSQL</span><span class="tag ai-pending"><svg class="ic"><use href="#i-ai"/></svg>Stream processing, proposed</span><span class="t-meta">by Claude Sonnet 5.5 · AI can make mistakes</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="d-text">An evidence card says what the record is and which skills it is linked to. It never shows a level: a repo shows you used a skill, not at what level. Links an AI proposed wait, hatched, until you accept them.</p>
+
+      <h3 class="d-h3">Diagnostic session</h3>
+      <div data-pair class="pair-stack">
+        <div class="stack">
+        <section class="session ai-session" aria-label="Diagnostic session example">
+          <div class="session-head">
+            <span class="s-skill">PostgreSQL</span><span class="tag q-type"><svg class="ic"><use href="#i-ai"/></svg>AI-led session</span>
+            <span class="s-end"><button class="btn btn-quiet btn-sm" data-pace aria-pressed="false" aria-controls="pn-spec"><svg class="ic"><use href="#i-route"/></svg><span class="label">Finish sooner</span></button><button class="btn btn-quiet btn-sm"><svg class="ic"><use href="#i-clock"/></svg>Pause</button></span>
+          </div>
+          <div class="session-progress">
+            <ol class="phases" aria-label="Session progress"><li class="done">Finding your level</li><li class="now" aria-current="step">Checking around it</li><li>Wrapping up</li></ol>
+            <span>Question 7 · 12 min so far</span>
+          </div>
+          <p class="pace-note" id="pn-spec" hidden>Pharoam will try to wrap up in fewer questions. It can’t promise how many; the explanation will say if there was too little to go on.</p>
+          <form class="session-q" onsubmit="return false">
+            <p class="q-label"><span class="tag q-type"><svg class="ic"><use href="#i-list-checks"/></svg>Multiple-choice</span><span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Written by AI for this session</span><span class="t-meta">Claude Sonnet 5.5 · AI can make mistakes; “I’m not sure” is always an answer</span></p>
+            <fieldset class="answers">
+              <legend class="q-text">A replica has fallen 40 minutes behind the primary during the nightly batch. What do you look at first?</legend>
+              <label><input type="radio" name="sq"> Restart the replica so it catches up from the start</label>
+              <label><input type="radio" name="sq" checked> Whether the replica is waiting on WAL it hasn’t received, or replaying WAL it already has</label>
+              <label><input type="radio" name="sq"> Raise max_connections on the primary</label>
+              <label><input type="radio" name="sq"> I’m not sure</label>
+            </fieldset>
+          </form>
+          <div class="session-foot"><button class="btn btn-quiet btn-sm">Skip this question</button><button class="btn btn-primary btn-sm">Answer</button></div>
+        </section>
+        <div class="spec-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start">
+          <div class="session ai-session"><div class="session-q">
+            <p class="q-label"><span class="tag q-type"><svg class="ic"><use href="#i-message-square"/></svg>Open answer</span><span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Written by AI</span></p>
+            <div class="open-answer"><label class="q-text" for="oa-spec">When would you add a read replica rather than a bigger primary?</label><textarea class="textarea" id="oa-spec">When reads dominate and can tolerate a little lag, such as reports. Writes still all go to the primary, so</textarea></div>
+          </div></div>
+          <div class="session ai-session"><div class="session-q">
+            <p class="q-label"><span class="tag q-type"><svg class="ic"><use href="#i-square-terminal"/></svg>Practical task</span><span class="tag ai-drafted"><svg class="ic"><use href="#i-ai"/></svg>Written by AI</span></p>
+            <p class="q-text">This query takes 4 seconds. Add the index that fixes it, and say why.</p>
+            <div class="task"><div class="file-view"><div class="file-bar"><svg class="ic ic-sm"><use href="#i-file-code-2"/></svg><code>slow-query.sql</code></div><pre>SELECT * FROM payments
+WHERE account_id = $1
+ORDER BY created_at DESC
+LIMIT 20;</pre></div></div>
+          </div></div>
+        </div>
+        <div class="claim-prompt" aria-label="Paused session example">
+          <p><strong>PostgreSQL diagnostic, paused at question 7.</strong> Your answers so far are kept; it picks up where you stopped.</p>
+          <span class="cp-actions"><button type="button" class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-arrow-right"/></svg>Resume</button><button type="button" class="btn btn-quiet btn-sm">Start again</button></span>
+        </div>
+        </div>
+      </div>
+      <p class="d-text">One question at a time, of three kinds: multiple-choice, an open answer, or a practical task. A question-bank session is multiple-choice only, in a solid frame; an AI-led session mixes all three. An adaptive session has no fixed length, so progress is the phase it is in (finding your level, checking around it, wrapping up), never a count of questions left, a score or a share. “Finish sooner” asks it to wrap up in fewer questions; it is a request, not a promise, and the note under the phases says so. Answers are never marked right or wrong during the session. Pause keeps the place; a paused session waits on the skill, and in Assess, with Resume. In an AI-led session the whole frame is dashed and every question the AI wrote is labelled; “I’m not sure” is always an answer.</p>
+
+      <h3 class="d-h3">Diagnostic result card</h3>
+      <div data-pair class="pair-stack">
+        <div class="spec-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start">
+          <article class="result" aria-label="Demonstrated result example">
+            <div class="result-head">
+              <p class="result-where"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span class="t-meta">18 Oct 2026</span></p>
+              <p class="result-level"><span class="lvl lvl-lg by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working <span class="lvl-n">level 2</span></span></p>
+            </div>
+            <div class="result-body">
+              <p class="result-rule">14 multiple-choice questions, starting at Proficient, the level you gave yourself. Marked by the published rule.</p>
+              <p class="offline-note"><svg class="ic"><use href="#i-info"/></svg>Based on this session only. Your evidence wasn’t considered.</p>
+            </div>
+            <div class="result-actions">
+              <button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-ai"/></svg>Get a more accurate result with AI</button>
+              <span class="help-tip"><button class="help-btn" data-help aria-expanded="false" aria-controls="rc-why" aria-label="Why AI is more accurate"><svg class="ic"><use href="#i-circle-help"/></svg></button><span class="tooltip help-pop" id="rc-why" role="note" hidden>AI tailors the questions to you, adds open answers and practical tasks, takes your evidence into account, and explains the result.</span></span>
+            </div>
+          </article>
+          <article class="result result-ai" aria-label="AI-correlated result example">
+            <div class="result-head">
+              <p class="result-where"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span><span class="t-meta">25 Oct 2026</span></p>
+              <p class="result-level"><span class="lvl lvl-lg by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working <span class="lvl-n">level 2</span></span><span class="tag shown">Shown</span></p>
+            </div>
+            <div class="result-body">
+              <p class="result-expl">Strong on indexing and query plans. The replication questions at level 3 were where this session stopped.</p>
+              <div class="mismatch">
+                <svg class="ic"><use href="#i-signpost"/></svg>
+                <div>
+                  <p class="mm-title">What you said and what this session showed differ</p>
+                  <p class="mm-compare"><span class="mm-item">You said <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></span><span class="mm-item">This session <span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></p>
+                  <ul><li>You may not have worked on replication recently.</li></ul>
+                  <p class="mm-next"><strong>Next step:</strong> a practical task on failover could show it.</p>
+                </div>
+              </div>
+              <p class="result-considered">Considered: this session, 2 jobs, 1 repo, your self-reported level</p>
+              <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>AI-generated by Claude Sonnet 5.5. AI can make mistakes.</p>
+            </div>
+            <div class="result-actions"><button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-refresh-cw"/></svg>Run the diagnostic again</button></div>
+          </article>
+        </div>
+      </div>
+      <ul class="d-list">
+        <li>Always: the skill, one level with its name, the source label, the “Considered” list or how it was marked, and the next actions. One result replaces the old per-source level and the AI overall level.</li>
+        <li>Demonstrated adds the offline-limit note, word for word, and “Get a more accurate result with AI” with its <strong>?</strong>. AI correlated adds the explanation, the mismatch callout when the levels differ, the “Considered” list, the model’s name and the disclaimer, and “Run the diagnostic again”.</li>
+        <li>The mismatch callout works both ways: said higher than shown, or shown higher than said. It gives possible reasons, never certainties, then a next step. Encouraging, never accusing, and never amber or red.</li>
+        <li>Never: a score, a percentage, a gauge, a confidence figure, “verified” or “proven”.</li>
+      </ul>
+
+      <h3 class="d-h3">Skill level display and newer-claim note</h3>
+      <div data-pair>
+        <table class="table">
+          <thead><tr><th scope="col">Skill</th><th scope="col">Level</th><th scope="col">Source</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">PostgreSQL</th><td><span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span></td><td><p class="src-line"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span><span>25 Oct</span></p></td></tr>
+            <tr><th scope="row">Docker</th><td><span class="from-cell" style="padding-block:6px"><span class="lvl by-demo" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span><p class="claim-note"><svg class="ic"><use href="#i-message-square-quote"/></svg>You’ve since put yourself at Expert. <a href="#">Check it?</a></p></span></td><td><p class="src-line"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span><span>10 Oct</span></p></td></tr>
+            <tr><th scope="row">Apache Spark</th><td><span class="lvl by-ai" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td><td><p class="src-line"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span><span>25 Oct</span></p></td></tr>
+            <tr><th scope="row">Apache Kafka</th><td><span class="from-cell" style="padding-block:6px"><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span><a class="tag ai-pending" href="#" style="text-decoration:none"><svg class="ic"><use href="#i-ai"/></svg>Pending: Proficient</a></span></td><td><p class="src-line"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span><span>2 Feb</span></p></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="d-text">One level per skill, 0 to 4 with its name, and the source label with its date; on a skill’s own page the source is a full line (“From your AI diagnostic on 25 Oct”). A newer claim that differs from a tested result is a note with a way to check it. A waiting AI judgement is a prompt to review. No percentages, gauges or progress to 100.</p>
+
+      <h3 class="d-h3">Level over time</h3>
+      <div data-pair>
+        <div>
+          <p class="lchart-legend">
+            <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><line x1="0" y1="6" x2="9" y2="6" stroke="var(--line-strong)" stroke-width="2"/><line x1="9" y1="6" x2="18" y2="6" stroke="var(--src-demo)" stroke-width="2"/></svg>Level shown: from a claim, then tested</span>
+            <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="4.5" fill="var(--src-demo)"/></svg>Demonstrated</span>
+            <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="3" fill="var(--src-demo)"/><circle cx="9" cy="6" r="5.25" fill="none" stroke="var(--src-demo)" stroke-width="1.2" stroke-dasharray="2.5 1.5"/></svg>AI correlated</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="4" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2"/></svg>Self-reported</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><rect x="5.5" y="2.5" width="7" height="7" transform="rotate(45 9 6)" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="2.5 1.5"/></svg>AI judgement</span>
+          </p>
+          <div class="lchart" data-chart='{"from":"2026-08-01","to":"2026-11-01","now":"2026-10-25","entries":[{"date":"2026-02-02","level":3,"source":"self"},{"date":"2026-09-02","level":1,"source":"demo"},{"date":"2026-10-18","level":2,"source":"demo"},{"date":"2026-10-25","level":3,"source":"ai","note":"accepted"},{"date":"2026-10-25","level":2,"source":"corr","note":"shown"}]}' aria-label="PostgreSQL level over time"></div>
+        </div>
+      </div>
+      <ul class="d-list">
+        <li>A step line of the level shown, worked out by the written order at each date: grey while it rests on a claim, channel blue once a diagnostic sets it. Levels are named steps on the axis, never numbers or percentages.</li>
+        <li>Every history entry is a marker: tested results filled in the channel, AI-correlated ones with a dashed ring, claims hollow and grey, AI judgements as a dashed diamond. Hover or focus a marker for its source and date.</li>
+        <li>The skill’s history table is the chart’s table view, so nothing lives only in the picture. Entries before the window are left to the table; the line enters from the start edge at the level they set.</li>
+      </ul>
+
+      <h3 class="d-h3">AI data notice and call log</h3>
+      <div data-pair>
+        <div class="stack">
+          <div class="dialog" role="dialog" aria-label="AI data notice example" style="max-inline-size:none;box-shadow:none">
+            <h2 class="t-section">This sends your whole profile to Anthropic</h2>
+            <p class="muted" style="margin:0">A tailored session needs all of it: 16 skills, 9 evidence records, your notes and your 3 diagnostics so far. It goes to Claude Sonnet 5.5, with your key.</p>
+            <div class="dialog-actions"><button class="btn btn-quiet">Cancel</button><button class="btn btn-primary">Continue</button></div>
+          </div>
+          <ul class="log">
+            <li><span class="l-when">25 Oct 10:02</span><span class="l-what"><strong>Diagnostic session</strong> · Claude Sonnet 5.5<span class="l-sub">Sent: your whole profile and the 2 diagnostics before it</span></span><a class="t-meta" href="#">View what was sent and what came back</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="d-text">An AI task sends whatever it needs, even the whole profile, so the person sees it before and after: a notice before a large send, naming the provider, and an entry in the activity log for every call, with the model, the task and what was sent.</p>
 
       <h3 class="d-h3">Two-version conflict view</h3>
       <div data-pair>
@@ -784,11 +1060,11 @@ Most of my Python is services and ETL jobs.</pre>
       <h2 class="d-h2" id="h-a11y">Accessibility and languages</h2>
       <p class="d-lead">WCAG 2.2 AA in both themes and both densities is the floor, not a goal.</p>
       <ul class="d-list">
-        <li><strong>Never colour alone.</strong> Every source, level, state and marker has a word and an icon; the samples remain fully readable in greyscale.</li>
+        <li><strong>Never colour alone.</strong> Every source, level, state and marker has a word and an icon; tested labels carry the ruler and untested ones do not; Demonstrated and AI correlated differ by the AI monogram and the dashed edge, not by colour; the samples remain fully readable in greyscale.</li>
         <li><strong>Contrast.</strong> All text 4.5:1 or more (table below); input boundaries, the AI edge and the focus ring 3:1 or more.</li>
         <li><strong>Focus.</strong> A 2px ring with a 2px gap in the primary colour, 3px with more contrast. Never removed, never hidden by a sticky bar.</li>
         <li><strong>Targets.</strong> Controls are 32px in compact and 40px in comfortable; nothing interactive is under 24 by 24, including tags that are links.</li>
-        <li><strong>Reduced motion</strong> and <strong>more contrast</strong> follow the system and can be set in Pharoam. More contrast turns grey text to ink and every line to the strong line. In Windows high contrast (forced colours) every tag, panel and AI edge keeps a system-coloured border, AI stays dashed, and the level stair keeps its lit step.</li>
+        <li><strong>Reduced motion</strong> and <strong>more contrast</strong> follow the system and can be set in Pharoam. More contrast turns grey text to ink and every line to the strong line. In Windows high contrast (forced colours) every tag, panel and AI edge keeps a system-coloured border, AI judgements and AI-correlated results stay dashed, and the level stair keeps its lit step.</li>
         <li><strong>Structure.</strong> One h1 per screen, headings in order, row headers in tables, live regions for queue decisions and sync changes, labels on every icon-only button.</li>
       </ul>
       <table class="d-table">
@@ -798,7 +1074,7 @@ Most of my Python is services and ETL jobs.</pre>
           <tr><td>Secondary text on ground / panel</td><td class="num">7.3 / 6.7</td><td class="num">9.6 / 8.1</td></tr>
           <tr><td>Meta text on ground / panel</td><td class="num">5.7 / 5.2</td><td class="num">7.1 / 6.0</td></tr>
           <tr><td>Channel on ground / surface</td><td class="num">5.8 / 6.4</td><td class="num">8.1 / 7.5</td></tr>
-          <tr><td>Source tags on their wash (lowest of four)</td><td class="num">5.1</td><td class="num">6.3</td></tr>
+          <tr><td>Source labels on their wash (lowest of four)</td><td class="num">5.1</td><td class="num">6.3</td></tr>
           <tr><td>Notice / problem on their wash</td><td class="num">6.0 / 5.5</td><td class="num">7.7 / 6.4</td></tr>
           <tr><td>Primary label on primary</td><td class="num">15.2</td><td class="num">14.8</td></tr>
           <tr><td>Input boundary on surface (non-text)</td><td class="num">3.6</td><td class="num">3.4</td></tr>
@@ -812,8 +1088,8 @@ Most of my Python is services and ETL jobs.</pre>
         <div dir="rtl" lang="ar" class="stack">
           <p class="t-section" style="margin:0">المهارات</p>
           <table class="table">
-            <thead><tr><th scope="col">المهارة</th><th scope="col"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>تقييم ذاتي</span></th><th scope="col"><span class="tag src-evidence"><svg class="ic"><use href="#i-paperclip"/></svg>مدعوم بدليل</span></th></tr></thead>
-            <tbody><tr><th scope="row"><bdi>Python</bdi></th><td><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>متمكّن</span></td><td><span class="lvl" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>عملي</span></td></tr></tbody>
+            <thead><tr><th scope="col">المهارة</th><th scope="col">المستوى</th><th scope="col">المصدر</th></tr></thead>
+            <tbody><tr><th scope="row"><bdi>Python</bdi></th><td><span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>عملي</span></td><td><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>مُثبت في تشخيص</span></td></tr></tbody>
           </table>
           <nav class="crumbs"><a href="#">المسارات</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span>مهندس بيانات</span></nav>
         </div>
@@ -825,7 +1101,8 @@ Most of my Python is services and ETL jobs.</pre>
       <div data-pair>
         <div lang="de" class="spec-row">
           <span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Selbst eingeschätzt</span>
-          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>In einer Prüfung gezeigt</span>
+          <span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>In einer Diagnose gezeigt</span>
+          <span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>KI-korreliert · nach der Diagnose</span>
           <span class="tag rec-outside"><svg class="ic"><use href="#i-file-pen"/></svg>Außerhalb von Pharoam geändert</span>
           <button class="btn btn-primary">Nachweis hinzufügen</button>
         </div>
@@ -842,7 +1119,9 @@ Most of my Python is services and ETL jobs.</pre>
           <tr><td>Say what is known</td><td>“Two core requirements have nothing in your profile yet.”</td><td>“You’re missing 2 key skills!”</td></tr>
           <tr><td>Gaps are places to go</td><td>“Under the level asked, for now.”</td><td>“You failed to meet this requirement.”</td></tr>
           <tr><td>Name the source</td><td>“Quoted from your write-up, paragraph 3.”</td><td>“Based on your profile.”</td></tr>
-          <tr><td>AI is an opinion</td><td>“The AI’s overall reading. An opinion, not a result.”</td><td>“Verified by AI.”</td></tr>
+          <tr><td>Say where a level came from</td><td>“From your AI diagnostic on 25 Oct.”</td><td>“Your level.”</td></tr>
+          <tr><td>AI proposes, you decide</td><td>“An AI judgement. It counts once you accept it.”</td><td>“Verified by AI.”</td></tr>
+          <tr><td>Explain a difference, never accuse</td><td>“That may be because you haven’t worked on replication recently.”</td><td>“Your CV overstates your experience.”</td></tr>
           <tr><td>Reassure with facts</td><td>“Nothing has been overwritten.”</td><td>“Don’t worry!”</td></tr>
           <tr><td>No pressure</td><td>“Decide later.”</td><td>“Don’t lose your progress! Finish now.”</td></tr>
         </tbody>
@@ -857,22 +1136,24 @@ Most of my Python is services and ETL jobs.</pre>
       <h3 class="d-h3">Glossary of fixed terms</h3>
       <div class="gloss">
         <dl>
-          <div><dt>Evidence</dt><dd>A record of something you did: a job, project, course or certificate. Lives in its own file.</dd></div>
+          <div><dt>Evidence</dt><dd>A record of something you did: a job, project, repo, degree or certificate. Linked to skills; it carries no level. Lives in its own file.</dd></div>
           <div><dt>Skill</dt><dd>Something you can do, at a level, from one or more sources.</dd></div>
-          <div><dt>Level</dt><dd>Aware, Beginner, Working, Proficient or Expert. Never a number on screen.</dd></div>
-          <div><dt>Self-reported · Evidenced · Demonstrated · AI-inferred</dt><dd>The four sources of a level. Always these words.</dd></div>
+          <div><dt>Level</dt><dd>Aware, Beginner, Working, Proficient or Expert: the steps 0 to 4. The name always leads; a number only follows it, in grey.</dd></div>
+          <div><dt>Self-reported · AI judgement · Demonstrated · AI correlated</dt><dd>The four sources of a level. The first two are untested claims; the last two are tested in a diagnostic, and only they support a requirement. Always these words.</dd></div>
           <div><dt>Pathway</dt><dd>A kind of role and what it asks for. Not “job”, not “match”.</dd></div>
         </dl>
         <dl>
           <div><dt>Gap</dt><dd>The difference between what a pathway asks for and what your profile shows.</dd></div>
           <div><dt>Supported · Claimed · Below · Unknown</dt><dd>The four gap groups.</dd></div>
           <div><dt>Core · Helpful</dt><dd>How much a pathway needs a requirement.</dd></div>
-          <div><dt>Check</dt><dd>A knowledge check, open answer or practical task in Assess. Not “test” or “exam”.</dd></div>
-          <div><dt>Learning plan</dt><dd>What you intend to learn toward a pathway. Progress shows as new evidence.</dd></div>
+          <div><dt>Diagnostic</dt><dd>The adaptive assessment in Assess that produces a demonstrated or AI-correlated level. Not “test”, “exam” or “check”.</dd></div>
+          <div><dt>Skill history</dt><dd>Every level a skill has had, from every source, newest first, with the shown one marked.</dd></div>
+          <div><dt>Learning plan</dt><dd>What you intend to learn toward a pathway. Progress shows in your next diagnostic.</dd></div>
         </dl>
         <dl>
           <div><dt>Your folder</dt><dd>The storage you chose. The files there are the master copy.</dd></div>
-          <div><dt>Proposed · Accepted · Rejected · Drafted by AI</dt><dd>The AI states. The person accepts, corrects or rejects.</dd></div>
+          <div><dt>Pending · Accepted · Adjusted · Skipped · Drafted by AI</dt><dd>The AI states. The person accepts, adjusts or skips.</dd></div>
+          <div><dt>Explanation</dt><dd>The written account that comes with an AI-correlated result.</dd></div>
           <div><dt>Corrected · Retracted</dt><dd>Changes of mind. Both stay in the history.</dd></div>
           <div><dt>Content pack</dt><dd>A set of pathways and checks from someone else. Unverified until reviewed.</dd></div>
           <div><dt>Activity log</dt><dd>What Pharoam read, sent and wrote, and when.</dd></div>
@@ -881,12 +1162,14 @@ Most of my Python is services and ETL jobs.</pre>
 
       <h3 class="d-h3">Words to avoid</h3>
       <div class="avoid">
-        <div><s>Score, rating, percentage</s><b>Say the level’s name, or what the evidence shows.</b></div>
+        <div><s>Score, rating, percentage, points</s><b>Say the level’s name.</b></div>
         <div><s>Fit, match, compatible</s><b>“What the pathway asks for” and “what your profile shows”.</b></div>
         <div><s>Rank, best, top, recommended</s><b>List in the person’s order or A to Z.</b></div>
         <div><s>Failed, weak, lacking, missing skills</s><b>“Below the level asked, for now”, “nothing in your profile yet”.</b></div>
-        <div><s>Verified, confirmed, proven (for AI output)</s><b>“AI-inferred”, “an opinion, not a result”.</b></div>
-        <div><s>Streak, badge, level up, unlock, achievement</s><b>Nothing. Progress is new evidence.</b></div>
+        <div><s>Verified, certified, proven</s><b>“Demonstrated” or “AI correlated” for a tested result; “AI judgement” for a level AI gave from your evidence.</b></div>
+        <div><s>Evidenced, overall level, “I disagree”, “Dismiss”</s><b>“Self-reported, with evidence linked”; the diagnostic’s explanation.</b></div>
+        <div><s>Confidence, likelihood, correlation, how sure</s><b>Explain the reasons in words.</b></div>
+        <div><s>Streak, badge, level up, unlock, achievement</s><b>Nothing. Progress shows in the next diagnostic.</b></div>
         <div><s>Delete (for history)</s><b>“Retract” or “correct”. History is kept.</b></div>
         <div><s>Sync failed, error 409</s><b>“Two versions of sql.md. Nothing has been overwritten.”</b></div>
       </div>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-density="compact">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostic results · Pharoam sample</title>
+<meta name="description" content="Pharoam design system: diagnostic results for one skill, an illustration of the system.">
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/pharoam.css">
+<link rel="stylesheet" href="../assets/css/doc.css">
+<style>
+  /* Desktop 1440: canvas 1120, split 552 + 16 + 552. The latest result, the
+     one shown, sits beside the level over time and the AI calls behind it.
+     The skill's history runs full width; each entry opens its own result. The AI calls and the second
+     skill's result run the full width below. */
+  .results { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
+  .results > * { min-width: 0; }
+  .side { display: grid; gap: var(--gap); }
+  .full { margin-block-start: var(--gap); }
+  .result-wide .result-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: var(--space-6); }
+  .result-wide .result-body > :last-child { align-self: start; }
+  .result-wide .result-body > .mismatch { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
+  /* On a phone the history keeps its columns and scrolls inside its own frame. */
+  .history-wrap { overflow-x: auto; }
+  .history-wrap .history-table { min-inline-size: 640px; }
+  .history-table td.when { text-align: end; white-space: nowrap; color: var(--ink-2); }
+  .history-table th .tag { font-weight: 600; }
+  .result-where .skill { font-weight: 700; color: var(--ink); }
+  @media (max-width: 1023px) { .results, .result-wide .result-body, .full .log > li { grid-template-columns: 1fr; } .result-wide .result-body { grid-template-rows: none; } .full .log > li > a { grid-column: auto; } .result-wide .result-body > .mismatch { grid-column: auto; grid-row: auto; } }
+</style>
+</head>
+<body>
+<script src="../assets/icons/lucide/sprite.js"></script>
+<script src="../assets/js/glyphs.js"></script>
+<script src="../brand/marks.js"></script>
+
+<div class="ds-bar no-print" role="region" aria-label="Sample view settings">
+  <a href="../index.html">Pharoam design system</a>
+  <span class="ds-name">Sample: Diagnostic results · <a href="skills.html">Skills</a> · <a href="gap.html">Gap</a> · <a href="session.html">Session</a></span>
+  <span class="ds-spacer"></span>
+  <span class="ds-group" role="group" aria-label="Theme"><button data-set="theme=light">Light</button><button data-set="theme=dark">Dark</button></span>
+  <span class="ds-group" role="group" aria-label="Density"><button data-set="density=compact">Compact</button><button data-set="density=comfortable">Comfortable</button></span>
+  <span class="ds-group" role="group" aria-label="Contrast"><button data-set="contrast=normal">Standard</button><button data-set="contrast=more">More contrast</button></span>
+  <span class="ds-group" role="group" aria-label="Vocabulary labels"><button data-set="annotate=off">Plain</button><button data-set="annotate=on">Name the vocabulary</button></span>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <button class="btn btn-quiet btn-icon" data-nav-toggle aria-expanded="false" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <span data-mark></span>
+    <span class="topbar-title">PostgreSQL diagnostic</span>
+    <span class="sync"><svg class="ic"><use href="#i-cloud-check"/></svg>Saved</span>
+  </header>
+
+  <aside class="sidebar" aria-label="Pharoam">
+    <a class="brand" href="#" aria-label="Pharoam home"><span data-wordmark></span></a>
+
+    <button class="storage-switch" aria-label="Storage: My folder, pharoam-profile. Saved just now. Change storage">
+      <svg class="ic"><use href="#i-folder"/></svg>
+      <span class="s-name">pharoam-profile</span>
+      <svg class="ic ic-sm" style="grid-row: span 2"><use href="#i-chevron-down"/></svg>
+      <span class="sync"><svg class="ic"><use href="#i-cloud-check"/></svg>Saved just now</span>
+    </button>
+
+    <nav class="nav" aria-label="Main">
+      <a href="skills.html"><svg class="ic"><use href="#i-map"/></svg>Skills</a>
+      <a href="#"><svg class="ic"><use href="#i-file-text"/></svg>Evidence</a>
+      <a href="skills.html#queue"><svg class="ic"><use href="#i-list-checks"/></svg>Review<span class="count" aria-label="3 AI judgements waiting">3</span></a>
+      <a href="#" aria-current="page"><svg class="ic"><use href="#i-clipboard-pen"/></svg>Assess</a>
+      <p class="nav-label">Where next</p>
+      <a href="gap.html"><svg class="ic"><use href="#i-compass"/></svg>Pathways</a>
+      <a href="#"><svg class="ic"><use href="#i-sprout"/></svg>Learning plan</a>
+      <a href="#"><svg class="ic"><use href="#i-briefcase-business"/></svg>Prepare</a>
+    </nav>
+
+    <div class="sidebar-foot nav">
+      <a href="#log"><svg class="ic"><use href="#i-scroll-text"/></svg>Activity log</a>
+      <a href="#"><svg class="ic"><use href="#i-settings"/></svg>Settings</a>
+      <a href="#"><svg class="ic"><use href="#i-life-buoy"/></svg>Help</a>
+      <a href="#" data-lock role="button"><svg class="ic"><use href="#i-lock"/></svg>Lock now</a>
+    </div>
+  </aside>
+
+  <main class="canvas" id="main">
+    <div class="canvas-inner">
+
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Assess</a><svg class="ic ic-dir"><use href="#i-chevron-right"/></svg><span aria-current="page">PostgreSQL</span>
+      </nav>
+      <div class="titlebar">
+        <div>
+          <h1 class="t-title">PostgreSQL diagnostic</h1>
+          <p class="t-lead">Today’s AI-led diagnostic put you at Working, one step under the level you gave yourself. It is now the level shown for PostgreSQL.</p>
+        </div>
+      </div>
+
+      <div class="results">
+        <!-- AI correlated: an AI-led session, compared with the evidence, explained -->
+        <article class="result result-ai" aria-labelledby="r-ai" data-vocab="Diagnostic result card: AI correlated">
+          <div class="result-head">
+            <p class="result-where">
+              <span class="tag src-corr" data-vocab="Source: AI correlated"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span>
+              <span class="t-meta"><span class="skill">PostgreSQL</span> · 25 Oct 2026</span>
+            </p>
+            <h2 class="result-level" id="r-ai"><span class="lvl lvl-lg by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working <span class="lvl-n">level 2</span></span><span class="tag shown">Shown</span></h2>
+          </div>
+          <div class="result-body">
+            <p class="result-expl">Based on this session and your evidence: strong on indexing and query plans. You read every query plan you were shown correctly at level 3, and chose sound indexes for both workloads.</p>
+            <div class="mismatch" data-vocab="Mismatch callout: claimed higher">
+              <svg class="ic"><use href="#i-signpost"/></svg>
+              <div>
+                <p class="mm-title">What you said and what this session showed differ</p>
+                <p class="mm-compare"><span class="mm-item">You said <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></span><span class="mm-item">This session <span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></span></p>
+                <p>Your CV lists five years running Postgres in production, but in this session you couldn’t answer the replication questions at level 3. Possible reasons:</p>
+                <ul>
+                  <li>You may not have worked on replication recently.</li>
+                  <li>On a shared team, someone else may have looked after failover.</li>
+                </ul>
+                <p class="mm-next"><strong>Next step:</strong> a practical task on failover could show it. <a href="#">Add it to your plan</a></p>
+              </div>
+            </div>
+            <p class="result-considered">Considered: this session (8 multiple-choice, 2 open answers, 1 practical task), 2 jobs, 1 repo, your self-reported level</p>
+            <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>AI-generated by Claude Sonnet 5.5, with your key. AI can make mistakes.</p>
+          </div>
+          <div class="result-actions">
+            <button class="btn btn-primary btn-sm" data-dialog="ai-notice" data-vocab="Run the diagnostic again"><svg class="ic"><use href="#i-refresh-cw"/></svg>Run the diagnostic again</button>
+            <a class="btn btn-quiet btn-sm" href="#log">Show what was sent</a>
+          </div>
+        </article>
+
+        <div class="side">
+          <!-- Level over time: the level shown, and every entry behind it -->
+          <section class="sheet" style="padding: var(--pad)" aria-labelledby="chart-title" data-vocab="Level over time">
+            <div class="panel-head">
+              <h2 class="t-section" id="chart-title">Level over time</h2>
+              <span class="t-meta">Aug to Oct 2026</span>
+            </div>
+            <p class="lchart-legend">
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><line x1="0" y1="6" x2="9" y2="6" stroke="var(--line-strong)" stroke-width="2"/><line x1="9" y1="6" x2="18" y2="6" stroke="var(--src-demo)" stroke-width="2"/></svg>Level shown: from a claim, then tested</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="4.5" fill="var(--src-demo)"/></svg>Demonstrated</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="3" fill="var(--src-demo)"/><circle cx="9" cy="6" r="5.25" fill="none" stroke="var(--src-demo)" stroke-width="1.2" stroke-dasharray="2.5 1.5"/></svg>AI correlated</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><circle cx="9" cy="6" r="4" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2"/></svg>Self-reported</span>
+              <span class="k"><svg viewBox="0 0 18 12" aria-hidden="true"><rect x="5.5" y="2.5" width="7" height="7" transform="rotate(45 9 6)" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="2.5 1.5"/></svg>AI judgement</span>
+            </p>
+            <div class="lchart" data-chart='{"from":"2026-08-01","to":"2026-11-01","now":"2026-10-25","entries":[{"date":"2026-02-02","level":3,"source":"self"},{"date":"2026-09-02","level":1,"source":"demo"},{"date":"2026-10-18","level":2,"source":"demo"},{"date":"2026-10-25","level":3,"source":"ai","note":"accepted"},{"date":"2026-10-25","level":2,"source":"corr","note":"shown"}]}' aria-label="PostgreSQL level over time. The same entries are in the history table below."></div>
+          </section>
+
+        <!-- AI call log: what was sent, and what came back -->
+        <section class="sheet" style="padding: var(--pad)" id="log" aria-labelledby="log-title" data-vocab="AI call log entry">
+          <div class="panel-head">
+            <h2 class="t-section" id="log-title">AI calls for this diagnostic</h2>
+            <a class="t-meta" href="#">Activity log</a>
+          </div>
+          <ul class="log">
+            <li><span class="l-when">25 Oct 10:19</span><span class="l-what"><strong>Explanation</strong> · Claude Sonnet 5.5<span class="l-sub">Sent: this session’s answers and your whole profile</span></span><a class="t-meta" href="#">View what was sent and what came back</a></li>
+            <li><span class="l-when">25 Oct 10:02</span><span class="l-what"><strong>Diagnostic session: 8 multiple-choice, 2 open answers, 1 practical task</strong> · Claude Sonnet 5.5<span class="l-sub">Sent: your whole profile, 16 skills and 9 evidence records, and the 2 diagnostics before it</span></span><a class="t-meta" href="#">View what was sent and what came back</a></li>
+          </ul>
+        </section>
+        </div>
+      </div>
+
+      <!-- Skill history: every entry from every source, newest first; each one opens in place -->
+      <section class="sheet full" style="padding: var(--pad)" aria-labelledby="hist-title" data-vocab="Skill history">
+        <div class="panel-head">
+          <h2 class="t-section" id="hist-title">PostgreSQL history</h2>
+          <span class="t-meta">5 entries · newest first</span>
+        </div>
+        <div class="history-wrap">
+        <table class="table history-table">
+          <colgroup><col style="width:34%"><col style="width:20%"><col style="width:14%"><col style="width:16%"><col style="width:16%"></colgroup>
+          <thead><tr><th scope="col">Source</th><th scope="col">Level</th><th scope="col"><span class="visually-hidden">Shown</span></th><th scope="col" class="t-r">Date</th><th scope="col" class="t-r"><span class="visually-hidden">Details</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span></th><td><span class="lvl by-corr" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working<svg class="ic" aria-hidden="true"><use href="#i-ai"/></svg></span></td><td><span class="tag shown">Shown</span></td><td class="when num">2026-10-25</td><td class="t-r"><a class="reveal" href="#r-ai">The result above</a></td></tr>
+            <tr><th scope="row"><span class="tag src-ai"><svg class="ic"><use href="#i-ai"/></svg>AI judgement</span></th><td><span class="lvl by-ai" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td><td><span class="t-meta">accepted</span></td><td class="when num">2026-10-25</td><td class="t-r"><button type="button" class="link-btn reveal" data-disclose aria-expanded="false" aria-controls="h-2" data-open="Hide" data-closed="Show details"><span class="label">Show details</span></button></td></tr>
+            <tr class="detail-row" id="h-2" hidden><td colspan="5"><p class="entry-note">Proficient, from your CV and the repo pellwick/ledger, by Claude Sonnet 5.5. You accepted it on 25 Oct, before the AI diagnostic. It is untested, so it isn’t the level shown.</p></td></tr>
+            <tr><th scope="row"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span></th><td><span class="lvl by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working</span></td><td></td><td class="when num">2026-10-18</td><td class="t-r"><button type="button" class="link-btn reveal" data-disclose aria-expanded="false" aria-controls="h-3" data-open="Hide" data-closed="Show result"><span class="label">Show result</span></button></td></tr>
+            <tr class="detail-row" id="h-3" hidden><td colspan="5">
+        <article class="result" aria-labelledby="r-qb" data-vocab="Diagnostic result card: demonstrated">
+          <div class="result-head">
+            <p class="result-where">
+              <span class="tag src-demo" data-vocab="Source: demonstrated"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span>
+              <span class="t-meta"><span class="skill">PostgreSQL</span> · 18 Oct 2026</span>
+            </p>
+            <h2 class="result-level" id="r-qb"><span class="lvl lvl-lg by-demo" data-level="2"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Working <span class="lvl-n">level 2</span></span></h2>
+          </div>
+          <div class="result-body">
+            <p class="result-rule">Started at Proficient, the level you gave yourself. 14 multiple-choice questions from the PostgreSQL bank, marked by the published rule: two right at a level moves you up a step, two wrong moves you down. <a href="#">How it was marked</a></p>
+            <p class="result-considered">Covered: indexes, query plans, transactions, replication. The questions moved between Working and Proficient four times before settling.</p>
+            <p class="offline-note" data-vocab="Offline-limit note"><svg class="ic"><use href="#i-info"/></svg>Based on this session only. Your evidence wasn’t considered.</p>
+          </div>
+          <div class="result-actions">
+            <button class="btn btn-secondary btn-sm" data-dialog="ai-notice" data-vocab="More accurate with AI"><svg class="ic"><use href="#i-ai"/></svg>Get a more accurate result with AI</button>
+            <span class="help-tip">
+              <button class="help-btn" data-help aria-expanded="false" aria-controls="why-ai" aria-label="Why AI is more accurate"><svg class="ic"><use href="#i-circle-help"/></svg></button>
+              <span class="tooltip help-pop" id="why-ai" role="note" hidden>AI tailors the questions to you, adds open answers and practical tasks, takes your evidence into account, and explains the result.</span>
+            </span>
+          </div>
+        </article>
+            </td></tr>
+            <tr><th scope="row"><span class="tag src-demo"><svg class="ic"><use href="#i-pencil-ruler"/></svg>Demonstrated</span></th><td><span class="lvl by-demo" data-level="1"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Beginner</span></td><td></td><td class="when num">2026-09-02</td><td class="t-r"><button type="button" class="link-btn reveal" data-disclose aria-expanded="false" aria-controls="h-4" data-open="Hide" data-closed="Show result"><span class="label">Show result</span></button></td></tr>
+            <tr class="detail-row" id="h-4" hidden><td colspan="5"><div class="entry-note"><p style="margin:0 0 6px">12 multiple-choice questions from the PostgreSQL bank, starting at Proficient, the level you gave yourself. It settled at Beginner.</p><p class="offline-note"><svg class="ic"><use href="#i-info"/></svg>Based on this session only. Your evidence wasn’t considered.</p></div></td></tr>
+            <tr><th scope="row"><span class="tag src-self"><svg class="ic"><use href="#i-user-round"/></svg>Self-reported</span></th><td><span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></td><td></td><td class="when num">2026-02-02</td><td class="t-r"><button type="button" class="link-btn reveal" data-disclose aria-expanded="false" aria-controls="h-5" data-open="Hide" data-closed="Show details"><span class="label">Show details</span></button></td></tr>
+            <tr class="detail-row" id="h-5" hidden><td colspan="5"><p class="entry-note">You set Proficient when you added PostgreSQL on 2 Feb.</p></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- The other direction: shown higher than claimed -->
+      <article class="result result-ai result-wide full" aria-labelledby="r-tw" data-vocab="Mismatch callout: showed higher">
+        <div class="result-head">
+          <p class="result-where">
+            <span class="tag src-corr"><svg class="ic"><use href="#i-pencil-ruler"/></svg><svg class="ic"><use href="#i-ai"/></svg>AI correlated · after diagnostic</span>
+            <span class="t-meta"><span class="skill">Technical writing</span> · 21 Oct 2026</span>
+          </p>
+          <h2 class="result-level" id="r-tw"><span class="lvl lvl-lg by-corr" data-level="4"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert <span class="lvl-n">level 4</span></span><span class="tag shown">Shown</span></h2>
+        </div>
+        <div class="result-body">
+          <p class="result-expl">Based on this session and your evidence: you restructured a long design document for two audiences and explained a trade-off in plain words, both at level 4.</p>
+          <div class="mismatch">
+            <svg class="ic"><use href="#i-signpost"/></svg>
+            <div>
+              <p class="mm-title">This session showed more than you claimed</p>
+              <p class="mm-compare"><span class="mm-item">You said <span class="lvl" data-level="3"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Proficient</span></span><span class="mm-item">This session <span class="lvl by-corr" data-level="4"><span class="stairs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Expert</span></span></p>
+              <p>Possible reasons:</p>
+              <ul>
+                <li>Writing isn’t in your job title, so it is easy to undersell.</li>
+                <li>Your payments write-up is already used as a model by others, which is level 4 work.</li>
+              </ul>
+              <p class="mm-next"><strong>Next step:</strong> you could raise your self-reported level, or leave it. Either way this result stays the level shown.</p>
+            </div>
+          </div>
+          <p class="result-considered">Considered: this session (6 multiple-choice, 3 open answers, 1 practical task), 1 job, 2 write-ups, your self-reported level</p>
+          <p class="ai-disclaimer"><svg class="ic"><use href="#i-info"/></svg>AI-generated by Claude Sonnet 5.5, with your key. AI can make mistakes.</p>
+        </div>
+        <div class="result-actions">
+          <button class="btn btn-secondary btn-sm"><svg class="ic"><use href="#i-pencil"/></svg>Change your own level</button>
+          <button class="btn btn-quiet btn-sm">Run the diagnostic again</button>
+        </div>
+      </article>
+
+      <footer class="org-footer">
+        <span class="hosted"><span data-mark style="width:16px;height:16px"></span>Pharoam 1.4 · open source · your files stay in your folder</span>
+        <nav aria-label="Pharoam">
+          <a href="#">Activity log</a><a href="#">Accessibility</a><a href="#">Source code</a>
+        </nav>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<!-- AI data notice: before a large send, say what goes where -->
+<dialog id="ai-notice" class="dialog" aria-labelledby="ai-notice-title" data-vocab="AI data notice">
+  <h2 class="t-section" id="ai-notice-title">This sends your whole profile to Anthropic</h2>
+  <p class="muted" style="margin:0">A tailored session needs all of it: 16 skills, 9 evidence records, your notes and your 3 diagnostics so far. It goes to Claude Sonnet 5.5, with your key.</p>
+  <p class="t-meta" style="margin:12px 0 0">You can see exactly what was sent, and what came back, in the activity log.</p>
+  <div class="dialog-actions"><button class="btn btn-quiet" data-close>Cancel</button><button class="btn btn-primary" data-close>Continue</button></div>
+</dialog>
+
+<div id="lock-screen" hidden style="position:fixed;inset:0;z-index:20;display:grid;background:var(--ground)">
+  <div class="lock" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <span data-mark="full"></span>
+    <h2 class="t-section" id="lock-title"><span class="tag trust-locked" style="vertical-align:3px;margin-inline-end:6px"><svg class="ic"><use href="#i-lock"/></svg>Locked</span>Pharoam is locked</h2>
+    <p class="muted" style="margin:0;max-width:40ch">Your profile is closed on this device. Your files are unchanged in your folder.</p>
+    <form>
+      <div class="field"><label for="pass">Passphrase</label><input class="input" id="pass" type="password" autocomplete="current-password"></div>
+      <button class="btn btn-primary" type="submit">Unlock</button>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/ds.js"></script>
+</body>
+</html>

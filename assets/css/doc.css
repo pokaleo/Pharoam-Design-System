@@ -33,8 +33,9 @@
   position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 24px 16px 32px 24px;
   border-inline-end: 1px solid var(--line-soft); font-size: 14px; line-height: 20px;
 }
-.doc-toc .brand { padding: 0; margin-block-end: 20px; }
-.doc-toc .brand .wordmark { block-size: 24px; }
+/* The wordmark matches the product sidebar: 26px tall, on the same edge as the labels below it. */
+.doc-toc .brand { padding: 0 8px; margin-block-end: 20px; }
+.doc-toc .brand .wordmark { block-size: 26px; inline-size: auto; }
 .doc-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
 .doc-toc ol ol { padding-inline-start: 12px; margin-block: 2px 8px; }
 .doc-toc a { display: block; padding: 5px 8px; border-radius: 6px; color: var(--ink-2); text-decoration: none; }
@@ -58,6 +59,8 @@
 .doc ul.d-list { font-size: 16px; line-height: 26px; max-width: 72ch; padding-inline-start: 20px; margin: 10px 0 0; }
 .doc ul.d-list li + li { margin-block-start: 4px; }
 .doc code { font-family: var(--font-code); font-size: 0.86em; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+/* Specimens keep their own code styling: file bars show the file name as the product does. */
+.doc .file-bar code, .doc .task-files code { font-size: 12px; background: none; padding: 0; }
 
 /* Specimens */
 .specimen { margin-block-start: 20px; }
@@ -74,6 +77,9 @@
 .d-table th { text-align: start; font-weight: 400; color: var(--ink-2); font-size: 12px; padding: 0 12px 8px 0; border-block-end: 1px solid var(--line); vertical-align: bottom; }
 .d-table td { padding: 10px 12px 10px 0; border-block-end: 1px solid var(--line-soft); vertical-align: top; }
 .d-table td:first-child { font-weight: 600; white-space: nowrap; }
+.d-table-wrap td:first-child { white-space: normal; inline-size: 24%; }
+/* On a phone a wide reference table scrolls inside its own frame, never the page. */
+@media (max-width: 639px) { .d-table { display: block; overflow-x: auto; } .pair-side { overflow-x: auto; } }
 .d-table .num { text-align: end; white-space: nowrap; }
 .d-table code { white-space: nowrap; }
 
@@ -104,8 +110,24 @@
 .mkt-nav nav a { color: var(--ink); text-decoration: none; }
 .mkt-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; padding: 48px 40px 56px; align-items: end; }
 .mkt-hero h3 { font-family: var(--font-ui); font-weight: 800; font-size: clamp(40px, 5.4vw, 72px); line-height: 1; letter-spacing: -0.045em; margin: 0; }
-.mkt-hero p { font-size: 19px; line-height: 29px; margin: 24px 0 28px; max-width: 34ch; color: var(--ink-2); }
+.mkt-hero > div:first-child p { font-size: 19px; line-height: 29px; margin: 24px 0 28px; max-width: 34ch; color: var(--ink-2); }
 .mkt-beam { position: relative; min-height: 300px; border-radius: 10px; background: #1b1d1f; overflow: hidden; }
+/* The product fragment in the marketing hero: a real piece of the skills
+   screen. Two-line rows on a 64px pitch: the skill and its one level on
+   line 1, where the level came from on line 2, so nothing stacks or collides. */
+.mkt-beam[data-ui] { display: grid; align-content: end; gap: 14px; padding: 28px; }
+.mkt-card { padding: 4px 20px 6px; }
+.mkt-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 16px 10px; border-block-end: 1px solid var(--line); }
+.mkt-card-head .t-section { margin: 0; }
+.mkt-skills { list-style: none; margin: 0; padding: 0; }
+.mkt-skills li { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name level" "src src"; align-items: center; gap: 6px 16px; min-block-size: 64px; padding-block: 12px; border-block-end: 1px solid var(--line-soft); }
+.mkt-skills li:last-child { border-block-end: 0; }
+.mkt-skills .ms-name { display: contents; }
+.mkt-skills .ms-name strong { grid-area: name; font-weight: 600; }
+.mkt-skills .src-line { grid-area: src; }
+.mkt-skills .lvl { grid-area: level; justify-self: end; }
+@media (max-width: 639px) { .mkt-beam[data-ui] { padding: 16px; } .mkt-card { padding-inline: 16px; } }
+.mkt-caption { margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-2); }
 
 /* Density comparison */
 .density-cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-block-start: 20px; }
@@ -159,6 +181,5 @@
 .wm-28 { display: block; height: 28px; }
 .wm-28 .wordmark { height: 28px; width: auto; }
 .mkt-nav [data-wordmark] .wordmark { block-size: 30px; inline-size: auto; }
-.doc-toc .brand .wordmark { block-size: 30px; inline-size: auto; }
 .d-foot [data-wordmark] .wordmark { block-size: 26px; inline-size: auto; }
 @media (max-width: 639px) { .id-lockup .id-word { height: 44px; } .id-lockup img:first-child { width: 88px; height: 88px; } }
